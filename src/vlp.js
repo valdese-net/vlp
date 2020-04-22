@@ -1,3 +1,4 @@
+ 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -95,7 +96,7 @@ function vlpMap(debugMode) {
             if (v.secret) return;
             if (v.dash) {
                 nlo['dashArray'] = "10";
-                nlo['weight'] = 5;
+                nlo['weight'] = 5; //was 5
             }
             var newLayer = L.polyline(gpsList(v.trail), nlo);
             var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
