@@ -130,7 +130,7 @@ async function doLoader(loaderObj, twigSource, options) {
 
 	if (!bldd.mapIncludes) bldd.mapIncludes = ['trails'];
 
-	// commented this out for now...seems like overkil
+	// commented this out for now...seems like overkill
 	// markdown encode the texts in history
 	// await forEach(appd.history, v => { v[1] = markdownRender(v[1]); });
 
