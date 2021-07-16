@@ -95,6 +95,7 @@ const mdiSVGIcons = {
 	greenw: {path: mdiSVGPaths.wildlife, fill: '#228A13', size: 33},
 	purplew: {path: mdiSVGPaths.wildlife, fill: '#960A96', size: 33},
 	limew: {path: mdiSVGPaths.wildlife, fill: '#3FE114', size: 33},
+	tealw: {path: mdiSVGPaths.wildlife, fill: '#42806D', size: 33},
 }
 
 function buildIcon(icoName) {
