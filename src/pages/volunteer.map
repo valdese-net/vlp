@@ -6,4 +6,4 @@ opts:
 	yahZoomStartup: true
 	addMeasureControl: true
 layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [volunteer.mapmarks, content.mapmarks]}
+- {group: Options, opacity: 0.85, weight: 9, list: [Maintenance.mapmarks]}
