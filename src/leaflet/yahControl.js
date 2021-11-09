@@ -1,12 +1,46 @@
 import {vlpDebug} from '../globals.js';
 
+var enableCompassHeading = true;
+
+// L.Marker must be extended to properly handle updating the svg element's rotation
+var YAHMarker = L.Marker.extend({
+	options: {heading: 90},
+	initialize: function(latlng,options) {
+		L.setOptions(this, options);
+		L.Marker.prototype.initialize.call(this,latlng,options);
+		this._heading = this.options.heading;
+    },
+	setHeading: function(h) {this._heading = h;},
+	_updateHeading: function() {
+		// point the walking persons head toward the heading
+		if (this._icon) {
+			let h = this._heading - 90;
+			let fc = this._icon.firstChild;
+			if (fc) {
+				let scale = '';
+				if (h<0) {h+=360;} else if (h > 360) {h = h % 360;}
+				if ((h > 90) && (h <=270)) {
+					h = 180 - h;
+					scale = 'scaleX(-1) ';
+				}
+				
+				fc.style.transform = `${scale}rotate(${h}deg)`;
+			}
+		}
+	},
+	update: function() {
+		L.Marker.prototype.update.call(this);
+		this._updateHeading();
+	}
+});
+
 var YAHControl = L.Control.extend({
 	options: {
 		maxBounds: null,
 		flyToInterval: 20000
 	},
 	initialize: function(options) {
-        L.setOptions(this, options);
+		L.setOptions(this, options);
     },
 
 	bindTo: function(map) {
@@ -16,15 +50,25 @@ var YAHControl = L.Control.extend({
 		let btn = document.getElementById('btnid-yah');
 		let yahIcon = L.divIcon({
 			className: 'yah-divicon',
-			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%;"></i>',
+			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%; transform:rotate(0deg);"></i>',
 			iconSize: [36, 36],
 			iconAnchor: [18, 30]
 		});
-		let yahMarker = L.marker([35.75640,-81.58016],{icon:yahIcon}).bindTooltip('You are here');
+		let yahMarker = new YAHMarker([35.75640,-81.58016],{icon:yahIcon});
+		yahMarker.bindTooltip('You are here');
 
-		function yahActive() {return btn.classList.contains('active');}
+		function is_yahActive() {return btn.classList.contains('active');}
+		function setDeviceOrientation(e) {
+			if (e.webkitCompassHeading) {
+				// iOS
+				yahMarker.setHeading(e.webkitCompassHeading);
+			} else if (e.absolute && e.alpha) {
+				// Android
+				yahMarker.setHeading(360 - e.alpha)
+			}
+        }
 		function yahActivate(b) {
-			let b_c = yahActive();
+			let b_c = is_yahActive();
 			vlpDebug('yahActivate '+b);
 
 			if (b == b_c) return;
@@ -33,20 +77,51 @@ var YAHControl = L.Control.extend({
 			if (b) {
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
+				
+				if (enableCompassHeading) {
+					var oriAbs = 'ondeviceorientationabsolute' in window;
+
+					if (oriAbs || ('ondeviceorientation' in window)) {
+						var setup_deviceorientation = function () {
+							L.DomEvent.on(window, oriAbs ? 'deviceorientationabsolute' : 'deviceorientation', setDeviceOrientation);
+						};
+						if (DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+							// ios uses a user permission prompt
+							DeviceOrientationEvent.requestPermission().then(function (permissionState) {
+								if (permissionState === 'granted') {
+									setup_deviceorientation();
+								}
+							});
+						} else {
+							setup_deviceorientation();
+						}
+					}
+				}
 			} else {
 				map.removeLayer(yahMarker);
 				map.stopLocate();
+
+				if (enableCompassHeading) {
+					if ('ondeviceorientationabsolute' in window) {
+						L.DomEvent.off(window, 'deviceorientationabsolute', setDeviceOrientation);
+					} else if ('ondeviceorientation' in window) {
+						L.DomEvent.off(window, 'deviceorientation', setDeviceOrientation);
+					}
+				}
+				
+				// enable the compass for next activation sequence for location services
+				enableCompassHeading = true;
 			}
 
 			if (localStorage) {
-				if (b) localStorage.yah = 1;
+				if (b) localStorage.yah = enableCompassHeading ? 2 : 1;
 				else localStorage.removeItem('yah');
 			}
 		}
 
 		btn.addEventListener('click', (e) => {
 			e.stopPropagation();
-			yahActivate(!yahActive());
+			yahActivate(!is_yahActive());
 		});
 
 		map.on('locationfound', function(e) {
@@ -79,13 +154,16 @@ var YAHControl = L.Control.extend({
 			}
 		});
 		map.on('locationerror', function(e) {
-			if (yahActive()) {
+			if (is_yahActive()) {
 				yahActivate(false);
 				alert(e.message);
 			}
 		});
 
-		if (localStorage && localStorage.yah) yahActivate(true);
+		if (localStorage && localStorage.yah) {
+			enableCompassHeading = (localStorage.yah  != 1);
+			yahActivate(true);
+		}
 	},
 });
 
