@@ -50,7 +50,7 @@ var YAHControl = L.Control.extend({
 		let btn = document.getElementById('btnid-yah');
 		let yahIcon = L.divIcon({
 			className: 'yah-divicon',
-			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%; transform:rotate(0deg);"></i>',
+			html: '<i class="fvricon fvricon-walkptr" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%; transform:rotate(0deg);"></i>',
 			iconSize: [36, 36],
 			iconAnchor: [18, 30]
 		});
