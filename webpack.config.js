@@ -90,7 +90,7 @@ module.exports = env => {
 					options: {
 						cacheName: 'map-tiles',
 						// limit number of tiles in cache; should be enough for common offline use
-						expiration: { maxEntries: 600 },
+						expiration: { maxEntries: 900 },
 					},
 				}]
 			})

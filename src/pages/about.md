@@ -26,7 +26,6 @@ species. A generous sampling of the park wildlife can be seen on [the zakklab si
 
 The park is home to a number of trails. Tap the trail name to see more information.
 
-
 <details>
 <summary>Greenway</summary>
 
@@ -51,6 +50,7 @@ throughout. Featured sights include:
 - Easy Trail
 - 0.6 Miles
 - Grass can be tall at times.
+
 **Not recommended** until a future bridge project comes to fruition.
 </details>
 

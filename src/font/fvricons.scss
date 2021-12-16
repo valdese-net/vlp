@@ -39,6 +39,8 @@
 
   $fvricon-walk: "\ea14";
 
+  $fvricon-walkptr: "\ea15";
+
 
 @font-face {
   font-family: "fvricons";
@@ -225,5 +227,9 @@ display: inline-block;
 
 .fvricon-walk::before {
     content: "\ea14";
+}
+
+.fvricon-walkptr::before {
+    content: "\ea15";
 }
 
