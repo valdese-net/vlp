@@ -8,7 +8,7 @@ opts:
 	addMeasureControl: true
 	hideZoomControl: true
 layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail, DogPark.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,McGalliardGreenway.trail,HoyleCreek.trail,OuterCreek.trail, Pink.trail, Tan.trail, MeditationPoint.trail, BlueLoop.trail, ShadeCut.trail]}
+- {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,HoyleCreek.trail,OuterCreek.trail, Pink.trail, MeditationPoint.trail, BlueLoop.trail, ShadeCut.trail]}
 #- {group: Zakklab Trails, opacity: 0.85, weight 9, list: []}
 - {group: DHS Trails, opacity: 0.85, weight 8, list: [HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail]} 
