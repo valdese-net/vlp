@@ -78,7 +78,7 @@ function initLakesideParkApp() {
 		}
 
 		if (doAppInit) {
-			showWhatsNew();
+			if (!showWhatsNew()) openTheMenu(true);
 		}
 	}
 
