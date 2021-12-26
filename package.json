@@ -1,8 +1,8 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "3.3.1",
-	"description": "Navigating the new park and showing park plan overlays",
+	"version": "3.4.0",
+	"description": "Navigating the new Lakeside Park in Valdese",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"build": "webpack --mode production",
@@ -40,7 +40,7 @@
 		"p-iteration": "^1.1.8",
 		"raw-loader": "^1",
 		"resolve-url-loader": "^3.1.4",
-		"sass": "^1.45.0",
+		"sass": "^1.45.1",
 		"sass-loader": "^8.0.2",
 		"twing": "^5.1.0",
 		"webpack": "^4.46.0",
