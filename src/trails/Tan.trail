@@ -1,9 +1,9 @@
 name: Tan
-secret: false
+secret: true
 color: "#A07545"
 miles: 0.55
 dash: false
-optional: false
+optional: true
 trail:
 - [35.771301,-81.559112,326.2]
 - [35.771336,-81.559019,326.4]
