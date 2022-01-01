@@ -24,5 +24,5 @@ trackpts.forEach(ptD => {
 	const latD = extractValue(ptD.match(/lat=["']?([^'"]+)/));
 	const lngD = extractValue(ptD.match(/lon=["']?([^'"]+)/));
 	const eleD = extractValue(ptD.match(/<ele>([^<]+)/));
-	console.log(`- ${latD},${lngD},${eleD}`);
+	console.log(`- [${latD},${lngD},${eleD}]`);
 });
