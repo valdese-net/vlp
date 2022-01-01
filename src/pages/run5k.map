@@ -6,3 +6,4 @@ opts:
 	yahZoomStartup: true
 layers:
 - {group: 5k Route, opacity: 0.85, weight: 9, list: [5k2022.trail]}
+- {group: Markers, opacity: 0.85, weight: 9, list: [runmarks5k.mapmarks]}
