@@ -31,15 +31,17 @@
 
   $fvricon-natureman: "\ea10";
 
-  $fvricon-together: "\ea11";
+  $fvricon-refresh: "\ea11";
 
-  $fvricon-twitter: "\ea12";
+  $fvricon-together: "\ea12";
 
-  $fvricon-voice: "\ea13";
+  $fvricon-twitter: "\ea13";
 
-  $fvricon-walk: "\ea14";
+  $fvricon-voice: "\ea14";
 
-  $fvricon-walkptr: "\ea15";
+  $fvricon-walk: "\ea15";
+
+  $fvricon-walkptr: "\ea16";
 
 
 @font-face {
@@ -213,23 +215,27 @@ display: inline-block;
     content: "\ea10";
 }
 
-.fvricon-together::before {
+.fvricon-refresh::before {
     content: "\ea11";
 }
 
-.fvricon-twitter::before {
+.fvricon-together::before {
     content: "\ea12";
 }
 
-.fvricon-voice::before {
+.fvricon-twitter::before {
     content: "\ea13";
 }
 
-.fvricon-walk::before {
+.fvricon-voice::before {
     content: "\ea14";
 }
 
-.fvricon-walkptr::before {
+.fvricon-walk::before {
     content: "\ea15";
+}
+
+.fvricon-walkptr::before {
+    content: "\ea16";
 }
 

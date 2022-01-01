@@ -36,7 +36,7 @@ function initLakesideParkApp() {
 		else ctrl_PageTitle.classList.remove('menu-active');
 	}
 	function toggleMenu() { openTheMenu(menuscreen_elem.style.display == 'none'); }
-
+	
 	function setCurrentPage(rid) {
 		let doAppInit = firstTime;
 		let thisPageData = vlpApp.pages[rid];
@@ -84,6 +84,10 @@ function initLakesideParkApp() {
 
 	ctrl_PageTitle.addEventListener("click",(e) => toggleMenu());
 	menuscreen_elem.addEventListener("click",() => openTheMenu(false));
+	document.getElementById('btnid-refresh').addEventListener('click', (e) => {
+		e.stopPropagation();
+		location.reload(true);
+	});
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
 			if (isMenuOpen()) openTheMenu(false);
