@@ -8,3 +8,4 @@ opts:
 layers:
 - {group: Options, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,HoyleCreek.trail,ShadeCut.trail, MeditationPoint.trail, BlueLoop.trail,OuterCreek.trail, Pink.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 12, list: [Loop1.trail, Loop2.trail, Loop3.trail, Loop4.trail, Loop5.trail]}

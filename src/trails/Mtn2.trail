@@ -1,6 +1,6 @@
 name: Mtn Biking 2
 secret: false
-color: "#FA8A37"
+color: "#9DA49E"
 miles: 0.15
 dash: true
 optional: false
