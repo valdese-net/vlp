@@ -5,8 +5,6 @@
 </div>
 
 Help us with our mission to support parks, recreation and programs in Valdese.
-You can choose the target for your donation, including focus on the [Suspension Bridge][link-fvrbridgedonate]
-or donating to our General Fund.
 
 Friends of the Valdese Rec, Inc is a 501c3.
 
