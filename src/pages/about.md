@@ -7,13 +7,12 @@ nav: B100
 {% include 'pages/social.html' %}
 
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside,
-a 325 acre municipal park ith ongoing construction set to be completed by November 30th. Currently, the park is
-maintained by the [Friends of the Valdese Rec][link-fvr] volunteer organization.
-We hope that enjoy your visit to Valdese Lakeside Park!
+a 325 acre municipal park. We hope that enjoy your visit to Valdese Lakeside Park!
+This park would not exist without funding from grants and community donations, plus all the volunteer hours.
 
-The [Friends of the Valdese Rec][link-fvr] is [currently accepting donations][link-bridgedonate] for construction
-of a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park. Donations are accepted
-through Facebook, Paypal, Mail, or a Stock donation.
+- **Nov 2021** - Phase 1 Complete celebration was held for 4000 linear ft of greenway, restrooms, wildlife viewing platform, parking and entry road.
+- **May 2022** – Dog Park opened
+- **July 2022** – A 160-foot bridge over McGalliard Creek to complete the 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park opened
 
 **Planning to go out on the water?** Duke Energy manages the water level and [publishes
 information about this][link-lakelevels]. We recommend putting in at the Table Rock
@@ -30,7 +29,7 @@ The park is home to a number of trails. Tap the trail name to see more informati
 <summary>Greenway</summary>
 
 - Easy Trail
-- 1.3 Miles
+- 1.9 Miles
 
 The most prominent trail in the park, running adjacent to the lake and its tributary
 throughout. Featured sights include:
@@ -40,18 +39,8 @@ throughout. Featured sights include:
   water view.
 - 0.5 Miles in: A shallow stepdown into the water called The Fox Den. Across
   the water there are often birds such as the Great Blue Heron.
-- 1.3 Miles in: The future bridge to McGalliard Falls Park.
+- 1.3 Miles in: McGalliard Creek Bridge to McGalliard Falls Park.
 
-</details>
-
-<details>
-<summary>Future McGalliard Falls Greenway</summary>
-
-- Easy Trail
-- 0.6 Miles
-- Grass can be tall at times.
-
-**Not recommended** until a future bridge project comes to fruition.
 </details>
 
 <details>

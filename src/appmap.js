@@ -47,8 +47,7 @@ function vlpAppMap(targetDiv,router) {
 		maxBounds: valdese_area
 	});
 	let mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
-		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', //No Thunderforest
-		//attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a target="_blank" href="https://www.Thunderforest.com">Thunderforest</a>', //With Thunderforest
+		attribution: `V${vlpApp.appd.appver} &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
