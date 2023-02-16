@@ -46,6 +46,7 @@ var YAHControl = L.Control.extend({
 	bindTo: function(map) {
 		const options = this.options;
 		const flyToInterval = options.flyToInterval;
+		const oriAbs = ("ondeviceorientationabsolute" in window) ? "ondeviceorientationabsolute" : (("ondeviceorientation" in window) ? "ondeviceorientation" : false);
 		let lastVisibleLocationTime = 0;
 		let btn = document.getElementById('btnid-yah');
 		let yahIcon = L.divIcon({
@@ -58,7 +59,7 @@ var YAHControl = L.Control.extend({
 		yahMarker.bindTooltip('You are here');
 
 		function is_yahActive() {return btn.classList.contains('active');}
-		function setDeviceOrientation(e) {
+		function showDeviceOrientation(e) {
 			if (e.webkitCompassHeading) {
 				// iOS
 				yahMarker.setHeading(e.webkitCompassHeading);
@@ -67,6 +68,7 @@ var YAHControl = L.Control.extend({
 				yahMarker.setHeading(360 - e.alpha)
 			}
         }
+		function setup_deviceorientation() {L.DomEvent.on(window, oriAbs, showDeviceOrientation);}
 		function yahActivate(b) {
 			let b_c = is_yahActive();
 			vlpDebug('yahActivate '+b);
@@ -76,37 +78,24 @@ var YAHControl = L.Control.extend({
 			btn.classList.toggle('active');
 			if (b) {
 				lastVisibleLocationTime = 0;
-				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
+				map.locate({watch: true, timeout:60000, maximumAge:10000});
 				
-				if (enableCompassHeading) {
-					var oriAbs = 'ondeviceorientationabsolute' in window;
-
-					if (oriAbs || ('ondeviceorientation' in window)) {
-						var setup_deviceorientation = function () {
-							L.DomEvent.on(window, oriAbs ? 'deviceorientationabsolute' : 'deviceorientation', setDeviceOrientation);
-						};
-						if (DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
-							// ios uses a user permission prompt
-							DeviceOrientationEvent.requestPermission().then(function (permissionState) {
-								if (permissionState === 'granted') {
-									setup_deviceorientation();
-								}
-							});
-						} else {
-							setup_deviceorientation();
-						}
+				if (enableCompassHeading && oriAbs) {
+					// ios uses a user permission prompt
+					if (DeviceOrientationEvent && (typeof DeviceOrientationEvent.requestPermission === 'function')) {
+						DeviceOrientationEvent.requestPermission().then(function (permission) {
+							if (permission === 'granted') { setup_deviceorientation(); }
+						});
+					} else {
+						setup_deviceorientation();
 					}
 				}
 			} else {
 				map.removeLayer(yahMarker);
 				map.stopLocate();
 
-				if (enableCompassHeading) {
-					if ('ondeviceorientationabsolute' in window) {
-						L.DomEvent.off(window, 'deviceorientationabsolute', setDeviceOrientation);
-					} else if ('ondeviceorientation' in window) {
-						L.DomEvent.off(window, 'deviceorientation', setDeviceOrientation);
-					}
+				if (enableCompassHeading && oriAbs) {
+					L.DomEvent.off(window, oriAbs, showDeviceOrientation);
 				}
 				
 				// enable the compass for next activation sequence for location services
