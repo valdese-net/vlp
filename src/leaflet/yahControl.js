@@ -46,7 +46,7 @@ var YAHControl = L.Control.extend({
 	bindTo: function(map) {
 		const options = this.options;
 		const flyToInterval = options.flyToInterval;
-		const oriAbs = ("ondeviceorientationabsolute" in window) ? "ondeviceorientationabsolute" : (("ondeviceorientation" in window) ? "ondeviceorientation" : false);
+		const oriAbs = ("ondeviceorientationabsolute" in window) ? "deviceorientationabsolute" : (("ondeviceorientation" in window) ? "deviceorientation" : false);
 		let lastVisibleLocationTime = 0;
 		let btn = document.getElementById('btnid-yah');
 		let yahIcon = L.divIcon({
