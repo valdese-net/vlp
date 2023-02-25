@@ -45,6 +45,6 @@
 		"twing": "^5.1.0",
 		"webpack": "^4.46.0",
 		"webpack-cli": "^3",
-		"workbox-webpack-plugin": "^5"
+		"workbox-webpack-plugin": "^6"
 	}
 }
