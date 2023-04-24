@@ -1,8 +1,6 @@
 import './app.scss';
 import './app.manifest';
-import './index.twig';
 
-import * as g from './globals.js';
 import {closeModal} from './modal.js';
 import Navigo from 'navigo';
 import { vlpAppMap } from './appmap.js';

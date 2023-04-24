@@ -1,9 +1,9 @@
-const
-	webpack = require('webpack'),
-	path = require('path'),
-	{ CleanWebpackPlugin } = require('clean-webpack-plugin'),
-	CompressionPlugin = require('compression-webpack-plugin'),
-	workboxPlugin = require('workbox-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => {
 	var use_zakklab = (env && env.ZAKKLAB) ? 1 : 0;
@@ -17,62 +17,58 @@ module.exports = env => {
 		},
 		output: {
 			path: path.resolve(__dirname, 'build'),
-			filename: 'app.js'
+			filename: 'app.js',
+			clean: true,
+			assetModuleFilename: '[name][hash][ext]'
 		},
-		module: {
-			rules: [
-				{
-					test: /app\.manifest$/,
-					use: [
-						{ loader: 'file-loader', options: { name: 'manifest.json' } },
-						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab } }
-					]
-				},{
-					test: /\.twig$/,
-					use: [
-						{ loader: 'file-loader', options: { name: '[name].html' } },
-						{ loader: 'extract-loader' },
-						{ loader: 'html-loader', options: { attributes: {list: [{tag:'img',attribute:'src',type:'src'}] } } },
-						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab, loadpages:true  } }
-					]
-				},{
-					test: /\.scss$/,
-					use: [{
-						loader: 'file-loader',
-						options: {
-							name: '[name].css'
-						}
-					}, {
-						loader: 'extract-loader'
-					}, {
-						loader: 'css-loader'
-					}, {
-						loader: 'resolve-url-loader'
-					},{
-						loader: 'sass-loader',
-						options: {
-							implementation: require('sass'),
-							sourceMap: true
-						}
-					}]
-				},{
-					test: /\.(trail|mapmarks)$/,
-					type: 'json',
-					use: path.resolve('./src/loader/yaml-loader.js')
-				},{
-					test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/,
-					use: [
-						{ loader: 'file-loader', options: { name: '[name]~[hash:base64:4].[ext]' } }
-					]
-				}
-			]
-		},
+		module: {rules: [{oneOf: [
+			{
+				resourceQuery: /pure/,
+				type: 'asset/resource',
+				generator: { filename: '[name][ext]' }
+			},{
+				resourceQuery: /inline/,
+				type: 'asset/inline'
+			},{
+				test: /app\.manifest$/,
+				type: 'asset/resource',
+				generator: { filename: 'manifest.json' },
+				use: [
+					{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab } }
+				]
+			},{
+				test: /\.twig$/,
+				use: [
+					{loader: 'html-loader', options: { esModule: false, sources: {list: [{tag:'img',attribute:'src',type:'src'}] } }},
+					{loader: path.resolve('./src/loader/twig-loader.js'), options: {zakklab:use_zakklab,loadpages:true}}
+				]
+			},{
+				test: /\.scss$/,
+				use: [
+					{loader: MiniCssExtractPlugin.loader},
+					{loader: 'css-loader'},
+					{loader: 'resolve-url-loader'},
+					{loader: 'sass-loader', options: { implementation: require('sass'), sourceMap: true }}
+				]
+			},{
+				test: /\.(trail|mapmarks)$/,
+				//type: 'asset/inline',
+				use: path.resolve('./src/loader/yaml-loader.js')
+			},{
+				test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/,
+				type: 'asset/resource',
+			}
+		]}]},
 		plugins: [
 			new webpack.ProvidePlugin({L:'leaflet'}),
 			new webpack.DefinePlugin({
 				'ADD_ZAKKLAB': use_zakklab
 			}),
-			new CleanWebpackPlugin(),
+			new MiniCssExtractPlugin(),
+			new HtmlWebpackPlugin({
+				title: 'Valdese Lakeside Park',
+				template: 'src/index.twig'
+			}),
 			new CompressionPlugin({
 				test: /\.(css|js|html)$/i,
 			}),
