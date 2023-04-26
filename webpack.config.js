@@ -17,9 +17,9 @@ module.exports = env => {
 		},
 		output: {
 			path: path.resolve(__dirname, 'build'),
-			filename: 'app.js',
-			clean: true,
-			assetModuleFilename: '[name][hash][ext]'
+			filename: 'app-[fullhash].js',
+			assetModuleFilename: 'r-[hash][ext]',
+			clean: true
 		},
 		module: {rules: [{oneOf: [
 			{
@@ -64,7 +64,7 @@ module.exports = env => {
 			new webpack.DefinePlugin({
 				'ADD_ZAKKLAB': use_zakklab
 			}),
-			new MiniCssExtractPlugin(),
+			new MiniCssExtractPlugin({filename: 'app-[fullhash].css'}),
 			new HtmlWebpackPlugin({
 				title: 'Valdese Lakeside Park',
 				template: 'src/index.twig'

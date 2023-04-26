@@ -1,7 +1,7 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
 
-import 'leaflet';
+import 'leaflet/src/Leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
