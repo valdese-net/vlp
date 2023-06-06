@@ -11,6 +11,10 @@ body,
 	@include full-screen;
 }
 
+#id_AppMapPage {
+	z-index:1;
+}
+
 a {
 	color: $menu-bgcolor;
 	text-decoration: none;
@@ -23,8 +27,9 @@ a {
 
 // app header styles
 #id_AppPageTitle {
-	z-index: 999999;
+	z-index: 9999;
 	position: absolute;
+	-webkit-transform: translate3d(0,0,0); // fix ifruit z-index problems
 	top: 0;
 	left: calc(50% - #{math.div($menu-width,2)});
 	width: $menu-width;

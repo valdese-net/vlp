@@ -1,7 +1,7 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
 
-import 'leaflet';
+import 'leaflet/src/Leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
@@ -16,11 +16,11 @@ import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
 import {ZoomViewer} from './leaflet/ZoomViewer.js';
 
 import './vlp-manifest-icons.js';
-import * as blankImage from './img/blank.png';
-import * as blankTile from './img/blankTile.png';
-import * as img_parkplan from './img/dbd-parkplan.png';
-import * as img_photo from './img/park-satellite.png';
-import * as img_parkcontours from './img/park-contour.png';
+import blankImage from './img/blank.png';
+import blankTile from './img/blankTile.png';
+import img_parkplan from './img/dbd-parkplan.png';
+import img_photo from './img/park-satellite.png';
+import img_parkcontours from './img/park-contour.png';
 
 const vlpDebug = g.vlpDebug;
 
