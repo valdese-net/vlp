@@ -77,8 +77,14 @@ var YAHControl = L.Control.extend({
 
 			btn.classList.toggle('active');
 			if (b) {
+				let locOptions = {watch: true, timeout:60000, maximumAge:10000};
 				lastVisibleLocationTime = 0;
-				map.locate({watch: true, timeout:60000, maximumAge:10000});
+				
+				// the enableHighAccuracy option is a must on Android, but can be problematic on IOS. For now,
+				// the map will show prefence to getting good results on Android, as IOS is a pain in the back side.
+				locOptions.enableHighAccuracy = true;
+
+				map.locate(locOptions);
 				
 				if (enableCompassHeading && oriAbs) {
 					// ios uses a user permission prompt
