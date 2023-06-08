@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => {
-	var use_zakklab = (env && env.ZAKKLAB) ? 1 : 0;
+	var use_zakklab = (env && env.ZAKKLAB) ? env.ZAKKLAB : 0;
 
 	return {
 		entry: './src/app.js',
