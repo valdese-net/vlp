@@ -84,18 +84,29 @@ function vlpAppMap(targetDiv,router) {
 			nlo['dashArray'] = "10";
 			nlo['weight'] = Math.min(5,weight);
 		}
-		let newLayer = L.polyline(v.trail, nlo);
+
+		let layerFG = [];
+		let trailcounter = 0;
+		while (++trailcounter < 10) {
+			let polyname = 'trail';
+			if (trailcounter > 1) polyname = polyname.concat(trailcounter);
+			if (!v[polyname]) break;
+			let vtrail = v[polyname];
+			layerFG.push(L.polyline(vtrail, nlo));
+
+			if (!v.dash) {
+				layerFG.push(L.polyline(vtrail, {color:'#2C3050',weight:1}));
+			}
+		}
+
+		if (!layerFG) return false;
+
+		let newFG = L.featureGroup(layerFG);
 		let tt = `<span style="color:${v.color}">${v.name} </span>`;
 		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
+		newFG.bindTooltip(tt,{ 'sticky': true });
 
-		if (!v.dash) {
-			var newLayer1 = newLayer;
-			var newLayer2 = L.polyline(v.trail, {color:'#2C3050',weight:1});
-			newLayer = L.featureGroup([newLayer1,newLayer2]);
-		}
-		newLayer.bindTooltip(tt,{ 'sticky': true });
-
-		return {group: grp, name: tt, layer: newLayer, visible: !v.optional};
+		return {group: grp, name: tt, layer: newFG, visible: !v.optional};
 	}
 
 	// we are using the term layer here in a generic sense, as the layers can also be controls

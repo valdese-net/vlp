@@ -16,9 +16,9 @@ This park would not exist without funding from grants and community donations, p
 - **April 2023** – The 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park was completed with crushed cinder paving.
 - **July 2023** – The kayak launch and fishing pier opened.
 
-**Planning to go out on the water?** Duke Energy manages the water level and [publishes
-information about this][link-lakelevels]. We recommend putting in at the Table Rock
-Viewing Site less than 0.1 miles down the Greenway.
+**Planning to go out on the water?**
+Duke Energy manages the water level and [publishes information about this][link-lakelevels].
+The kayak launch and fishing pier is just a couple hundred feet down the greenway.
 
 **Want to see all the wildlife found at the park?** The park is home to a variety of
 species. A generous sampling of the park wildlife can be seen on [the zakklab site][link-zakklab].
@@ -130,6 +130,6 @@ A difficult trail starting along Hoyle Creek and going up to Outer Loop.
 The width and terrain of the trail varies. There are many shortcuts along the trail as it maximizes distance in its area.
 </details>
 
-[link-fvr]: #fvr
+[link-fvr]: ./#fvr
 [link-lakelevels]: https://lakes.duke-energy.com/index.html#/detail/14/Detail
 [link-zakklab]: https://zakklab.valdese.info/vlp/wildlife/

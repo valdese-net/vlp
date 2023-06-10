@@ -1,8 +1,3 @@
 name: Landmarks & Sightseeing
 markers:
-- [[35.7646873, -81.5694576], picnic, Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park.]
 - [[35.77024,-81.564468], bridge, 'McGalliard Creek Bridge - Connects McGalliard Falls Park (26 acres) and Valdese Lakeside Park (330 acres) with a a 2-mile greenway trail along McGalliard Creek and Lake Rhodhiss.']
-- [[35.76812, -81.55838], nature, 'Red Meadow - An open meadow where you can often spot deer or rabbits. If you want to see all the wildlife found at the park tap the button below.<br><a class="btn" target="_blank" href="https://zakklab.valdese.info/vlp/wildlife/">View Wildlife</a>']
-- [[35.76184, -81.54822], parking, Alternate Parking - Enter through Hoyle Creek.]
-- [[35.764535, -81.56988], parking, McGalliard Falls Parking]
-- [[35.765541, -81.568551], wheel, Historic Meytre Grist Mill beside the Falls. To see the water wheel in action, visit the first Saturday of each month April through October, 10 am - 6 pm.]
