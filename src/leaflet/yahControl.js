@@ -1,4 +1,4 @@
-import {vlpDebug} from '../globals.js';
+import {vlpDebug,onIOS} from '../globals.js';
 
 var enableCompassHeading = true;
 
@@ -80,9 +80,10 @@ var YAHControl = L.Control.extend({
 				let locOptions = {watch: true, timeout:60000, maximumAge:10000};
 				lastVisibleLocationTime = 0;
 				
-				// the enableHighAccuracy option is a must on Android, but can be problematic on IOS. For now,
-				// the map will show prefence to getting good results on Android, as IOS is a pain in the back side.
-				locOptions.enableHighAccuracy = true;
+				// The enableHighAccuracy option is a must on Android, but can be problematic on IOS.
+				// On IOS (as of June 2023), Precise Location is a control found in:
+				// Location Services > Safari Websites
+				if (!onIOS) locOptions.enableHighAccuracy = true;
 
 				map.locate(locOptions);
 				
