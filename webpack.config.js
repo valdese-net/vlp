@@ -12,8 +12,8 @@ module.exports = env => {
 		entry: './src/app.js',
 		performance: {
 			hints: false,
-			maxEntrypointSize: 512000,
-			maxAssetSize: 512000
+			maxEntrypointSize: 2*512000,
+			maxAssetSize: 2*512000
 		},
 		output: {
 			path: path.resolve(__dirname, 'build'),

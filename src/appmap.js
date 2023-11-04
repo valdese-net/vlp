@@ -1,7 +1,7 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
 
-import 'leaflet/src/Leaflet';
+import 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
@@ -18,12 +18,10 @@ import {ZoomViewer} from './leaflet/ZoomViewer.js';
 import './vlp-manifest-icons.js';
 import blankImage from './img/blank.png';
 import blankTile from './img/blankTile.png';
-import img_parkplan from './img/dbd-parkplan.png';
 import img_photo from './img/park-satellite.png';
 import img_parkcontours from './img/park-contour.png';
 
 const vlpDebug = g.vlpDebug;
-
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
@@ -60,8 +58,7 @@ function vlpAppMap(targetDiv,router) {
 	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
 	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
-	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a target="_blank" href="https://dbdplanning.com/">Destination by Design</a>'});
-	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
+	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer,"Photo": photoLayer};
 
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	function routeToFVR(e) {
