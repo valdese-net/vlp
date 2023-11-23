@@ -98,6 +98,14 @@ a.toolbtn {
 
 #btnid-refresh {margin-left:16px;}
 
+a.toolbtn sup {
+    font-size: 0.6em;
+    line-height: 0;
+    position: relative;
+    top: -0.7em;
+    left: -0.8em;
+}
+
 .mainmenu-links a {
 	display: block;
 	margin: 0;

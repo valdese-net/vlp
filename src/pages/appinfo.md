@@ -34,6 +34,6 @@ and scroll down until you find "Add to Homescreen"
 - **On Android:**\
 In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
-[link-fvr]: #fvr
-[link-mapburke]: mapburke.map
-[link-mapmeasure]: mapmeasure.map
+## What's New
+
+<div class="autorepl" id="auto_whatsnew"></div>

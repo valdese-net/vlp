@@ -24,6 +24,5 @@ the park in March.
 
 You can read more of the history at [FVR's web site.][link-fvrhistory]
 
-[fvrlogo]: ../img/fvrlogopng.png
 [link-fvr]: https://friendsofthevaldeserec.org
 [link-fvrhistory]: https://friendsofthevaldeserec.org/history

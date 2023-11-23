@@ -81,7 +81,7 @@ module.exports = env => {
 				clientsClaim: true,
 				skipWaiting: true,
 				runtimeCaching: [{
-					urlPattern: new RegExp('https://[a-c].tile.openstreetmap.org/[0-9]+/[0-9]+/[0-9]+.png'),
+					urlPattern: new RegExp('https://tile.openstreetmap.org/1[4-6]/[0-9]+/[0-9]+.png'),
 					handler: 'StaleWhileRevalidate',
 					options: {
 						cacheName: 'map-tiles',

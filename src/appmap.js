@@ -40,7 +40,7 @@ function vlpAppMap(targetDiv,router) {
 		//zoomSnap: 0.6599, //Starting at 8
 		//zoomSnap: 0.76, //Starting at 11
 		zoomSnap: 0.616, //Starting at 8
-		maxZoom: vlpConfig.osmZoomRange[1]+1.32,
+		maxZoom: 19.32,
 		maxNativeZoom: vlpConfig.osmZoomRange[1],
 		maxBounds: valdese_area
 	});
@@ -49,7 +49,7 @@ function vlpAppMap(targetDiv,router) {
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
-		maxZoom: vlpConfig.osmZoomRange[1]+1.32,
+		maxZoom: 19.32,
 		maxNativeZoom: vlpConfig.osmZoomRange[1],
 		});
 		
@@ -73,7 +73,7 @@ function vlpAppMap(targetDiv,router) {
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
 
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
-	
+
 	function maketrail(grp,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 
@@ -246,4 +246,13 @@ function vlpAppMap(targetDiv,router) {
 	}
 }
 
-export {vlpAppMap};
+function vlpAddNotification(msg) {
+	while (g.locationErrors.length > 99) g.locationErrors.pop();
+	g.locationErrors.unshift(msg);
+	let toolBtnSup = document.querySelector('#btnid-info sup');
+	if (toolBtnSup)	{
+		toolBtnSup.textContent = ' ' + g.locationErrors.length.toString();
+	}
+}
+
+export {vlpAppMap,vlpAddNotification};

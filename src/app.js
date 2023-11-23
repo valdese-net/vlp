@@ -1,15 +1,27 @@
+import * as g from './globals.js';
 import './app.scss';
 import './app.manifest';
 
 import {closeModal} from './modal.js';
+import {buildWhatsNew} from './whatsnew.js';
 import Navigo from 'navigo';
-import { vlpAppMap } from './appmap.js';
-import {showWhatsNew} from './whatsnew.js';
+import {vlpAppMap,vlpAddNotification} from './appmap.js';
 
 function getSiteRootURL() {
 	var r = window.location.href;
 	var hi = r.search(/[#?]/);
 	return (hi > 0) ? r.slice(0,hi) : r;
+}
+
+function buildNotifyList() {
+	let showMessages = (g.locationErrors.length > 0) ? g.locationErrors : ['no errors'];
+	let ul = document.createElement('ul');
+	showMessages.forEach(v => {
+		let li = document.createElement('li');
+		li.innerText = v;
+		ul.appendChild(li);
+	});
+	return ul;
 }
 
 function initLakesideParkApp() {
@@ -27,6 +39,14 @@ function initLakesideParkApp() {
 
 	function isBlock(e) {return e.style.display == 'block';}
 	function hideElem(e,doHide) {e.style.display = doHide ? 'none' : 'block';}
+	function replaceContent(block) {
+		block.innerHTML = '';
+		if (block.id == 'auto_whatsnew') {
+			block.appendChild(buildWhatsNew());
+		} else if (block.id == 'auto_notify') {
+			block.appendChild(buildNotifyList());
+		}
+	}
 	function isMenuOpen() {return isBlock(menuscreen_elem);}
 	function openTheMenu(b) {
 		hideElem(menuscreen_elem, !b);
@@ -63,6 +83,8 @@ function initLakesideParkApp() {
 		} else {
 			let id = `pgid-${rid}`;
 			let newpage = document.getElementById(id);
+
+			newpage.querySelectorAll(".autorepl").forEach((item) => replaceContent(item));
 			
 			hideElem(infoscreen_elem,false);
 			
@@ -76,7 +98,7 @@ function initLakesideParkApp() {
 		}
 
 		if (doAppInit) {
-			if (!showWhatsNew()) openTheMenu(true);
+			openTheMenu(true);
 		}
 	}
 
@@ -86,6 +108,11 @@ function initLakesideParkApp() {
 		e.stopPropagation();
 		location.reload(true);
 	});
+	//document.getElementById('btnid-info').addEventListener('click', (e) => {
+	//	e.stopPropagation();
+	//	setCurrentPage('#notify');
+	//});
+	
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
 			if (isMenuOpen()) openTheMenu(false);

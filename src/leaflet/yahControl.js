@@ -1,4 +1,5 @@
 import {vlpDebug,onIOS} from '../globals.js';
+import {vlpAddNotification} from '../appmap.js';
 
 var enableCompassHeading = true;
 
@@ -74,6 +75,7 @@ var YAHControl = L.Control.extend({
 			vlpDebug('yahActivate '+b);
 
 			if (b == b_c) return;
+			vlpAddNotification('geoLocation '+(b?'on':'off'));
 
 			btn.classList.toggle('active');
 			if (b) {
@@ -120,6 +122,10 @@ var YAHControl = L.Control.extend({
 			yahActivate(!is_yahActive());
 		});
 
+		map.on('locationerror', function(e) {
+			vlpAddNotification('geoLocation: '+e.message);
+		});
+
 		map.on('locationfound', function(e) {
 			let map_bounds = options.maxBounds || map.options.maxBounds;
 			let yahLatLng = e.latlng;
@@ -147,12 +153,6 @@ var YAHControl = L.Control.extend({
 						map.flyTo(yahLatLng);
 					}
 				}
-			}
-		});
-		map.on('locationerror', function(e) {
-			if (is_yahActive()) {
-				yahActivate(false);
-				alert(e.message);
 			}
 		});
 
