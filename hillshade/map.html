@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<title>Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="./leaflet-hash.js"></script>
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+var shademapBounds = [[35.5,-83],[36.0,-81]];
+var valdeseBounds = [[35.7632, -81.5670], [35.7765, -81.54284]];
+var blank = L.tileLayer("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEX///+nxBvIAAAAH0lEQVQYGe3BAQ0AAADCIPunfg43YAAAAAAAAAAA5wIhAAAB9aK9BAAAAABJRU5ErkJggg==");
+var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
+var cartodb = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'});
+var toner = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png', {attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'});
+var shdlyr = L.tileLayer('./build/hillshade/{z}/{x}/{y}.png', {
+	opacity: 0.75,
+	minNativeZoom: 8, maxNativeZoom: 14,
+	bounds: shademapBounds,
+	attribution: "SRTM data"});
+var contourlyr = L.tileLayer('./build/contour/18/{x}/{y}.png', {
+	opacity: 0.75,
+	minNativeZoom: 18, maxNativeZoom: 18,
+	bounds: valdeseBounds,
+	attribution: "SRTM contour data"});
+var countyLayer = L.layerGroup();
+var targetRegion = L.rectangle(shademapBounds, {color:'goldenrod',fill:true,fillOpacity:0.10});
+
+var map = L.map('map', {
+    center: [35.77024,-81.564468],
+	maxBounds: [[36.3682,-83.5840],[35.1379,-80.3540]],
+    zoom: 11,
+    minZoom: 0,
+    maxZoom: 19,
+    layers: [blank, shdlyr]
+});
+
+var basemaps = {"OSM": osm, "CartoDB": cartodb, "Toner": toner, "Blank": blank}
+var overlaymaps = {"Hillshade": shdlyr, "Contour": contourlyr, "County Lines": countyLayer, "Target Area":targetRegion}
+
+L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(map);
+
+var hash = new L.Hash(map);
+map.on('click',e => {
+	let ll = e.latlng;
+	console.log(ll.lat.toPrecision(6)+','+ll.lng.toPrecision(6));
+});
+
+function flipAndReduce(d) {
+	let l = [];
+	d.forEach((v,i) => {
+		l.push([v[1],v[0]]);
+	});
+	return l;
+}
+
+async function showCounties(ctyList) {
+	const r = await fetch('./ncCountyBounds.json');
+	const nccb = await r.json();
+	let cw = ['blue','orange','cyan','tomato','brown','skyblue','olive','puple','teal','darkgreen','royalblue'];
+	for (let i=0; i<ctyList.length; i++) {
+		let nm = ctyList[i];
+		let newlayer = L.polygon(flipAndReduce(nccb[nm]),{color:cw[i % cw.length],fill:true,fillOpacity:0.15});
+		newlayer.bindTooltip(`${nm} County`);
+		countyLayer.addLayer(newlayer);
+	}
+	let newlayer = L.polygon(flipAndReduce(nccb['Burke']),{color:'yellow',fill:true,fillOpacity:0.15});
+	newlayer.bindTooltip('Burke County');
+	countyLayer.addLayer(newlayer);
+}
+
+showCounties([
+	'Buncombe','Yancey','Mitchell','Madison','Mcdowell','Ashe','Avery','Alleghany','Watauga','Wilkes','Caldwell',
+	'Catawba','Iredell','Alexander','Lincoln','Cleveland','Rutherford','Gaston','Polk','Henderson','Transylvania',
+	'Haywood','Surry','Yadkin','Mecklenburg','Cabarrus','Rowan','Davie'
+]);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+# Hillshade Tiles
+
+Requires python3, haversine, and gdal.
+
+-- get data from http://rmw.recordist.com/gettile.php then
+-- merge the hgt dem files into a single file 
+gdal_merge.py -o nc-1.hgt demfiles/*.hgt
+
+-- review info from file
+gdalinfo nc-1.hgt
+
+# generate all tiles for a zoom level
+python3 hillshade.py hillshade 9
+python3 hillshade.py hillshade 12
+python3 hillshade.py contour 18
+
+## Useful GPS Coordinates
+
+- Boone: 36.2177,-81.6916
+- Asheville: 35.5859,-82.5623
+- Marion: 35.6796,-82.0047
+- Hickory: 35.7287,-81.3428
+
+NC maps:
+https://download.geofabrik.de/north-america/us/north-carolina.html
+
+Extract:
+https://app.protomaps.com/downloads/osm/560c3941-4ba2-478b-853f-29e5bd32e937
+{"type": "Polygon", "coordinates": [[[-82.71057128906251, 35.241132781666444], [-81.18072509765626, 35.241132781666444], [-81.18072509765626, 36.491973470593685], [-82.71057128906251, 36.491973470593685], [-82.71057128906251, 35.241132781666444]]]}
+=> longlat: -82.71057128906251,35.241132781666444,-81.18072509765626,35.241132781666444,-81.18072509765626,36.491973470593685,-82.71057128906251,36.491973470593685,-82.71057128906251,35.241132781666444
+
+Generate with Docker:
+- https://github.com/magellium/osmtilemaker
+- https://github.com/Overv/openstreetmap-tile-server
+
+Hillshading (Relief maps):
+- https://github.com/Karry/hillshade-tile-server
+- http://viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm
+- 1 arc second: http://rmw.recordist.com/gettile.php
+
+Other options:
+- https://github.com/openmaptiles/openmaptiles
+- https://download.mapsforge.org/maps/v5/north-america/us/north-carolina.map
+	- see https://github.com/GeorgeHoneywood/final-year-project
+
+Latitude and longitude of North Carolina is 34° N to 36° 21' N and 75° 30' W to 84° 15' W.
+LngLat:-84.321869,33.842316 -75.460621,36.588117
+
+"6": [[17, 25], [17, 25]],
+"7": [[34, 50], [35, 50]], 
+"8": [[68, 100], [70, 100]], 
+"9": [[137, 201], [140, 201]], 
+"10": [[275, 403], [281, 402]], 
+"11": [[551, 807], [563, 804]], 
+"12": [[1103, 1615], [1126, 1608]], 
+"13": [[2207, 3230], [2252, 3216]], 
+"14": [[4414, 6461], [4505, 6433]], 
+"15": [[8829, 12923], [9011, 12867]], 
+"16": [[17658, 25847], [18022, 25735]], 
+"17": [[35316, 51694], [36044, 51470]], 
+"18": [[70633, 103388], [72089, 102940]]

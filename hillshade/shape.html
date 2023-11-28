@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Shapefile to GeoJSON</title>
+	<script>
+		// const parcelDataURL = 'https://s3.amazonaws.com/gis-opendata/gis-data/parcel_shp.zip';
+		// const parcelDataURL = './___parcel_shp.zip';
+		const parcelDataURL = './NC_State_County_Boundary_NAD832011_Aug2020.zip';
+		//const parcelDataURL = './nc-boundary-data.shp.zip';
+	</script>
+	<style>
+	code {display: block; max-height: 50rem;max-width: 80vw;overflow: scroll;border: 2px solid #606;}
+	</style>
+</head>
+<body>
+	<h1>Shapefile to GeoJSON</h1>
+	<code></code>
+	<script src='https://unpkg.com/shpjs@latest/dist/shp.js'></script>
+	<script>
+		const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+
+		fetch(parcelDataURL)
+            .then(text => text.arrayBuffer())
+            .then((myshape) => shp(myshape))
+			.then((data) => {
+				let bounds = {};
+				var f = data.features;
+				//console.log(data);
+				f.forEach((e,i) => bounds[e.properties.County] = e.geometry.coordinates);
+				let boundsObj = JSON.stringify(sortObject(bounds));
+				document.querySelector('code').textContent = boundsObj.replace('],[',"],\n[").replace('],"',"],\n\"");
+			}).catch(e => console.log('error', e));
+	</script>
+</body>
+</html>

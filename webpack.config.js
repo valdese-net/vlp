@@ -75,7 +75,6 @@ module.exports = env => {
 			new workboxPlugin.GenerateSW({
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
-				//globPatterns: ['**/*.{html,js,css}'],
 				cleanupOutdatedCaches: true,
 				exclude: [/\.(css|js|html)\.gz/],
 				clientsClaim: true,
