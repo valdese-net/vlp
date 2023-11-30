@@ -247,11 +247,14 @@ function vlpAppMap(targetDiv,router) {
 }
 
 function vlpAddNotification(msg) {
-	while (g.locationErrors.length > 99) g.locationErrors.pop();
+	let oldcount = g.locationErrors.length + 1;
+	while (oldcount-- > 99) g.locationErrors.pop();
 	g.locationErrors.unshift(msg);
-	let toolBtnSup = document.querySelector('#btnid-info sup');
+	let toolBtn = document.querySelector('#btnid-info');
+	let toolBtnSup = toolBtn.querySelector('sup');
+	if (toolBtn && !oldcount) { toolBtn.classList.add('active'); }
 	if (toolBtnSup)	{
-		toolBtnSup.textContent = ' ' + g.locationErrors.length.toString();
+		toolBtnSup.textContent = g.locationErrors.length.toString();
 	}
 }
 

@@ -75,7 +75,6 @@ var YAHControl = L.Control.extend({
 			vlpDebug('yahActivate '+b);
 
 			if (b == b_c) return;
-			vlpAddNotification('geoLocation '+(b?'on':'off'));
 
 			btn.classList.toggle('active');
 			if (b) {
