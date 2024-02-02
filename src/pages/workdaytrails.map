@@ -1,0 +1,11 @@
+title: Work Day Trails Map
+opts:
+	maxBounds: [[35.721650, -81.597445], [35.784838, -81.514709]]
+	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
+	addParkOverlays: true
+	yahZoomStartup: true
+	addMeasureControl: true
+layers:
+- {group: Primary, opacity: 0.85, weight: 9, list: [bike_Primary1.trail,bike_Primary2.trail,bike_Primary3.trail,bike_Primary4.trail,bike_Primary5.trail,bike_Primary6.trail,bike_Primary7.trail]}
+- {group: CWTF, opacity: 0.85, weight: 9, list: [bike_CWTF1.trail,bike_CWTF2.trail,bike_CWTF3.trail,bike_CWTF4.trail,bike_CWTF5.trail,bike_CWTF6.trail,bike_CWTF7.trail]}
+- {group: Others, opacity: 0.85, weight: 9, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail,bike_ConnectorB.trail,bike_ConnectorC.trail]}

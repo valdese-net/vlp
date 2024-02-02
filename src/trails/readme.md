@@ -1,7 +1,7 @@
 # Trails Definitions
 
 These trails are typically created using a phone app like RunKeeper,
-and then exported to a `gpx` file. COnversion to a `trail` file is
+and then exported to a `gpx` file. Conversion to a `trail` file is
 done via the `gpx2trail.js` command in the `bin` folder:
 
 ```bash
