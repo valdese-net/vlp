@@ -14,6 +14,7 @@ import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
 import {ZoomViewer} from './leaflet/ZoomViewer.js';
+import { AntPath, antPath } from 'leaflet-ant-path';
 
 import './vlp-manifest-icons.js';
 import blankImage from './img/blank.png';
@@ -74,7 +75,7 @@ function vlpAppMap(targetDiv,router) {
 
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
-	function maketrail(grp,opacity,weight,v) {
+	function maketrail(grp,visible,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 
 		if (v.dash) {
@@ -89,10 +90,16 @@ function vlpAppMap(targetDiv,router) {
 			if (trailcounter > 1) polyname = polyname.concat(trailcounter);
 			if (!v[polyname]) break;
 			let vtrail = v[polyname];
-			layerFG.push(L.polyline(vtrail, nlo));
+			if (v.antpath) {
+				nlo.delay = 1600;
+				nlo.dashArray = [10,20];
+				layerFG.push(new AntPath(vtrail, nlo));
+			} else {
+				layerFG.push(L.polyline(vtrail, nlo));
 
-			if (!v.dash) {
-				layerFG.push(L.polyline(vtrail, {color:'#2C3050',weight:1}));
+				if (!v.dash) {
+					layerFG.push(L.polyline(vtrail, {color:'#2C3050',weight:1}));
+				}
 			}
 		}
 
@@ -103,7 +110,7 @@ function vlpAppMap(targetDiv,router) {
 		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
 		newFG.bindTooltip(tt,{ 'sticky': true });
 
-		return {group: grp, name: tt, layer: newFG, visible: !v.optional};
+		return {group: grp, name: tt, layer: newFG, visible: !v.optional||visible};
 	}
 
 	// we are using the term layer here in a generic sense, as the layers can also be controls
@@ -165,7 +172,7 @@ function vlpAppMap(targetDiv,router) {
 					if (!yamlData) return;
 		
 					if (ext == 'trail') {
-						cache.layers.push(maketrail(layer.group,l_opacity,l_weight,yamlData));
+						cache.layers.push(maketrail(layer.group,layer.visible,l_opacity,l_weight,yamlData));
 					} else if (ext == 'mapmarks') {
 						let markerPts = [];
 		

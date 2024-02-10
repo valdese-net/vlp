@@ -6,7 +6,7 @@ nav: A500
 
 In addition to the base map featuring the main trails and icons, there are also additional maps with more tools, trails, future features, and more.
 
-- [Feb 2-3 2024 Work Day Trails][link-workdaytrails]<br>
+- [Feb 2024 Work Day Trails][link-workdaytrails]<br>
 	These are the trails that are the focus for the **clear the corridor** effort.
 - [5k New Year’s Resolution Run][link-maprun5k]<br>
 	Parking Lot → Greenway → left on Red Outer Loop culvert → right on Red Road → 2nd left on trail → right into Orange → continue on purple (Hoyle Creek Trail) → continue back to parking lot

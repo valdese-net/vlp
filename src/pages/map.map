@@ -8,4 +8,4 @@ opts:
 layers:
 - {group: Options, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,HoyleCreek.trail,ShadeCut.trail, MeditationPoint.trail, BlueLoop.trail,OuterCreek.trail, Pink.trail]}
-- {group: Future Burke River Trail, opacity: 0.85, weight: 9, list: [brtWildcatWay.trail]}
+- {group: Future Trail, opacity: 0.85, weight: 9, list: [brtWildcatWay.trail, bike_TrailComplete.trail]}
