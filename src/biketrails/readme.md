@@ -24,6 +24,9 @@ Progress:
 9 Feb:
 	- 35.768089,-81.553011 to 35.771380,-81.550995
 
+10 Feb:
+	- 35.7684861 -81.5551105 to 35.768089,-81.553011
+	
 Finished Trail:
 	- 5.772052,-81.546155 to 35.771235,-81.551465
 	- 35.768089,-81.553011 to 35.772539,-81.547592
@@ -35,7 +38,7 @@ node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.772557 -81.5
 node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.772039 -81.546150 > src/biketrails/out.txt
 node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.771235 -81.551465 > src/biketrails/out.txt
 
-node bin/trail-split.js src/biketrails/bike_TrailCorridor2.trail 35.768089 -81.553011 > src/biketrails/out.txt
+node bin/trail-split.js src/biketrails/bike_TrailComplete.trail 35.7684861 -81.5551105 > src/biketrails/out.txt
 
 node bin/trail-length.js src/biketrails/bike_TrailCorridor1.trail
 node bin/trail-length.js src/biketrails/bike_TrailCorridor2.trail

@@ -29,6 +29,9 @@ dependencies:
   leaflet.markercluster:
     specifier: ^1.5.3
     version: 1.5.3(leaflet@1.9.4)
+  leaflet.motion:
+    specifier: ^0.3.2
+    version: 0.3.2
   navigo:
     specifier: 7.1.2
     version: 7.1.2
@@ -4085,6 +4088,10 @@ packages:
       leaflet: ^1.3.1
     dependencies:
       leaflet: 1.9.4
+    dev: false
+
+  /leaflet.motion@0.3.2:
+    resolution: {integrity: sha512-PqvJ86zBSsIvFgKi9kNj7Q6xvo92zhC0smfhtkYGxrjFhRXwGw8PdQJP2UB8YWReRE6r7iy9icJvKG/z0CBW4Q==}
     dev: false
 
   /leaflet@1.9.4:
