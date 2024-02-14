@@ -30,13 +30,16 @@ Progress:
 	- 35.7684666,-81.5551439 to 35.7678463,-81.5560147 (Eric & Johnnie)
 
 Finished Trail:
-	- 35.772052,-81.546155 to 35.771235,-81.551465
+	- 35.772052,-81.546155 to 35.7718084,-81.5512121
 	- 35.7678463,-81.5560147 to 35.772539,-81.547592
+Uncleared:
+	- 35.7718084,-81.5512121 to 35.7689811,-81.5550535
 
 ```bash
-# marks section
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689811,-81.5550535" "35.7692498,-81.5532276" > src/biketrails/out.txt
-# finished end (corridor 2)
+# uncleared section
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7718084,-81.5512121" "35.7689811,-81.5550535" > src/biketrails/out.txt
+# finished ends
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.772052,-81.546155" "35.7718084,-81.5512121" > src/biketrails/out.txt
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7678463,-81.5560147" "35.772539,-81.547592" > src/biketrails/out.txt
 
 # flip loop (2nd trail) around after this split

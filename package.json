@@ -1,8 +1,8 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "3.92",
-	"description": "Navigating the new Lakeside Park in Valdese",
+	"version": "3.95",
+	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"build": "webpack --mode production",
@@ -18,7 +18,7 @@
 		"url": "https://github.com/valdese-net/vlp.git"
 	},
 	"dependencies": {
-		"@mdi/js": "^7.3.67",
+		"@mdi/js": "^7.4.47",
 		"@turf/turf": "^6.5.0",
 		"dayjs": "^1.11.10",
 		"leaflet": "^1.9.4",
@@ -32,18 +32,18 @@
 	},
 	"devDependencies": {
 		"compression-webpack-plugin": "^10.0.0",
-		"css-loader": "^6.8.1",
+		"css-loader": "^6.10.0",
 		"html-loader": "^4.2.0",
-		"html-webpack-plugin": "^5.5.3",
+		"html-webpack-plugin": "^5.6.0",
 		"http-server": "^14.1.1",
 		"marked": "^4.3.0",
-		"mini-css-extract-plugin": "^2.7.6",
+		"mini-css-extract-plugin": "^2.8.0",
 		"p-iteration": "^1.1.8",
 		"resolve-url-loader": "^5.0.0",
-		"sass": "^1.69.5",
-		"sass-loader": "^13.3.2",
-		"twing": "^5.1.4",
-		"webpack": "^5.89.0",
+		"sass": "^1.70.0",
+		"sass-loader": "^13.3.3",
+		"twing": "^5.2.2",
+		"webpack": "^5.90.1",
 		"webpack-cli": "^5.1.4",
 		"workbox": "^0.0.0",
 		"workbox-webpack-plugin": "^7.0.0"
