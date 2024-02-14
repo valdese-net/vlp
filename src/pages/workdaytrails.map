@@ -7,5 +7,5 @@ opts:
 	addMeasureControl: true
 layers:
 - {group: Main, visible: true, opacity: 0.85, weight: 9, list: [bike_TrailComplete.trail]}
-- {group: Cleared Corridor, visible: true, weight: 5, list: [bike_TrailCorridor1.trail,bike_TrailCorridor2.trail]}
+- {group: Cleared Corridor, visible: true, weight: 5, list: [bike_TrailCorridor1.trail,bike_TrailCorridorRaw.trail,bike_TrailCorridor2.trail]}
 - {group: Others, opacity: 0.85, weight: 9, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail,bike_ConnectorB.trail]}

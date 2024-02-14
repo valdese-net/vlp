@@ -23,15 +23,22 @@ Progress:
 	- 35.771380,-81.550995 to 35.771337,-81.550323
 9 Feb:
 	- 35.768089,-81.553011 to 35.771380,-81.550995
-
 10 Feb:
 	- 35.7684861 -81.5551105 to 35.768089,-81.553011
-	
+13 Feb:
+	- 35.7689811,-81.5550535 to 35.7692498,-81.5532276 (Mark Rostan)
+	- 35.7684666,-81.5551439 to 35.7678463,-81.5560147 (Eric & Johnnie)
+
 Finished Trail:
-	- 5.772052,-81.546155 to 35.771235,-81.551465
-	- 35.768089,-81.553011 to 35.772539,-81.547592
+	- 35.772052,-81.546155 to 35.771235,-81.551465
+	- 35.7678463,-81.5560147 to 35.772539,-81.547592
 
 ```bash
+# marks section
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689811,-81.5550535" "35.7692498,-81.5532276" > src/biketrails/out.txt
+# finished end (corridor 2)
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7678463,-81.5560147" "35.772539,-81.547592" > src/biketrails/out.txt
+
 # flip loop (2nd trail) around after this split
 node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.772557 -81.547608 > src/biketrails/out.txt
 
