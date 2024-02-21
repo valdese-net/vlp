@@ -33,13 +33,16 @@ Finished Trail:
 	- 35.772052,-81.546155 to 35.7718084,-81.5512121
 	- 35.7678463,-81.5560147 to 35.772539,-81.547592
 Uncleared:
-	- 35.7718084,-81.5512121 to 35.7689811,-81.5550535
+	- 35.7689761,-81.5550397 to 35.7713294,-81.5536836
+	- 35.7694054,-81.5557085 to 35.7678582,-81.5562871 (Outer Loop/Rostan Creek)
 
 ```bash
 # uncleared section
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7718084,-81.5512121" "35.7689811,-81.5550535" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7713294,-81.5536836" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7694054,-81.5557085" "35.7678582,-81.5562871" > src/biketrails/out.txt
+
 # finished ends
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.772052,-81.546155" "35.7718084,-81.5512121" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.773843,-81.5458099" "35.7689811,-81.5550535" > src/biketrails/out.txt
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7678463,-81.5560147" "35.772539,-81.547592" > src/biketrails/out.txt
 
 # flip loop (2nd trail) around after this split
