@@ -16,6 +16,7 @@ python3 hillshade.py contour 18
 
 ## Useful GPS Coordinates
 
+- Burke County bounding latlon: sw: [35.55,-82] ne: [36.01,-81.35]
 - Boone: 36.2177,-81.6916
 - Asheville: 35.5859,-82.5623
 - Marion: 35.6796,-82.0047
