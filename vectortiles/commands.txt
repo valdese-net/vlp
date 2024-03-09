@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# fetch the latest for North Carolina
+wget https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf -q --show-progress
+mv north-carolina-latest.osm.pbf nc.osm.pbf
+
+# extract Burke and Valdese areas
+# prereq: sudo apt install osmctools
+# --complex-ways --strategy=smart yielded fragments
+# --complete-ways --complete-multipolygons --complete-boundaries
+osmconvert nc.osm.pbf -b=-81.623,35.725,-81.523,35.790 --complete-boundaries -o=valdese.osm.pbf
+osmconvert nc.osm.pbf -b=-82,35.55,-81.35,36.01 --complete-boundaries -o=burke.osm.pbf
+
+docker run -v ./:/srv -i -t --rm tilemaker /srv/valdese.osm.pbf --output=/srv/valdese.pmtiles --config /srv/config-tilemaker-simple.json --process /srv/process-tilemaker-simple.lua
+
+docker run -v ./:/srv -i -t --rm tilemaker /srv/valdese.osm.pbf --output=/srv/vlp.pmtiles --config /srv/config-vlp.json --process /resources/process-openmaptiles.lua
+docker run -v ./:/srv -i -t --rm tilemaker /srv/valdese.osm.pbf --output=/srv/valdese.mbtiles --config /resources/config-openmaptiles.json --process /resources/process-openmaptiles.lua
+docker run -v ./:/srv -i -t --rm tilemaker /srv/burke.osm.pbf --output=/srv/overburke.pmtiles --config /srv/config-overburke.json --process /resources/process-openmaptiles.lua
+
+pmtiles convert valdese.mbtiles valdese.pmtiles
+pmtiles convert burke.mbtiles burke.pmtiles
