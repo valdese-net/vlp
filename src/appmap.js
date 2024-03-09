@@ -26,6 +26,23 @@ const vlpDebug = g.vlpDebug;
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
+// Fix measure control for latest leaflet
+// https://github.com/ljagis/leaflet-measure/issues/171
+L.Control.Measure.include({
+	// set icon on the capture marker
+	_setCaptureMarkerIcon: function () {
+		// disable autopan
+		this._captureMarker.options.autoPanOnFocus = false;
+
+		// default function
+		this._captureMarker.setIcon(
+			L.divIcon({
+				iconSize: this._map.getSize().multiplyBy(2)
+			})
+		);
+	},
+});
+
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	let zoomRemoved = false;

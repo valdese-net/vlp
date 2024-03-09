@@ -38,7 +38,7 @@ Uncleared:
 
 ```bash
 # uncleared section
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7713294,-81.5536836" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7705515,-81.5543454" > src/biketrails/out.txt
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7694054,-81.5557085" "35.7678582,-81.5562871" > src/biketrails/out.txt
 
 # finished ends
