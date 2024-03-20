@@ -36,11 +36,11 @@ Formerly Uncleared:
 	- 35.7689761,-81.5550397 to 35.7713294,-81.5536836
 	- 35.7694054,-81.5557085 to 35.7678582,-81.5562871 (Outer Loop/Rostan Creek)
 Remaining work:
-	- 35.770749,-81.556397 to 35.7695454,-81.5562221
+	- 35.7694083,-81.558203 to 35.7704002,-81.5579122
 
 ```bash
 # work remaining
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.770529,-81.557986" "35.7695454,-81.5562221" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7694083,-81.558203" "35.7704002,-81.5579122" > src/biketrails/out.txt
 
 # old uncleared section
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7705515,-81.5543454" > src/biketrails/out.txt
