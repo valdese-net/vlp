@@ -40,7 +40,7 @@ Remaining work:
 
 ```bash
 # work remaining
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.770749,-81.556397" "35.7695454,-81.5562221" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.770529,-81.557986" "35.7695454,-81.5562221" > src/biketrails/out.txt
 
 # old uncleared section
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7705515,-81.5543454" > src/biketrails/out.txt
