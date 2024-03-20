@@ -32,12 +32,17 @@ Progress:
 Finished Trail:
 	- 35.772052,-81.546155 to 35.7718084,-81.5512121
 	- 35.7678463,-81.5560147 to 35.772539,-81.547592
-Uncleared:
+Formerly Uncleared:
 	- 35.7689761,-81.5550397 to 35.7713294,-81.5536836
 	- 35.7694054,-81.5557085 to 35.7678582,-81.5562871 (Outer Loop/Rostan Creek)
+Remaining work:
+	- 35.770749,-81.556397 to 35.7695454,-81.5562221
 
 ```bash
-# uncleared section
+# work remaining
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.770749,-81.556397" "35.7695454,-81.5562221" > src/biketrails/out.txt
+
+# old uncleared section
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7705515,-81.5543454" > src/biketrails/out.txt
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7694054,-81.5557085" "35.7678582,-81.5562871" > src/biketrails/out.txt
 
@@ -53,8 +58,7 @@ node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.771235 -81.5
 
 node bin/trail-split.js src/biketrails/bike_TrailComplete.trail 35.7684861 -81.5551105 > src/biketrails/out.txt
 
-node bin/trail-length.js src/biketrails/bike_TrailCorridor1.trail
-node bin/trail-length.js src/biketrails/bike_TrailCorridor2.trail
+node bin/trail-length.js src/biketrails/bike_RemainingCorridor.trail
 ```
 
 Appending trail segments:

@@ -1,5 +1,4 @@
 name: Bike Trail Markers
 markers:
 - [[35.7714407,-81.5534087], marker, Ribbons change to orange here]
-- [[35.7705438,-81.5538823], saw, confirmed chainsaw needed]
-- [[35.7713461,-81.5534337], saw, confirmed chainsaw needed]
+- [[35.769532,-81.555611], saw, confirmed chainsaw needed]

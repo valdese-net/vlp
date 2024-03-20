@@ -5,7 +5,7 @@ opts:
 	addParkOverlays: true
 	yahZoomStartup: true
 layers:
-- {group: Main, visible: true, opacity: 0.85, weight: 9, list: [bike_TrailComplete.trail]}
-- {group: Features, visible: true, opacity: 0.85, weight: 9, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}
-- {group: Cleared Corridor, visible: true, weight: 5, list: [bike_TrailCorridor1.trail,bike_TrailCorridor2.trail,bike_TrailCorridorRaw1.trail,bike_TrailCorridorRaw2.trail,BikeTrail.mapmarks]}
+- {group: Main, visible: true, opacity: 0.85, weight: 3, list: [bike_TrailComplete.trail]}
+- {group: Features, visible: true, opacity: 0.85, weight: 5, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}
+- {group: Volunteer Work Remaining, visible: true, weight: 5, list: [bike_RemainingCorridor.trail,BikeTrail.mapmarks]}
 - {group: Others, opacity: 0.85, weight: 9, list: [bike_ConnectorB.trail]}

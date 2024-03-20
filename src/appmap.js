@@ -114,7 +114,7 @@ function vlpAppMap(targetDiv,router) {
 			} else {
 				layerFG.push(L.polyline(vtrail, nlo));
 
-				if (!v.dash) {
+				if (!v.dash && (nlo.weight > 3)) {
 					layerFG.push(L.polyline(vtrail, {color:'#2C3050',weight:1}));
 				}
 			}
