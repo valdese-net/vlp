@@ -28,6 +28,10 @@ Progress:
 13 Feb:
 	- 35.7689811,-81.5550535 to 35.7692498,-81.5532276 (Mark Rostan)
 	- 35.7684666,-81.5551439 to 35.7678463,-81.5560147 (Eric & Johnnie)
+22 March Assessment:
+	35.7730885,-81.5454218	35.7697974,-81.5523062	trail dozer 1
+	35.7693578,-81.5518838	35.7697263,-81.551102	trail dozer 2
+	35.7718136,-81.5473403	35.7725584,-81.5476136	trail dozer 3
 
 Finished Trail:
 	- 35.772052,-81.546155 to 35.7718084,-81.5512121
@@ -40,7 +44,7 @@ Remaining work:
 
 ```bash
 # work remaining
-node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7694083,-81.558203" "35.7704002,-81.5579122" > src/biketrails/out.txt
+node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7718136,-81.5473403" "35.7725584,-81.5476136" > src/biketrails/out.txt
 
 # old uncleared section
 node bin/trail-segment.js src/biketrails/bike_TrailComplete.trail "35.7689761,-81.5550397" "35.7705515,-81.5543454" > src/biketrails/out.txt

@@ -7,7 +7,7 @@ function findIntersect(t,p) {
 	let m = {idx:-1, dist:99999999};
 	for (let i=0; i<t.length; i++) {
 		let d = p2pDist(t[i],p);
-		if (d < m.dist) {
+		if (d <= m.dist) {
 			m.dist = d;
 			m.idx = i;
 		}
