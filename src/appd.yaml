@@ -3,7 +3,7 @@ fulltitle: Valdese Lakeside Park
 manifest_themecolor: '#F15537'
 manifest_bgcolor: '#142734'
 zakklab: null
-appver: 3.981
+appver: 3.982
 history:
 - [1706868116, Added map for bike trail work days (for clearing the corridor)]
 - [1701349295, New contour image overlay]

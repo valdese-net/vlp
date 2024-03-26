@@ -1,4 +1,5 @@
 name: Bike Trail Markers
 markers:
-- [[35.7714407,-81.5534087], marker, Ribbons change to orange here]
-- [[35.769532,-81.555611], saw, confirmed chainsaw needed]
+- [[35.769532,-81.555611], saw, chainsaw needed]
+- [[35.7715338,-81.5535567], alert, "Previously cleared corridor, now has had many trail anchoring trees cut down, with some left laying in the trail"]
+

@@ -1,4 +1,4 @@
-import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParking, 
+import {mdiAlert, mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParking, 
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformation, mdiWaves, mdiSawBlade,
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
@@ -8,6 +8,7 @@ import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParkin
 // https://materialdesignicons.com
 
 const mdiSVGPaths = {
+	alert:		mdiAlert,
 	beach:		mdiBeach,
 	beer:		mdiBeer,
 	bike:		mdiBike,
@@ -52,6 +53,7 @@ const mdiSVGIcons = {
 		fill: '#000000',
 		anchor: [0.5,0.5]
 	},
+	alert:	{path: mdiSVGPaths.alert,fill:'#FF0000', stroke:'#FFFF00', strokeWidth: 1, size: 50},
 	beach:	{path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000', size: 29},
 	beer:	{path: mdiSVGPaths.beer,fill:'#d3c934',stroke:'#FFFFFF',strokeWidth: 1.2},
 	bike:	{path: mdiSVGPaths.bike},

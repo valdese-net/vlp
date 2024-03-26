@@ -12,7 +12,16 @@
 <title>{{ appd.fulltitle }}</title>
 <script>
 if ('serviceWorker' in navigator) {
-	window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
+	window.addEventListener('load', () => {
+		var refreshing = false;
+		navigator.serviceWorker.register('./sw.js'); 
+
+		navigator.serviceWorker.addEventListener('controllerchange', function() {
+			if (refreshing) return;
+			refreshing = true;
+			window.location.reload();
+		});		
+	});
 }
 </script>
 </head>

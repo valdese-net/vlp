@@ -2,15 +2,15 @@ import * as g from './globals.js';
 import './app.scss';
 import './app.manifest';
 
-import {closeModal} from './modal.js';
-import {buildWhatsNew} from './whatsnew.js';
+import { closeModal } from './modal.js';
+import { buildWhatsNew } from './whatsnew.js';
 import Navigo from 'navigo';
-import {vlpAppMap,vlpAddNotification} from './appmap.js';
+import { vlpAppMap, vlpAddNotification } from './appmap.js';
 
 function getSiteRootURL() {
 	var r = window.location.href;
 	var hi = r.search(/[#?]/);
-	return (hi > 0) ? r.slice(0,hi) : r;
+	return (hi > 0) ? r.slice(0, hi) : r;
 }
 
 function buildNotifyList() {
@@ -30,15 +30,15 @@ function initLakesideParkApp() {
 	var map_elem = document.getElementById('id_Map');
 	var infoscreen_elem = document.getElementById(INFOSCREENID);
 	var router = new Navigo(getSiteRootURL(), true);
-	var map = new vlpAppMap(map_elem,router);
+	var map = new vlpAppMap(map_elem, router);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var ctrl_PageTitleText = ctrl_PageTitle.querySelector('span:last-of-type');
 	var ctrl_CloseBtn = document.getElementById('id_CloseAppInfoBtn');
 	var menuscreen_elem = document.getElementById('win-mainmenu');
 	var firstTime = true;
 
-	function isBlock(e) {return e.style.display == 'block';}
-	function hideElem(e,doHide) {e.style.display = doHide ? 'none' : 'block';}
+	function isBlock(e) { return e.style.display == 'block'; }
+	function hideElem(e, doHide) { e.style.display = doHide ? 'none' : 'block'; }
 	function replaceContent(block) {
 		block.innerHTML = '';
 		if (block.id == 'auto_whatsnew') {
@@ -47,14 +47,14 @@ function initLakesideParkApp() {
 			block.appendChild(buildNotifyList());
 		}
 	}
-	function isMenuOpen() {return isBlock(menuscreen_elem);}
+	function isMenuOpen() { return isBlock(menuscreen_elem); }
 	function openTheMenu(b) {
 		hideElem(menuscreen_elem, !b);
 		if (b) ctrl_PageTitle.classList.add('menu-active');
 		else ctrl_PageTitle.classList.remove('menu-active');
 	}
 	function toggleMenu() { openTheMenu(menuscreen_elem.style.display == 'none'); }
-	
+
 	function setCurrentPage(rid) {
 		let doAppInit = firstTime;
 		let thisPageData = vlpApp.pages[rid];
@@ -63,14 +63,14 @@ function initLakesideParkApp() {
 
 		let isMapPage = vlpApp.maps.includes(rid);
 		let newTitle = thisPageData.title;
-		
+
 		firstTime = false;
 		closeModal();
 		openTheMenu(false);
 
 		document.title = newTitle;
 		ctrl_PageTitleText.innerHTML = newTitle;
-		
+
 		if (isMapPage) {
 			hideElem(infoscreen_elem, true);
 
@@ -85,12 +85,12 @@ function initLakesideParkApp() {
 			let newpage = document.getElementById(id);
 
 			newpage.querySelectorAll(".autorepl").forEach((item) => replaceContent(item));
-			
-			hideElem(infoscreen_elem,false);
-			
+
+			hideElem(infoscreen_elem, false);
+
 			if (currentInfoPageID != id) {
 				if (currentInfoPageID) {
-					hideElem(document.getElementById(currentInfoPageID),true);
+					hideElem(document.getElementById(currentInfoPageID), true);
 				}
 				hideElem(newpage, false);
 				currentInfoPageID = id;
@@ -102,8 +102,8 @@ function initLakesideParkApp() {
 		}
 	}
 
-	ctrl_PageTitle.addEventListener("click",(e) => toggleMenu());
-	menuscreen_elem.addEventListener("click",() => openTheMenu(false));
+	ctrl_PageTitle.addEventListener("click", (e) => toggleMenu());
+	menuscreen_elem.addEventListener("click", () => openTheMenu(false));
 	document.getElementById('btnid-refresh').addEventListener('click', (e) => {
 		e.stopPropagation();
 		location.reload(true);
@@ -112,22 +112,22 @@ function initLakesideParkApp() {
 	//	e.stopPropagation();
 	//	setCurrentPage('#notify');
 	//});
-	
+
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
 			if (isMenuOpen()) openTheMenu(false);
 			else if (isBlock(ctrl_CloseBtn)) router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 		}
 	});
-	infoscreen_elem.addEventListener("click",(e) => {
+	infoscreen_elem.addEventListener("click", (e) => {
 		if (e.target == infoscreen_elem) {
 			router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 		}
 	});
-	ctrl_CloseBtn.addEventListener("click",(e) => { router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);});
+	ctrl_CloseBtn.addEventListener("click", (e) => { router.navigate(vlpApp.activeMap || vlpApp.pageids[0]); });
 
-	vlpApp.pageids.forEach(pgid => router.on(pgid,() => setCurrentPage(pgid)).resolve());
-	router.on('*',() => {
+	vlpApp.pageids.forEach(pgid => router.on(pgid, () => setCurrentPage(pgid)).resolve());
+	router.on('*', () => {
 		setCurrentPage(vlpApp.pageids[0]);
 	}).resolve();
 }
