@@ -77,8 +77,6 @@ module.exports = env => {
 				maximumFileSizeToCacheInBytes: 3000000,
 				cleanupOutdatedCaches: true,
 				exclude: [/\.(css|js|html)\.gz/],
-				clientsClaim: true,
-				skipWaiting: true,
 				runtimeCaching: [{
 					urlPattern: new RegExp('https://tile.openstreetmap.org/1[4-6]/[0-9]+/[0-9]+.png'),
 					handler: 'StaleWhileRevalidate',

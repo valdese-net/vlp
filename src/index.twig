@@ -10,18 +10,20 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="{{ appd.manifest_themecolor }}">
 <title>{{ appd.fulltitle }}</title>
-<script>
+<script type="module">
+import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/7.0.0/workbox-window.prod.mjs';
 if ('serviceWorker' in navigator) {
-	window.addEventListener('load', () => {
-		var refreshing = false;
-		navigator.serviceWorker.register('./sw.js'); 
+	const wb = new Workbox('/sw.js');
 
-		navigator.serviceWorker.addEventListener('controllerchange', function() {
-			if (refreshing) return;
-			refreshing = true;
-			window.location.reload();
-		});		
-	});
+	const showSkipWaitingPrompt = async (event) => {
+		wb.addEventListener('controlling', () => { window.location.reload(); });
+		const updateAccepted = true; // add ui prompt if needed
+		console.log('prompt to upgrade app...');
+		if (updateAccepted) { wb.messageSkipWaiting(); }
+	};
+
+	wb.addEventListener('waiting', (event) => { showSkipWaitingPrompt(event); });
+	wb.register();
 }
 </script>
 </head>
