@@ -53,7 +53,7 @@ const mdiSVGIcons = {
 		fill: '#000000',
 		anchor: [0.5,0.5]
 	},
-	alert:	{path: mdiSVGPaths.alert,fill:'#FF0000', stroke:'#FFFF00', strokeWidth: 1, size: 50},
+	alert:	{path: mdiSVGPaths.alert,fill:'#FF0000', stroke:'#FFFF00', strokeWidth: 1, size: 40},
 	beach:	{path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000', size: 29},
 	beer:	{path: mdiSVGPaths.beer,fill:'#d3c934',stroke:'#FFFFFF',strokeWidth: 1.2},
 	bike:	{path: mdiSVGPaths.bike},

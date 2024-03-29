@@ -1,5 +1,9 @@
 name: Bike Trail Markers
 markers:
 - [[35.769532,-81.555611], saw, chainsaw needed]
+- [[35.7717245,-81.5495359], saw, chainsaw needed]
 - [[35.7715338,-81.5535567], alert, "Previously cleared corridor, now has had many trail anchoring trees cut down, with some left laying in the trail"]
-
+- [[35.7683854,-81.5521418], alert, drag and clear needed]
+- [[35.771492,-81.549302], alert, drag and clear needed]
+- [[35.768998,-81.553983], alert, trail corridor quality check required]
+- [[35.770667,-81.556530], alert, trail corridor quality check required]
