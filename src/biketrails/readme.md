@@ -63,6 +63,7 @@ node bin/trail-split.js src/biketrails/bike_TrailCorridor1.trail 35.771235 -81.5
 node bin/trail-split.js src/biketrails/bike_TrailComplete.trail 35.7684861 -81.5551105 > src/biketrails/out.txt
 
 node bin/trail-length.js src/biketrails/bike_RemainingCorridor.trail
+node bin/trail2geojson.js src/biketrails/bike_TrailComplete.trail > src/biketrails/bike_TrailComplete.geojson
 ```
 
 Appending trail segments:
