@@ -1,6 +1,6 @@
 title: Work Day Trails Map
 opts:
-	maxBounds: [[35.721650, -81.597445], [35.784838, -81.514709]]
+	maxBounds: [[35.71655, -81.65983], [35.79721,-81.50225]]
 	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
 	addParkOverlays: true
 	yahZoomStartup: true
@@ -8,5 +8,4 @@ layers:
 - {group: Main, visible: true, opacity: 0.85, weight: 3, list: [bike_TrailComplete.trail]}
 - {group: Features, visible: true, opacity: 0.85, weight: 5, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}
 - {group: "Trail Dozer (1.08 Miles)", visible: true, weight: 5, list: [bike_TrailDozer1.trail,bike_TrailDozer2.trail,bike_TrailDozer3.trail]}
-- {group: Volunteer Work, visible: true, weight: 5, list: [BikeTrail.mapmarks]}
 - {group: Others, opacity: 0.85, weight: 9, list: [bike_ConnectorB.trail]}

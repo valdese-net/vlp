@@ -102,10 +102,16 @@ function initLakesideParkApp() {
 		}
 	}
 
+	// clear 'map-tiles' cache from old versions
+	// fails silently, so no need to check for existence, otherwise...
+	// if caches.has('map-tiles') 
+	caches.delete('map-tiles');
+
 	ctrl_PageTitle.addEventListener("click", (e) => toggleMenu());
 	menuscreen_elem.addEventListener("click", () => openTheMenu(false));
 	document.getElementById('btnid-refresh').addEventListener('click', (e) => {
 		e.stopPropagation();
+		
 		location.reload(true);
 	});
 	//document.getElementById('btnid-info').addEventListener('click', (e) => {

@@ -13,7 +13,6 @@ In addition to the base map featuring the main trails and icons, there are also 
 - [10k New Year’s Resolution Run][link-maprun10k]<br>
 	Greenway down to waste water fence → blue loop → greenway → left on far Red Outer Loop → left on High Line trail → Left on Red Outer Loop → left on Red Road → right on new Red Outer Loop → Tributary trail → right on Orange → right into purple (Hoyle Creek Trail) → follow back to parking lot
 - [Map of Burke County for looking around the park's surrounding area][link-mapburke]
-- [Map with Measuring Tool for measuring path distances on the map][link-mapmeasure]
 - [Volunteer Maintenance Map (with descriptions of job, tools needed, etc)][link-volunteer]
 - [Wildlife Map (with color-coded mappings of all uncommon wildlife sightings with quantity and more. Click info icon in map for more info.)][link-wildlife]
 
@@ -21,6 +20,5 @@ In addition to the base map featuring the main trails and icons, there are also 
 [link-maprun5k]: run5k.map
 [link-maprun10k]: run10k.map
 [link-mapburke]: mapburke.map
-[link-mapmeasure]: mapmeasure.map
 [link-volunteer]: volunteer.map
 [link-wildlife]: wildlife.map

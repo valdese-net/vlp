@@ -5,6 +5,8 @@ import 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
+import * as protomapsL from 'protomaps-leaflet';
+import { PMTiles, FileSource } from "pmtiles";
 
 import {createSVGIcon} from './vlp-mdi-icons';
 
@@ -13,14 +15,13 @@ import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
-import {ZoomViewer} from './leaflet/ZoomViewer.js';
 import { AntPath, antPath } from 'leaflet-ant-path';
 
 import './vlp-manifest-icons.js';
 import blankImage from './img/blank.png';
 import blankTile from './img/blankTile.png';
-import img_photo from './img/park-satellite.png';
 import img_parkcontours from './img/park-contour.png';
+import map_pmtiles from './img/valdese-area.pmtiles';
 
 const vlpDebug = g.vlpDebug;
 
@@ -43,6 +44,80 @@ L.Control.Measure.include({
 	},
 });
 
+function srcToFile(src, fileName, mimeType) {
+	return (fetch(src)
+		.then(function(res){return res.arrayBuffer();})
+		.then(function(buf){return new File([buf], fileName, { type:mimeType,lastModified:Date.now() });})
+	);
+}
+
+function buildProtomap(map) {
+	let my_paint_rules = [];
+	let my_label_rules = [];
+
+	my_label_rules.push({
+		dataLayer: "label",
+ 		symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center"}),
+		filter: (zoom, feature) => {
+			return true;
+		},
+	});
+
+	my_paint_rules.push({
+		dataLayer: "park",
+		symbolizer: new protomapsL.PolygonSymbolizer({fill: 'green', opacity:0.3}),
+		filter: (zoom, feature) => {
+			return feature.props.class === "park";
+		},
+	});
+	my_paint_rules.push({
+		dataLayer: "water",
+		symbolizer: new protomapsL.PolygonSymbolizer({fill: 'steelblue'}),
+		filter: (zoom, feature) => {
+			return feature.props.class != null;
+		},
+	});
+	my_paint_rules.push({
+		dataLayer: "building",
+		symbolizer: new protomapsL.PolygonSymbolizer({stroke: 'black', fill: '#666'}),
+		filter: (zoom, feature) => {
+			return true;
+		},
+	});
+	my_paint_rules.push({
+		dataLayer: "waterway",
+		symbolizer: new protomapsL.LineSymbolizer({color: 'steelblue',width:2}),
+		filter: (zoom, feature) => {
+			return true;
+		},
+	});
+	my_paint_rules.push({
+		dataLayer: "road",
+		symbolizer: new protomapsL.LineSymbolizer({color: 'grey',width:2}),
+		filter: (zoom, feature) => {
+			return true;
+		},
+	});
+	my_paint_rules.push({
+		dataLayer: "path",
+		symbolizer: new protomapsL.LineSymbolizer({color: 'brown',width:1,dash:[3,3]}),
+		filter: (zoom, feature) => {
+			return true;
+		},
+	});
+
+	srcToFile(map_pmtiles,'valdese-area.pmtiles','application/vnd.pmtiles').then(function(pmtfile){
+		let fsrc = new FileSource(pmtfile);
+		let protolayer = protomapsL.leafletLayer({
+			url: new PMTiles(fsrc),
+			paint_rules: my_paint_rules,
+			label_rules: my_label_rules,
+			backgroundColor: '#ddd'
+		});
+		protolayer.addTo(map);
+	});
+}
+
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	let zoomRemoved = false;
@@ -58,25 +133,17 @@ function vlpAppMap(targetDiv,router) {
 		//zoomSnap: 0.6599, //Starting at 8
 		//zoomSnap: 0.76, //Starting at 11
 		zoomSnap: 0.616, //Starting at 8
-		maxZoom: 19.32,
-		maxNativeZoom: vlpConfig.osmZoomRange[1],
+		maxZoom: vlpConfig.osmZoomRange[1],
 		maxBounds: valdese_area
 	});
-	let mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
-		attribution: `V${vlpApp.appd.appver} &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
-		errorTileUrl: blankTile,
-		crossOrigin: true,
-		minZoom: vlpConfig.osmZoomRange[0],
-		maxZoom: 19.32,
-		maxNativeZoom: vlpConfig.osmZoomRange[1],
-		});
-		
+	
+	buildProtomap(map);
+	
 	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
-	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
-	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer,"Photo": photoLayer};
+	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer};
 
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	function routeToFVR(e) {
@@ -85,7 +152,6 @@ function vlpAppMap(targetDiv,router) {
 	}
 
 	map.attributionControl.setPrefix('');
-	mapTiles.addTo(map);
 	yahBtn.bindTo(map);
 	fvrMark.addTo(map);
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
@@ -239,12 +305,6 @@ function vlpAppMap(targetDiv,router) {
 	
 			pagedata.cache = cache;
 		}
-		if (g.vlpDebugMode) {
-			new ZoomViewer({position:'topleft'}).addTo(map);
-			map.on('click',e => {
-				vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
-			});
-		}
 	
 		if (map.zoomControl) {
 			let z = map.zoomControl;
@@ -256,6 +316,14 @@ function vlpAppMap(targetDiv,router) {
 				z.addTo(map);
 			}
 		}
+
+		if (g.vlpDebugMode) {
+			map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })
+			map.on('click',e => {
+				vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
+			});
+		}
+
 
 		map.setMaxBounds(cache.mapview.maxBounds);
 		yahBtn.options.maxBounds = cache.mapview.yahBounds;

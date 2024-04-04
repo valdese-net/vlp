@@ -30,6 +30,13 @@ module.exports = env => {
 				resourceQuery: /inline/,
 				type: 'asset/inline'
 			},{
+				test: /protomaps-leaflet\//,
+				// this test was required in order to successfully bundle the protomaps-leaflet module with webpack
+				resolve: { fullySpecified: false },
+			},{
+				test: /\.pmtiles$/,
+				type: 'asset/resource',
+			},{
 				test: /app\.manifest$/,
 				type: 'asset/resource',
 				generator: { filename: 'manifest.json' },
@@ -76,16 +83,7 @@ module.exports = env => {
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
 				cleanupOutdatedCaches: true,
-				exclude: [/\.(css|js|html)\.gz/],
-				runtimeCaching: [{
-					urlPattern: new RegExp('https://tile.openstreetmap.org/1[4-6]/[0-9]+/[0-9]+.png'),
-					handler: 'StaleWhileRevalidate',
-					options: {
-						cacheName: 'map-tiles',
-						// limit number of tiles in cache; should be enough for common offline use
-						expiration: { maxEntries: 900 },
-					},
-				}]
+				exclude: [/\.(css|js|html)\.gz/]
 			})
 		]
 	}
