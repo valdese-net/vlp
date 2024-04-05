@@ -50,7 +50,7 @@ L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(map);
 var hash = new L.Hash(map);
 map.on('click',e => {
 	let ll = e.latlng;
-	console.log(ll.lat.toPrecision(6)+','+ll.lng.toPrecision(6));
+	console.log(ll.lat.toFixed(6)+','+ll.lng.toFixed(6));
 });
 
 function flipAndReduce(d) {

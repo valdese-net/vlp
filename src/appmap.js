@@ -74,8 +74,9 @@ function vlpAppMap(targetDiv,router) {
 	map.attributionControl.setPrefix('');
 	yahBtn.bindTo(map);
 	fvrMark.addTo(map);
+	map.attributionControl.addAttribution(`V${vlpApp.appd.appver}`);
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
-
+	
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map, map_pmtiles);
@@ -83,7 +84,7 @@ function vlpAppMap(targetDiv,router) {
 	if (g.vlpDebugMode) {
 		map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })
 		map.on('click',e => {
-			vlpDebug(e.latlng.lat.toPrecision(6)+','+e.latlng.lng.toPrecision(6));
+			vlpDebug(e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6));
 		});
 	}
 
