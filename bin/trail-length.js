@@ -3,6 +3,7 @@ const fs = require('fs');
 const YAML = require('yaml');
 const turf = require('@turf/turf');
 
+console.log('name\treported length\tactual length');
 let argv = process.argv.slice(2);
 let fname;
 let total = 0.0;
@@ -12,7 +13,8 @@ while (fname = argv.shift()) {
 	const lnglatPath = trailData.trail.map(c => [c[1], c[0]]);
 	let lsData = turf.lineString(lnglatPath);
 	let miles = turf.length(lsData,{units:'miles'});
-	console.log(`${fname}: \t${miles.toFixed(2)} Miles`);
+	let listed_miles = trailData.miles || 'n/a';
+	console.log(`${trailData.name}:\t${listed_miles}\t${miles.toFixed(2)}`);
 	total += miles;
 }
-console.log(`Total: \t${total.toFixed(2)} Miles`);
+console.log(`Total:\t${total.toFixed(2)}`);

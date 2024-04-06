@@ -1,0 +1,11 @@
+name	reported length	actual length
+Green Way:	1.9	1.83
+Hollipop Trail:	4.2	4.17
+Hoyle Creek Trail:	1.2	1.21
+Lakeside Loop:	0.7	0.46
+Meditation Point Trail:	0.12	0.11
+Outer Loop:	2	1.95
+Rostan Creek Trail:	0.35	0.37
+Shade Seeker:	0.2	0.17
+Tributary Trail:	1.1	1.13
+Total:	11.40

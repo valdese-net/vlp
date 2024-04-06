@@ -1,8 +1,8 @@
-name: Future Bike Trail
+name: Hollipop Trail
 "secret": false
 "color": "#e4007c"
 "miles": 4.2
-"optional": true
+"optional": false
 "trail": 
 - [35.773843,-81.5458099]
 - [35.773793,-81.5457973]

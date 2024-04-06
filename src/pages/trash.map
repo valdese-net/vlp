@@ -9,4 +9,4 @@ opts:
 	hideZoomControl: true
 layers:
 - {group: Cleanup Markers, opacity: 0.85, weight: 9, list: [trash.mapmarks]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,RostanCreek.trail,OuterLoop.trail,LakesideLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,Tributary.trail]}

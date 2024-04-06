@@ -1,7 +1,7 @@
 name: Lakeside Loop
 color: '#151A8A'
 dash: null
-miles: 0.7
+miles: 0.5
 trail:
 - [35.774787,-81.546492,0]
 - [35.774851,-81.546499,0]

@@ -3,7 +3,7 @@
 "color": "#F663DB"
 "dash": false
 "miles": 0.85
-"optional": false
+"optional": true
 "trail": 
 - [35.768089, -81.558435, 348.8]
 - [35.768152, -81.558353, 348.8]
