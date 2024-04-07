@@ -5,7 +5,6 @@ import 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
-import 'leaflet-textpath';
 
 import {createSVGIcon} from './vlp-mdi-icons';
 
@@ -104,20 +103,15 @@ function vlpAppMap(targetDiv,router) {
 			if (trailcounter > 1) polyname = polyname.concat(trailcounter);
 			if (!v[polyname]) break;
 			let vtrail = v[polyname];
-			let attachNameTo = false;
+			let polylineObj;
 			if (v.antpath) {
 				nlo.delay = 1600;
 				nlo.dashArray = [10,20];
-				layerFG.push(new AntPath(vtrail, nlo));
+				polylineObj = new AntPath(vtrail, nlo);
 			} else {
-				attachNameTo = L.polyline(vtrail, nlo);
-				layerFG.push(attachNameTo);
-
-				if (!v.dash && (nlo.weight > 3)) {
-					layerFG.push(L.polyline(vtrail, {color:'#2C3050',weight:1}));
-				}
+				polylineObj = L.polyline(vtrail, nlo);
 			}
-			if (attachNameTo) attachNameTo.setText(v.name);
+			layerFG.push(polylineObj);
 		}
 
 		if (!layerFG) return false;
@@ -179,7 +173,7 @@ function vlpAppMap(targetDiv,router) {
 
 			if (pagedata.layers) pagedata.layers.forEach(layer => {
 				let l_opacity = layer.opacity || 0.85;
-				let l_weight = layer.weight || 9;
+				let l_weight = layer.weight || 3;
 				let clusterGroup = null;
 		
 				layer.list.forEach(resname => {

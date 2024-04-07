@@ -5,6 +5,6 @@ opts:
 	addParkOverlays: true
 	yahZoomStartup: true
 layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,Hollipop.trail,HoyleCreek.trail,LakesideLoop.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
-- {group: Future Trail, opacity: 0.85, weight: 9, list: [brtWildcatWay.trail]}
+- {group: Options, opacity: 0.85, weight: 3, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 4, list: [GreenWay.trail,Hollipop.trail,HoyleCreek.trail,LakesideLoop.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
+- {group: Future Trail, opacity: 0.85, weight: 3, list: [brtWildcatWay.trail]}

@@ -7,45 +7,54 @@ function osmPaintRules() { return [{
 	symbolizer: new protomapsL.PolygonSymbolizer({fill: 'green', opacity:0.3}),
 	filter: (zoom, feature) => {
 		return feature.props.class === "park";
-	},
+	}
 },{
 	dataLayer: "water",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill: 'steelblue'}),
 	filter: (zoom, feature) => {
 		return feature.props.class != null;
-	},
+	}
 },{
 	dataLayer: "building",
 	symbolizer: new protomapsL.PolygonSymbolizer({stroke: 'black', fill: '#666'}),
 	filter: (zoom, feature) => {
 		return true;
-	},
+	}
 },{
 	dataLayer: "waterway",
 	symbolizer: new protomapsL.LineSymbolizer({color: 'steelblue',width:2}),
 	filter: (zoom, feature) => {
 		return true;
-	},
+	}
 },{
 	dataLayer: "road",
 	symbolizer: new protomapsL.LineSymbolizer({color: '#888',width:1}),
 	filter: (zoom, feature) => {
 		return true;
-	},
+	}
 },{
 	dataLayer: "path",
 	symbolizer: new protomapsL.LineSymbolizer({color: 'brown',width:1,dash:[3,3]}),
 	filter: (zoom, feature) => {
 		return true;
-	},
+	}
 }]}
 
 function osmLabelRules() { return [{
 	dataLayer: "label",
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]})
+},{
+	dataLayer: "road",
  	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]}),
 	filter: (zoom, feature) => {
-		return true;
-	},
+		return feature.props["name"] || feature.props["ref"];
+	}
+},{
+	dataLayer: "waterway",
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]}),
+	filter: (zoom, feature) => {
+		return feature.props["name"] || feature.props["ref"];
+	}
 }]}
 
 

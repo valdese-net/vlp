@@ -5,6 +5,5 @@ opts:
 	yahZoomStartup: true
 layers:
 - {group: Main, visible: true, opacity: 0.85, weight: 3, list: [Hollipop.trail]}
-- {group: Features, visible: true, opacity: 0.85, weight: 5, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}
-- {group: "Trail Dozer (1.08 Miles)", visible: true, weight: 5, list: [bike_TrailDozer1.trail,bike_TrailDozer2.trail,bike_TrailDozer3.trail]}
+- {group: Features, visible: true, opacity: 0.85, weight: 3, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}
 - {group: Others, opacity: 0.85, weight: 9, list: [bike_ConnectorB.trail]}
