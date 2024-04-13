@@ -98,8 +98,4 @@ src/biketrails/bike_Loop2.trail \
 > src/biketrails/bike_TrailComplete.trail
 ```
 
-node bin/trail-fixup.js src/trails/OuterLoop.trail 35.769293,-81.559158 35.769369,-81.559119 35.769313,-81.559136 > src/_out.txt
-node bin/trail-fixup.js src/trails/OuterLoop.trail 35.770079,-81.558735 35.770093,-81.558734 > src/_out.txt
-node bin/trail-fixup.js src/trails/OuterLoop.trail 35.768723,-81.558710 35.768592,-81.558698 35.768668,-81.558695 > src/_out.txt
-node bin/trail-fixup.js src/trails/OuterLoop.trail 35.772003,-81.546160 35.771846,-81.546114 > src/_out.txt
 node bin/trail2geojson.js src/trails/OuterLoop.trail

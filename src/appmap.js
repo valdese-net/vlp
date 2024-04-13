@@ -20,6 +20,7 @@ import blankImage from './img/blank.png';
 import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/valdese-area.pmtiles';
+import geo_vlp_parcels from './img/vlp-parcels.json';
 
 const vlpDebug = g.vlpDebug;
 
@@ -80,6 +81,10 @@ function vlpAppMap(targetDiv,router) {
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map, map_pmtiles);
+
+	L.geoJSON(geo_vlp_parcels, {
+		style: function (feature) { return {stroke:true,color:'#80AA80',weight:1,fill: true,fillColor:'#90EE90',opacity:0.3};	}
+	}).addTo(map);
 
 	if (g.vlpDebugMode) {
 		map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })

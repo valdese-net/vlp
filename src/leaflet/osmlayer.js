@@ -1,6 +1,6 @@
 
-import * as protomapsL from 'protomaps-leaflet';
 import { PMTiles, FileSource } from "pmtiles";
+import * as protomapsL from 'protomaps-leaflet';
 
 function osmPaintRules() { return [{
 	dataLayer: "park",
@@ -42,21 +42,20 @@ function osmPaintRules() { return [{
 
 function osmLabelRules() { return [{
 	dataLayer: "label",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]})
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]})
 },{
 	dataLayer: "road",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]}),
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]}),
 	filter: (zoom, feature) => {
 		return feature.props["name"] || feature.props["ref"];
 	}
 },{
 	dataLayer: "waterway",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",label_props:["name","ref"]}),
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]}),
 	filter: (zoom, feature) => {
 		return feature.props["name"] || feature.props["ref"];
 	}
 }]}
-
 
 export function addProtomapLayer(map,pmtiles_url) {
 	fetch(pmtiles_url)
@@ -68,8 +67,10 @@ export function addProtomapLayer(map,pmtiles_url) {
 		let fsrc = new FileSource(pmtfile);
 		let protolayer = protomapsL.leafletLayer({
 			url: new PMTiles(fsrc),
-			paint_rules: osmPaintRules(),
-			label_rules: osmLabelRules(),
+			maxDataZoom: 14,
+			maxZoom: 22,
+			paintRules: osmPaintRules(),
+			labelRules: osmLabelRules(),
 			backgroundColor: '#ddd'
 		});
 		protolayer.addTo(map);

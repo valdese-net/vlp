@@ -13,3 +13,6 @@ This led to the parcel data linked in the `index.html` file.
 Special thanks to Calvin Metcalf that made extraction of parcel
 data possible via the `shapefile-js` library:
 https://github.com/calvinmetcalf/shapefile-js
+
+node bin/shp2geojson.mjs ~/dev/mktiles/data/parcels/nc_burke_parcels_poly.shp ~/dev/mktiles/data/parcels/nc_burke_parcels_poly.dbf > out/parcels.geojson
+node bin/shp2geojson.mjs ~/dev/mktiles/data/parcels/nc_burke_parcels_poly.shp > out/plain-parcels.geojson
