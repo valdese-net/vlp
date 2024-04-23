@@ -9,11 +9,11 @@ import 'leaflet-measure';
 import {createSVGIcon} from './vlp-mdi-icons';
 
 import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
-import { addProtomapLayer } from  './leaflet/osmlayer.js';
+import {addProtomapLayer} from  './leaflet/osmlayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
-import { AntPath, antPath } from 'leaflet-ant-path';
+import {AntPath, antPath} from 'leaflet-ant-path';
 
 import './vlp-manifest-icons.js';
 import blankImage from './img/blank.png';
@@ -42,6 +42,29 @@ L.Control.Measure.include({
 		);
 	},
 });
+
+function p2pDist(p1,p2) { return L.CRS.EPSG3857.distance(L.latLng(p1),L.latLng(p2)); }
+function findIntersect(t,p) {
+	let m = {idx:-1, dist:99999999};
+	for (let i=0; i<t.length; i++) {
+		let d = p2pDist(t[i],p);
+		if (d <= m.dist) {
+			m.dist = d;
+			m.idx = i;
+		}
+	}
+	return m;
+}
+function makeIntersectingTrail(t,p1,p2) {
+	let i1 = findIntersect(t,p1);
+	let i2 = findIntersect(t,p2);
+	return (i1 == i2) ? [] : t.slice(Math.min(i1.idx,i2.idx),Math.max(i1.idx,i2.idx)+1);
+}
+function calcTrailDistance(t) {
+	let d = 0.0;
+	for (let i=t.length-1;i>0;i--) { d += p2pDist(t[i],t[i-1]);}
+	return d/1609.0;
+}
 
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
@@ -234,6 +257,34 @@ function vlpAppMap(targetDiv,router) {
 				});
 
 				cache.layers.push({layer: measureControl, visible: true});
+			}
+
+			if (pageopts.geonoteURL) {
+				let focustrail = vlpApp.layers['Hollipop.trail'].trail;
+				let lgrp = L.layerGroup();
+				let totalDist = 0.0;
+				let infoText = '';
+				cache.layers.push({layer: lgrp, visible: true});
+
+				fetch(pageopts.geonoteURL).then(r => r.json()).then(j => {
+					for (let i=0; i<j.length-1;i+=2) {
+						let p1 = j[i];
+						let p2 = j[i+1];
+						let subtrail = makeIntersectingTrail(focustrail,p1.latlng,p2.latlng);
+						if (subtrail.length > 1) {
+							let subtrailDist = calcTrailDistance(subtrail);
+							let subtrailDesc = `${subtrailDist.toFixed(2)} miles: ${p1.text}; ${p2.text}`;
+							let tlayer = new AntPath(subtrail, {color:'#e4007c',opacity:1,weight:4,delay:1600,dashArray:[10,20]});
+							tlayer.bindPopup(subtrailDesc);
+							lgrp.addLayer(tlayer);
+							totalDist += subtrailDist;
+							infoText = `- ${subtrailDesc}<br>${infoText}`;
+						}
+					}
+					infoText = `<b>Finished Trail: ${totalDist.toFixed(2)} miles</b><br>${infoText}`;
+					lgrp.bindPopup(infoText);
+					lgrp.addLayer(L.marker(j[j.length-1].latlng,{icon:createSVGIcon('info')}).bindPopup(infoText));
+				});
 			}
 	
 			pagedata.cache = cache;

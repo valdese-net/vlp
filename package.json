@@ -1,7 +1,7 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
@@ -30,7 +30,6 @@
 		"navigo": "7.1.2",
 		"pmtiles": "^3.0.5",
 		"protomaps-leaflet": "^3.1.1",
-		"shpjs": "^5.0.0",
 		"yaml": "^2.4.1"
 	},
 	"devDependencies": {
@@ -45,6 +44,7 @@
 		"resolve-url-loader": "^5.0.0",
 		"sass": "^1.72.0",
 		"sass-loader": "^13.3.3",
+		"shpjs": "^5.0.0",
 		"twing": "^5.2.2",
 		"webpack": "^5.90.3",
 		"webpack-cli": "^5.1.4",

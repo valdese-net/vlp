@@ -1,6 +1,7 @@
 name: Hollipop Trail
 "secret": false
 "color": "#e4007c"
+"dash": true
 "miles": 4.2
 "optional": false
 "trail": 
