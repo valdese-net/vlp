@@ -5,9 +5,5 @@ opts:
 	yahZoomStartup: true
 	hideZoomControl: true
 layers:
-- {group: Generic, opacity: 0.85, weight: 9, list: [wildlife/wildlife.mapmarks]}
-- {group: Mammals, opacity: 0.85, weight: 9, list: [wildlife/bobcat.mapmarks, wildlife/coyote.mapmarks, wildlife/deer.mapmarks, wildlife/fox.mapmarks]}
-- {group: Birds, opacity: 0.85, weight: 9, list: [wildlife/heron.mapmarks, wildlife/egret.mapmarks, wildlife/geese.mapmarks, wildlife/turkey.mapmarks, wildlife/birds.mapmarks]}
-- {group: Smaller, opacity: 0.85, weight: 9, list: [wildlife/nutria.mapmarks, wildlife/mink.mapmarks, wildlife/beaver.mapmarks, wildlife/otter.mapmarks, wildlife/skunk.mapmarks]}
-- {group: Others, opacity: 0.85, weight: 9, list: [wildlife/other.mapmarks]}
+- {group: Wildlife, opacity: 0.85, weight: 9, list: [wildlife.mapmarks]}
 - {group: Misc, opacity: 0.85, weight: 9, list: [Logging1.trail, Logging2.trail, Logging4.trail, Logging5.trail, Logging6.trail, Logging7.trail, Logging8.trail]}
