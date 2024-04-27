@@ -6,8 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => {
-	var use_zakklab = (env && env.ZAKKLAB) ? env.ZAKKLAB : 0;
-
 	return {
 		entry: './src/app.js',
 		performance: {
@@ -41,13 +39,13 @@ module.exports = env => {
 				type: 'asset/resource',
 				generator: { filename: 'manifest.json' },
 				use: [
-					{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab } }
+					{ loader: path.resolve('./src/loader/twig-loader.js'), options: { } }
 				]
 			},{
 				test: /\.twig$/,
 				use: [
 					{loader: 'html-loader', options: { esModule: false, sources: {list: [{tag:'img',attribute:'src',type:'src'}] } }},
-					{loader: path.resolve('./src/loader/twig-loader.js'), options: {zakklab:use_zakklab,loadpages:true}}
+					{loader: path.resolve('./src/loader/twig-loader.js'), options: {loadpages:true}}
 				]
 			},{
 				test: /\.scss$/,
@@ -68,9 +66,6 @@ module.exports = env => {
 		]}]},
 		plugins: [
 			new webpack.ProvidePlugin({L:'leaflet'}),
-			new webpack.DefinePlugin({
-				'ADD_ZAKKLAB': use_zakklab
-			}),
 			new MiniCssExtractPlugin({filename: 'app-[fullhash].css'}),
 			new HtmlWebpackPlugin({
 				title: 'Valdese Lakeside Park',
@@ -83,7 +78,15 @@ module.exports = env => {
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
 				cleanupOutdatedCaches: true,
-				exclude: [/\.(css|js|html)\.gz/]
+				exclude: [/\.(css|js|html)\.gz/],
+				runtimeCaching: [{
+					urlPattern: /https:\/\/my\.friendsofthevaldeserec\.org\/api\//,
+					handler: 'NetworkFirst',
+					options: {
+						cacheName: 'my-fvr',
+						expiration: { maxEntries: 16 },
+					},
+				}]				
 			})
 		]
 	}

@@ -5,7 +5,6 @@ opts:
 	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
 	addParkOverlays: true
 	yahZoomStartup: true
-	addMeasureControl: true
 	hideZoomControl: true
 layers:
 - {group: Cleanup Markers, opacity: 0.85, weight: 9, list: [trash.mapmarks]}

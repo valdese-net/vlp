@@ -4,6 +4,6 @@ opts:
 	addParkOverlays: true
 	yahZoomStartup: true
 	hideZoomControl: true
+	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=vlp-wildlife
 layers:
-- {group: Wildlife, opacity: 0.85, weight: 9, list: [wildlife.mapmarks]}
 - {group: Misc, opacity: 0.85, weight: 9, list: [Logging1.trail, Logging2.trail, Logging4.trail, Logging5.trail, Logging6.trail, Logging7.trail, Logging8.trail]}

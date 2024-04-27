@@ -13,7 +13,7 @@ const {TwingEnvironment,TwingLoaderArray,TwingLoaderFilesystem,TwingLoaderChain,
 const markdownRender = require('./markdown.js');
 const YAML = require('yaml');
 const { type } = require('os');
-const defaultOptions = {loadpages:false, zakklab:false};
+const defaultOptions = {loadpages:false};
 
 async function twigIt(data, context) {
 	let loader1 = new TwingLoaderArray({'twig.main': data});
@@ -123,7 +123,7 @@ function loadYamlSettings(paths,fname,merge) {
 }
 
 async function doLoader(loaderObj, twigSource, options) {
-	let appdIncludeFolders = options.zakklab ? ['','zakklab'] : [''];
+	let appdIncludeFolders = [''];
 	let c = {};
 	let appd = loadYamlSettings(appdIncludeFolders,'appd.yaml',true);
 	let bldd = loadYamlSettings(appdIncludeFolders,'build.yaml',true);
@@ -147,7 +147,7 @@ async function doLoader(loaderObj, twigSource, options) {
 
 		// We load all `md` and `twig` files in the first folder. We then iterate over
 		// other folders, but only include those files with a new unique id. This gives
-		// zakklab priority over the main, when it is enabled.
+		// custom folders priority over the main, if they are enabled.
 		await forEach(pageFolders, async (folder) => {
 			let flist = fs.readdirSync(path.resolve(`./src/${folder}`),{withFileTypes:true});
 

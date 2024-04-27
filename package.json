@@ -1,14 +1,12 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "4.0.4",
+	"version": "4.0.6",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"build": "webpack --mode production",
 		"serve": "http-server -p 1336 build -c-1 --gzip",
-		"zakklab-build": "webpack --env ZAKKLAB=1 --mode production",
-		"zakklab-test": "webpack --env ZAKKLAB=1 --mode development",
 		"convert-shapefile": "http-server -p 8080 shapefiles -c-1"
 	},
 	"author": "Valdese Network",
@@ -23,7 +21,6 @@
 		"dayjs": "^1.11.10",
 		"leaflet": "^1.9.4",
 		"leaflet-ant-path": "^1.3.0",
-		"leaflet-measure": "^3.1.0",
 		"leaflet.featuregroup.subgroup": "^1.0.2",
 		"leaflet.markercluster": "^1.5.3",
 		"leaflet.motion": "^0.3.2",
