@@ -3,7 +3,7 @@ name: Hollipop Trail
 "color": "#e4007c"
 "dash": true
 "miles": 4.2
-"optional": false
+"optional": true
 "trail": 
 - [35.773843,-81.5458099]
 - [35.773793,-81.5457973]

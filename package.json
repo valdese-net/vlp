@@ -1,7 +1,7 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "4.0.6",
+	"version": "4.0.7",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
@@ -27,23 +27,23 @@
 		"navigo": "7.1.2",
 		"pmtiles": "^3.0.5",
 		"protomaps-leaflet": "^3.1.1",
-		"yaml": "^2.4.1"
+		"yaml": "^2.4.2"
 	},
 	"devDependencies": {
 		"compression-webpack-plugin": "^10.0.0",
-		"css-loader": "^6.10.0",
+		"css-loader": "^6.11.0",
 		"html-loader": "^4.2.0",
 		"html-webpack-plugin": "^5.6.0",
 		"http-server": "^14.1.1",
 		"marked": "^4.3.0",
-		"mini-css-extract-plugin": "^2.8.1",
+		"mini-css-extract-plugin": "^2.9.0",
 		"p-iteration": "^1.1.8",
 		"resolve-url-loader": "^5.0.0",
-		"sass": "^1.72.0",
+		"sass": "^1.76.0",
 		"sass-loader": "^13.3.3",
 		"shpjs": "^5.0.0",
 		"twing": "^5.2.2",
-		"webpack": "^5.90.3",
+		"webpack": "^5.91.0",
 		"webpack-cli": "^5.1.4",
 		"workbox": "^0.0.0",
 		"workbox-webpack-plugin": "^7.0.0"

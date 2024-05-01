@@ -31,6 +31,7 @@ export function calcTrailDistance(t) {
 export function processGeonote(lgrp,j) {
 	let focustrail = null;
 	let focusinfomark = null;
+	let focusinfotext = '';
 	let coords = j.coords;
 	let totalDist = 0.0;
 	let infoText = '';
@@ -52,7 +53,10 @@ export function processGeonote(lgrp,j) {
 				let poptxt = pn.text.substr(icon_nm.length+1);
 				let marker = L.marker(pn.latlng,{icon:createSVGIcon(icon_nm.substring(1))});
 				lgrp.addLayer(marker.bindPopup(poptxt));
-				if (!focusinfomark) { focusinfomark = marker; }
+				if (!focusinfomark) {
+					focusinfomark = marker;
+					focusinfotext = poptxt;
+				}
 			}
 			else { p1 = p1a = pn; }
 			continue;
@@ -76,8 +80,8 @@ export function processGeonote(lgrp,j) {
 		}
 	}
 	if (focustrail) {
-		infoText = `<b>Finished Trail: ${totalDist.toFixed(2)} miles</b><br>${infoText}`;
+		infoText = `<b>Current Trail: ${totalDist.toFixed(2)} miles</b><br>${infoText}`;
 		lgrp.bindPopup(infoText);
-		if (focusinfomark) { focusinfomark.bindPopup(infoText); }
+		if (focusinfomark) { focusinfomark.bindPopup(`${focusinfotext}${infoText}`); }
 	}
 }
