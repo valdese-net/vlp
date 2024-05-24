@@ -80,8 +80,8 @@ function vlpAppMap(targetDiv,router) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 
 		if (v.dash) {
-			nlo['dashArray'] = "10";
-			nlo['weight'] = Math.min(5,weight);
+			nlo['dashArray'] = "1 3";
+			nlo['weight'] = Math.min(1,weight);
 		}
 
 		let layerFG = [];

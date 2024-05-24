@@ -3,7 +3,7 @@
 "color": "brown"
 "miles": 0.05
 "dash": true
-"optional": true
+"optional": false
 "trail": 
 - [35.767530,-81.552136]
 - [35.767695,-81.552050]

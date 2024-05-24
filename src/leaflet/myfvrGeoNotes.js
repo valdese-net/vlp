@@ -38,6 +38,8 @@ export function processGeonote(lgrp,j) {
 	let p1 = false;
 	let p1a = false;
 	
+	if ((typeof j != 'object') || !j.share) return;
+	
 	if (j.focus) {
 		let trailname = j.focus+'.trail';
 		focustrail = vlpApp.layers[trailname];

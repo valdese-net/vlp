@@ -6,6 +6,5 @@ opts:
 	yahZoomStartup: true
 	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=biketrail-progress
 layers:
-- {group: Options, opacity: 0.8, weight: 1, list: [Landmarks.mapmarks,Maintenance.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 4, list: [GreenWay.trail,HoyleCreek.trail,LakesideLoop.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
-- {group: Future Trail, opacity: 0.85, weight: 1, list: [brtWildcatWay.trail,Hollipop.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 4, list: [GreenWay.trail,Hollipop.trail,HoyleCreek.trail,LakesideLoop.trail,Maintenance.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
+- {group: Future Trail, opacity: 0.85, weight: 1, list: [brtWildcatWay.trail]}
