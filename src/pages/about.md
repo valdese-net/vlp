@@ -15,6 +15,7 @@ This park would not exist without funding from grants and community donations, p
 - **July 2022** – A 160-foot bridge over McGalliard Creek to complete the 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park opened.
 - **April 2023** – The 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park was completed with crushed cinder paving.
 - **July 2023** – The kayak launch and fishing pier opened.
+- **May 2024** – Debut of a new 4.2 mile Hollipop bike trail.
 
 **Planning to go out on the water?**
 Duke Energy manages the water level and [publishes information about this][link-lakelevels].
@@ -42,6 +43,17 @@ throughout. Featured sights include:
 - 0.5 Miles in: A shallow stepdown into the water called The Fox Den. Across
   the water there are often birds such as the Great Blue Heron.
 - 1.3 Miles in: McGalliard Creek Bridge to McGalliard Falls Park.
+
+</details>
+
+<details>
+<summary>Hollipop</summary>
+
+- Moderate Bike Trail
+- 4.2 Miles (3.8 Mile Loop)
+
+This is a looping trail for mountain bikes. Additional instructions
+for pedestrians and bikes can be found on the trail signs.
 
 </details>
 
