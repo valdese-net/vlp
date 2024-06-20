@@ -1,9 +1,7 @@
-name: Wildcat Way Proposed
-"secret": false
-"color": "#32cd32"
+name: Wildcat Way
+"color": "olive"
+"antpath": 1
 "miles": 0.7
-"dash": true
-"optional": true
 "trail": 
 - [35.769866,-81.545765]
 - [35.769855,-81.545717]

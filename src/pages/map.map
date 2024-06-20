@@ -6,4 +6,4 @@ opts:
 	yahZoomStartup: true
 layers:
 - {group: Primary Trails, opacity: 0.85, weight: 4, list: [GreenWay.trail,Hollipop.trail,HoyleCreek.trail,LakesideLoop.trail,Maintenance.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
-- {group: Future Trail, opacity: 0.85, weight: 1, list: [brtWildcatWay.trail]}
+- {group: Surrounding Trail, opacity: 0.90, weight: 4, list: [brtWildcatWay.trail]}
