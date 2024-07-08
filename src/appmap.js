@@ -21,6 +21,7 @@ import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/valdese-area.pmtiles';
 import geo_vlp_parcels from './img/vlp-parcels.json';
+import vlp_features from './trails/vlpFeatures.json';
 
 const vlpDebug = g.vlpDebug;
 
@@ -69,13 +70,21 @@ function vlpAppMap(targetDiv,router) {
 		style: function (feature) { return {stroke:true,color:'#80AA80',weight:1,fill: true,fillColor:'#90EE90',opacity:0.3};	}
 	}).addTo(map);
 
+	L.geoJSON(vlp_features, {
+		style: function (feature) {
+			if (feature.geometry.type == "Polygon") return {stroke:true,color:'#422',weight:1,fill: true,fillColor:'#600',opacity:0.3};
+			//if (feature.geometry.type == "LineString")
+			return {fill:false,color:'#222',weight:0.8,opacity:0.6};
+		}
+	}).addTo(map);
+
 	if (g.vlpDebugMode) {
 		map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })
 		map.on('click',e => {
 			vlpDebug(e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6));
 		});
 	}
-
+	
 	function maketrail(grp,visible,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 

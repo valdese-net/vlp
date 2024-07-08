@@ -6,23 +6,31 @@ function extractValue(a) {
 	return v || 0;
 }
 
-let fname = process.argv[2];
+function convert(fname) {
+	if (!fname || !fs.existsSync(fname)) {
+		console.error(`cannot open file '${fname}'`);
+		process.exit(1);
+	}
 
-if (!fname || !fs.existsSync(fname)) {
-	console.error(`cannot open file '${fname}'`);
-	process.exit(1);
+	let gpxData = fs.readFileSync(fname).toString();
+	let out = [];
+	const title = extractValue(gpxData.match(/<name>([^<]+)/i));
+	out.push(`name: '${title}'`);
+	out.push(`trail:`);
+	
+	const trackpts = gpxData.match(/<trkpt.*?<\/trkpt/igms);
+	trackpts.forEach(ptD => {
+		const latD = extractValue(ptD.match(/lat=["']?([^'"]+)/));
+		const lngD = extractValue(ptD.match(/lon=["']?([^'"]+)/));
+		const eleD = extractValue(ptD.match(/<ele>([^<]+)/));
+		out.push(`- [${latD},${lngD},${eleD}]`);
+	});
+	fs.writeFileSync(fname.replace('.gpx','')+`.trail`,out.join('\n'));
 }
 
-let gpxData = fs.readFileSync(fname).toString();
-
-const title = extractValue(gpxData.match(/<name>([^<]+)/i));
-console.log(`name: '${title}'`);
-console.log(`trail:`);
-
-const trackpts = gpxData.match(/<trkpt.*?<\/trkpt/igms);
-trackpts.forEach(ptD => {
-	const latD = extractValue(ptD.match(/lat=["']?([^'"]+)/));
-	const lngD = extractValue(ptD.match(/lon=["']?([^'"]+)/));
-	const eleD = extractValue(ptD.match(/<ele>([^<]+)/));
-	console.log(`- [${latD},${lngD},${eleD}]`);
-});
+let argv = process.argv.slice(2);
+let fname;
+while (fname = argv.shift()) {
+	console.log(`converting ${fname}\n`);
+	convert(fname);
+}
