@@ -28,7 +28,7 @@ module.exports = env => {
 				resourceQuery: /inline/,
 				type: 'asset/inline'
 			},{ // not needed in protomaps-leaflet ^1.24.2
-				test: /protomaps-leaflet\//,
+				test: /protomaps-leaflet[\/\\]/,
 				// this test was required in order to successfully bundle the protomaps-leaflet module with webpack
 				resolve: { fullySpecified: false },
 			},{
