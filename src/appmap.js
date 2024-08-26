@@ -19,9 +19,9 @@ import './vlp-manifest-icons.js';
 import blankImage from './img/blank.png';
 import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
-import map_pmtiles from './img/valdese-area.pmtiles';
-import geo_vlp_parcels from './img/vlp-parcels.json';
-import vlp_features from './trails/vlpFeatures.json';
+import map_pmtiles from './img/vlp.pmtiles';
+//import geojson_water from './trails/catawba-river.geo.json';
+import vlp_features from './trails/vlpFeatures.geo.json';
 
 const vlpDebug = g.vlpDebug;
 
@@ -48,7 +48,13 @@ function vlpAppMap(targetDiv,router) {
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
-	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer};
+	let osmTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		maxNativeZoom: 18,
+		maxZoom: 22
+	});
+	
+	let parkBaseMaps = {"Open Street Map - Offline": osmOnlyLayer,"Contour Lines": contourLayer, "Open Street Map - Online Tiles": osmTiles};
 
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	function routeToFVR(e) {
@@ -66,9 +72,12 @@ function vlpAppMap(targetDiv,router) {
 
 	addProtomapLayer(map, map_pmtiles);
 
-	L.geoJSON(geo_vlp_parcels, {
-		style: function (feature) { return {stroke:true,color:'#80AA80',weight:1,fill: true,fillColor:'#90EE90',opacity:0.3};	}
-	}).addTo(map);
+	//L.geoJSON(geojson_water, {
+	//	style: function (feature) { 
+	//		if (feature.geometry.type == "Polygon") return {stroke:false,fill:true,fillColor:'#00f',fillOpacity:0.8};
+	//		return {fill:false,color:'#00f',weight:2,opacity:0.8};
+	//	}
+	//}).addTo(map);
 
 	L.geoJSON(vlp_features, {
 		style: function (feature) {

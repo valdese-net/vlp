@@ -13,6 +13,17 @@ while (fname = argv.shift()) {
 	let fc = fs.readFileSync(fname).toString();
 	let trailData = YAML.parse(fc);
 	const lnglatPath = trailData.trail.map(c => [simplifyval(c[1]), simplifyval(c[0])]);
-	let lsData = turf.lineString(lnglatPath,{name:trailData.name});
+	let props = {
+		name:	trailData.name,
+		color:	trailData.color || "#ccc"
+	};
+	props.style = 'solid';
+	if (trailData.dash) props.style = 'dash';
+	else if (trailData.antpath) props.style = 'antpath';
+	//
+	if (trailData.optional) props.optional = 1;
+
+	let lsData = turf.featureCollection([turf.lineString(lnglatPath,props)]);
+
 	fs.writeFileSync(outname,JSON.stringify(lsData));
 }

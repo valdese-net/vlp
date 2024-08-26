@@ -1,9 +1,0 @@
-title: Work Day Trails Map
-opts:
-	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
-	addParkOverlays: true
-	yahZoomStartup: true
-	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=biketrail-progress
-layers:
-- {group: Main, visible: true, opacity: 0.85, weight: 1, list: [Hollipop.trail]}
-- {group: Features, visible: false, opacity: 0.85, weight: 3, list: [bike_SO1.trail,bike_SO2.trail,bike_SO3.trail,bike_SO4.trail]}

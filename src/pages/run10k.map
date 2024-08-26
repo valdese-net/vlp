@@ -1,8 +1,0 @@
-title: 10k Run for 2022
-opts:
-	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
-	addParkOverlays: true
-	yahZoomStartup: true
-layers:
-- {group: 10k Route, opacity: 0.85, weight: 9, list:  [10k2022.trail]}
-- {group: Markers, opacity: 0.85, weight: 9, list: [runmarks10k.mapmarks]}

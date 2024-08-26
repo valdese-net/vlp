@@ -7,9 +7,8 @@ let fname;
 let data = {"type":"FeatureCollection","features":[]};
 
 while (fname = argv.shift()) {
-	console.log('processing',fname);
+	//console.log('processing',fname);
 	let fc = JSON.parse(fs.readFileSync(fname).toString());
-	//console.log(fc);
 	fc.features.forEach((ftr) => data.features.push(ftr));
 }
 	

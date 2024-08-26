@@ -1,8 +1,0 @@
-title: 5k Run for 2022
-opts:
-	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
-	addParkOverlays: true
-	yahZoomStartup: true
-layers:
-- {group: 5k Route, opacity: 0.85, weight: 9, list: [5k2022.trail]}
-- {group: Markers, opacity: 0.85, weight: 9, list: [runmarks5k.mapmarks]}
