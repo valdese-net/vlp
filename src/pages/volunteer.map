@@ -1,7 +1,2 @@
 title: Park Maintenance Map
-opts:
-	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
-	addParkOverlays: true
-	yahZoomStartup: true
-layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [Maintenance.mapmarks]}
+layers: [geo_vlpFeatures,geo_vlpTrails,geo_brtTrails,geo_vlpMaintenance]

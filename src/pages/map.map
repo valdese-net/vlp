@@ -1,9 +1,3 @@
 nav: A200
 title: Map of Lakeside Park
-opts:
-	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
-	addParkOverlays: true
-	yahZoomStartup: true
-layers:
-- {group: Primary Trails, opacity: 0.85, weight: 4, list: [GreenWay.trail,Hollipop.trail,HoyleCreek.trail,LakesideLoop.trail,Maintenance.trail,MeditationPoint.trail,OuterLoop.trail,RostanCreek.trail,ShadeSeeker.trail,Tributary.trail]}
-- {group: Surrounding Trail, opacity: 0.90, weight: 4, list: [brtWildcatWay.trail]}
+layers: [geo_vlpFeatures,geo_vlpTrails,geo_brtTrails]

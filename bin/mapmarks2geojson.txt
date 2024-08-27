@@ -1,0 +1,4 @@
+use regex:
+- \[\[([\-0-9.]+),([\-0-9.]+)\],\s*([a-z]+), '([^']+).+
+
+{"type":"Feature","properties":{"icon":"$3","tip":"$4"},"geometry":{"type":"Point","coordinates":[$2,$1]}},

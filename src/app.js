@@ -75,9 +75,9 @@ function initLakesideParkApp() {
 			hideElem(infoscreen_elem, true);
 
 			if (vlpApp.activeMap != rid) {
-				if (vlpApp.activeMap) map.clearConfig(vlpApp.pages[vlpApp.activeMap]);
+				let oldMap = vlpApp.activeMap;
 				vlpApp.activeMap = rid;
-				map.showConfig(thisPageData);
+				map.showConfig(thisPageData,oldMap);
 				router.updatePageLinks();
 			}
 		} else {

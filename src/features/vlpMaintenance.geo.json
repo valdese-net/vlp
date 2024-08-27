@@ -1,0 +1,13 @@
+{"type":"FeatureCollection","properties":{"name":"Maintenance Areas"},"features":[
+{"type":"Feature","properties":{"icon":"mower","tip":"Red Meadow. Massive meadow to cut with a lawnmower."},"geometry":{"type":"Point","coordinates":[-81.558536,35.768396]}},
+{"type":"Feature","properties":{"icon":"mower","tip":"Top of Power Lines. Cut enough for access to the Shade Seeker and Tributary Trails."},"geometry":{"type":"Point","coordinates":[-81.552211,35.766973]}},
+{"type":"Feature","properties":{"icon":"mower","tip":"Clear grassy field by Lovelady for entrance to Hoyle Creek trail."},"geometry":{"type":"Point","coordinates":[-81.549212,35.761793]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"Anywhere from Lovelady to the start of Tributary Trail, grasses tend to grow up."},"geometry":{"type":"Point","coordinates":[-81.549121,35.763534]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"An invasive Japenese clover species grows at the start of Clover Creek and along the trail west (left on map) of Clover Creek."},"geometry":{"type":"Point","coordinates":[-81.551052,35.765963]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"An invasive Japenese clover species grows along the Tributary Trail by Weaver Creek."},"geometry":{"type":"Point","coordinates":[-81.550130,35.763943]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"Occassional cutting is needed along the Tributary Trail trail closer to the Power Lines."},"geometry":{"type":"Point","coordinates":[-81.551675,35.765706]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"Occassional cutting is needed along the Hoyle Creek trail."},"geometry":{"type":"Point","coordinates":[-81.549786,35.770363]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"Hoyle Creek Trail crosses Power lines. Invasive Power Line shrubs need cutting."},"geometry":{"type":"Point","coordinates":[-81.548579,35.765967]}},
+{"type":"Feature","properties":{"icon":"weed","tip":"The open green needs cutting. A lawnmower is required."},"geometry":{"type":"Point","coordinates":[-81.546428,35.773227]}},
+{"type":"Feature","properties":{"icon":"mower","tip":"The Table Rock view needs grass cut surrounding the kayak launch."},"geometry":{"type":"Point","coordinates":[-81.546407,35.774063]}}
+]}

@@ -98,11 +98,6 @@ function loadYamlFile(f) {
 	if (!fs.existsSync(f)) return {};
 	let rawd = fs.readFileSync(f,'utf8');
 	let yd = YAML.parse(rawd.replace(/\t/g,'   '));
-
-	if (yd.markers) yd.markers.forEach(v => {
-		v[2] = markdownRender(v[2].replace(/\|/g,'<br>'));
-	});
-
 	return yd;
 }
 
@@ -127,12 +122,6 @@ async function doLoader(loaderObj, twigSource, options) {
 	let c = {};
 	let appd = loadYamlSettings(appdIncludeFolders,'appd.yaml',true);
 	let bldd = loadYamlSettings(appdIncludeFolders,'build.yaml',true);
-
-	if (!bldd.mapIncludes) bldd.mapIncludes = ['trails'];
-
-	// commented this out for now...seems like overkill
-	// markdown encode the texts in history
-	// await forEach(appd.history, v => { v[1] = markdownRender(v[1]); });
 
 	c.appd = appd;
 
@@ -188,19 +177,6 @@ async function doLoader(loaderObj, twigSource, options) {
 
 		c.pageids = [];
 		pages.forEach(r => c.pageids.push(r.id));
-
-		let layers = {};
-		pages.forEach(pg => {
-			if (!pg.layers) return;
-			pg.layers.forEach(layer => {
-				if (layer.list) layer.list.forEach(fn => {
-					if (!layers[fn]) {
-						layers[fn] = loadYamlSettings(bldd.mapIncludes,fn,false);
-					}
-				});
-			});
-		});
-		c.layers = layers;
 	}
 
 	return await twigIt(twigSource,c);

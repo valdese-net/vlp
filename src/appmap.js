@@ -8,7 +8,7 @@ import 'leaflet.featuregroup.subgroup';
 import {createSVGIcon} from './leaflet/vlp-mdi-icons.js';
 
 import {calcTrailDistance,processGeonote} from './leaflet/myfvrGeoNotes.js';
-import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
+//import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
 import {addProtomapLayer} from  './leaflet/osmlayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
@@ -20,12 +20,36 @@ import blankImage from './img/blank.png';
 import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/vlp.pmtiles';
-//import geojson_water from './trails/catawba-river.geo.json';
-import vlp_features from './trails/vlpFeatures.geo.json';
+//import geojson_water from './features/catawba-river.geo.json';
+import geo_brtTrails from './features/brtTrails.geo.json';
+import geo_vlpFeatures from './features/vlpFeatures.geo.json';
+import geo_vlpLogging from './features/vlpLogging.geo.json';
+import geo_vlpMaintenance from './features/vlpMaintenance.geo.json';
+import geo_vlpTrails from './features/vlpTrails.geo.json';
 
 const vlpDebug = g.vlpDebug;
+const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails};
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
+
+function styleForGeoPath(feature) {
+	let prop = feature.properties;
+	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||6,fill:false,opacity:0.6};
+	if (prop.style == 'hint') {
+		lstyle.dashArray = '1 3';
+		lstyle.opacity = 1;
+		lstyle.weight = 0.5;
+	}
+	return lstyle;
+}
+
+function styleForGeoPoints(feature) {
+	return {stroke:true,color:feature.properties.color||'#00aa66',weight:8,fill:false,opacity:0.6};
+}
+
+function createGeojsonMarker(geoJsonPt, latlng) {
+	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon)}).bindPopup(geoJsonPt.properties.tip);
+}
 
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
@@ -43,10 +67,11 @@ function vlpAppMap(targetDiv,router) {
 		maxZoom: vlpConfig.osmZoomRange[1],
 		maxBounds: valdese_area
 	});
-	
+	let layerControl = L.control.layers({}, {},{sortLayers:true}).addTo(map);
+	let geo_Layers = {};
+	let extra_Layers = [];
 	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
-	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
 	let osmTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -54,8 +79,6 @@ function vlpAppMap(targetDiv,router) {
 		maxZoom: 22
 	});
 	
-	let parkBaseMaps = {"Open Street Map - Offline": osmOnlyLayer,"Contour Lines": contourLayer, "Open Street Map - Online Tiles": osmTiles};
-
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	function routeToFVR(e) {
 		e.stopPropagation();
@@ -70,22 +93,9 @@ function vlpAppMap(targetDiv,router) {
 	
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
-	addProtomapLayer(map, map_pmtiles);
-
-	//L.geoJSON(geojson_water, {
-	//	style: function (feature) { 
-	//		if (feature.geometry.type == "Polygon") return {stroke:false,fill:true,fillColor:'#00f',fillOpacity:0.8};
-	//		return {fill:false,color:'#00f',weight:2,opacity:0.8};
-	//	}
-	//}).addTo(map);
-
-	L.geoJSON(vlp_features, {
-		style: function (feature) {
-			if (feature.geometry.type == "Polygon") return {stroke:true,color:'#422',weight:1,fill: true,fillColor:'#600',opacity:0.3};
-			//if (feature.geometry.type == "LineString")
-			return {fill:false,color:'#222',weight:0.8,opacity:0.6};
-		}
-	}).addTo(map);
+	addProtomapLayer(map,layerControl,map_pmtiles);
+	layerControl.addBaseLayer(osmTiles,'Open Street Map - Online Tiles');
+	layerControl.addOverlay(contourLayer,'Contour Lines');
 
 	if (g.vlpDebugMode) {
 		map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })
@@ -94,6 +104,7 @@ function vlpAppMap(targetDiv,router) {
 		});
 	}
 	
+	/*
 	function maketrail(grp,visible,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 
@@ -129,133 +140,43 @@ function vlpAppMap(targetDiv,router) {
 
 		return {group: grp, name: tt, layer: newFG, visible: !v.optional||visible};
 	}
+	*/
 
-	// we are using the term layer here in a generic sense, as the layers can also be controls
-	function mapHasLayer(g) {
-		if (g instanceof L.Layer) return map.hasLayer(g);
-		return true;
-	}
-
-	this.clearConfig = function(pagedata) {
-		if (!pagedata.cache) return;
-		let cache = pagedata.cache;
-		let layers = cache.layers;
-
-		cache.mapview.zoom = map.getZoom();
-		cache.mapview.center = map.getCenter();
-
-		for (let i=layers.length; i>0; i--) {
-			let layer = layers[i-1];
-			if (layer.visible = mapHasLayer(layer.layer)) {
-				layer.layer.remove();
-			}
-		}
-	}
-
-	this.showConfig = function(pagedata) {
+	this.showConfig = function(pagedata,oldmap) {
 		let pageopts = pagedata.opts || {};
-		let cache = pagedata.cache || {layers: []};
-		let doCacheInit = !pagedata.cache;
-
-		if (doCacheInit) {
-			let maxBoundsRaw = vlpConfig.gpsBoundsValdese;
-			let maxBoundsLL = new L.LatLngBounds(maxBoundsRaw);
-			let yahBoundsLL =  new L.LatLngBounds(pageopts.yahBounds || maxBoundsRaw);
-			let baselayers = {};
-
-			cache.mapview = {
-				maxBounds: maxBoundsLL,
-				yahBounds: yahBoundsLL,
-				zoom: (vlpConfig.osmZoomRange[0]+vlpConfig.osmZoomRange[1])/2,
-				center: yahBoundsLL.getCenter()
+		let addlayers = pagedata.layers || [];
+		let firstTime = !('geo_vlpFeatures' in geo_Layers);
+		extra_Layers.forEach(layer => {
+			map.removeLayer(layer);
+		});
+		extra_Layers = [];
+		Object.entries(geo_JSONS).forEach(([layerid, json]) => {
+			let existingLayer = geo_Layers[layerid];
+			if (!addlayers.includes(layerid)) {
+				if (existingLayer && map.hasLayer(existingLayer)) map.removeLayer(existingLayer);
+			} else {
+				// if needed, create layer, then add it
+				if (!existingLayer) {
+					existingLayer = geo_Layers[layerid] = L.geoJSON(json,{
+						pointToLayer: createGeojsonMarker,
+						style: styleForGeoPath,
+					});
+				}
+				map.addLayer(existingLayer);
 			}
-
-			if (pageopts.addParkOverlays) {
-				baselayers = parkBaseMaps;
-			}
-
-			let basekeys = Object.keys(baselayers);
-			if (basekeys) basekeys.forEach((k,ki) => cache.layers.push({name: k, layer: baselayers[k], visible: (ki == 0)}));
-
-			if (pagedata.layers) pagedata.layers.forEach(layer => {
-				let l_opacity = layer.opacity || 0.85;
-				let l_weight = layer.weight || 3;
-				let clusterGroup = null;
-		
-				layer.list.forEach(resname => {
-					let ext = /[^.]+$/.exec(resname);
-					let yamlData = vlpApp.layers[resname];
-		
-					if (!yamlData) return;
-		
-					if (ext == 'trail') {
-						cache.layers.push(maketrail(layer.group,layer.visible,l_opacity,l_weight,yamlData));
-					} else if (ext == 'mapmarks') {
-						let markerPts = [];
-		
-						if (!yamlData.markers) return;
-		
-						yamlData.markers.forEach(v => {
-							markerPts.push(L.marker(v[0],{icon:createSVGIcon(v[1])}).bindPopup(v[2]));
-						});
-		
-						if (!clusterGroup) {
-							clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
-							cache.layers.unshift({layer: clusterGroup, visible: true});
-						}
-						let fg = L.featureGroup.subGroup(clusterGroup, markerPts);
-						cache.layers.push({group:layer.group, name: yamlData.name, layer: fg, visible: !yamlData.optional});
-					}
-				});
-			});			
-	
-			if (cache.layers.length > 0) {
-				let grpOverlays = {};
-				// add the GroupedLayersControl to the cache
-				cache.layers.forEach(v => {
-					if (v.group) {
-						if (!grpOverlays[v.group]) grpOverlays[v.group] = {};
-						grpOverlays[v.group][v.name] = v.layer;
-					}
-				});
-
-				let grpctl = new GroupedLayersControl(baselayers,grpOverlays);
-
-				cache.layers.push({layer: grpctl, visible: true});
-			}
-
-			if (pageopts.geonoteURL) {
-				let lgrp = L.layerGroup();
-				cache.layers.push({layer: lgrp, visible: true});
-
-				fetch(pageopts.geonoteURL).then(r => r.json()).then(j => {
-					processGeonote(lgrp,j);
-				});
-			}
-	
-			pagedata.cache = cache;
-		}
-	
-		if (map.zoomControl) {
-			let z = map.zoomControl;
-			if (pageopts.hideZoomControl) {
-				zoomRemoved = true;
-				z.remove();
-			} else if (zoomRemoved) {
-				zoomRemoved = false;
-				z.addTo(map);
-			}
-		}
-
-		yahBtn.options.maxBounds = cache.mapview.yahBounds;
-
-		cache.layers.forEach(layer => {
-			if (layer.visible) layer.layer.addTo(map);
 		});
 
-		// on first showing, we try to fit the view around the target area
-		if (doCacheInit) map.fitBounds(pageopts.yahZoomStartup ? cache.mapview.yahBounds : cache.mapview.maxBounds);
-		else map.setView(cache.mapview.center,cache.mapview.zoom);
+		if (pageopts.geonoteURL) {
+			let lgrp = L.layerGroup();
+			console.log(`adding pageopts.geonoteURL ${pageopts.geonoteURL}`);
+
+			fetch(pageopts.geonoteURL).then(r => r.json()).then(j => {
+				processGeonote(lgrp,j);
+				extra_Layers = [lgrp];
+				lgrp.addTo(map);
+			});
+		}
+		if (firstTime) map.fitBounds(parkplan_bounds);
 	}
 }
 

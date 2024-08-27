@@ -66,7 +66,7 @@ function osmLabelRules() { return [{
 	}
 }]}
 
-export function addProtomapLayer(map,pmtiles_url) {
+export function addProtomapLayer(map,layerControl,pmtiles_url) {
 	fetch(pmtiles_url)
 	.then(function(res) {
 		return res.arrayBuffer();
@@ -82,6 +82,7 @@ export function addProtomapLayer(map,pmtiles_url) {
 			labelRules: osmLabelRules(),
 			backgroundColor: '#ddd'
 		});
+		layerControl.addBaseLayer(protolayer,'Open Street Map - Offline');
 		protolayer.addTo(map);
 	});
 }

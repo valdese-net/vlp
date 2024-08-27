@@ -1,0 +1,9 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","properties":{"name":"Logging 1","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.552576,35.76769],[-81.552736,35.768481],[-81.553518,35.769197]]}},
+{"type":"Feature","properties":{"name":"Logging 2","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.554483,35.767063],[-81.554599,35.767748],[-81.554898,35.768177],[-81.554843,35.768485],[-81.554121,35.768789],[-81.553867,35.768793]]}},
+{"type":"Feature","properties":{"name":"Logging 4","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.556529,35.769189],[-81.556683,35.769758],[-81.556716,35.770195],[-81.556537,35.770497],[-81.556338,35.770736],[-81.555853,35.770931],[-81.555505,35.77096],[-81.555099,35.770913]]}},
+{"type":"Feature","properties":{"name":"Logging 5","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.560191,35.771345],[-81.560288,35.770647],[-81.559874,35.770173],[-81.55989,35.76944],[-81.559804,35.769104],[-81.560196,35.769344],[-81.559283,35.768816]]}},
+{"type":"Feature","properties":{"name":"Logging 6","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.551068,35.769269],[-81.551635,35.769163],[-81.552199,35.769292],[-81.552921,35.769703],[-81.553033,35.769852],[-81.552733,35.770008],[-81.552725,35.770482],[-81.552707,35.770986]]}},
+{"type":"Feature","properties":{"name":"Logging 7","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.550868,35.77085],[-81.55144,35.771206],[-81.551783,35.771342],[-81.551868,35.771599],[-81.551597,35.771826],[-81.550968,35.771968]]}},
+{"type":"Feature","properties":{"name":"Valley","color":"brown","style":"hint"},"geometry":{"type":"LineString","coordinates":[[-81.550974,35.770772],[-81.552501,35.771212]]}}
+]}
