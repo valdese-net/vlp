@@ -13,11 +13,11 @@ import {addProtomapLayer} from  './leaflet/osmlayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
-import {AntPath, antPath} from 'leaflet-ant-path';
+//import {AntPath, antPath} from 'leaflet-ant-path';
 
 import './vlp-manifest-icons.js';
-import blankImage from './img/blank.png';
-import blankTile from './img/blankTile.png';
+//import blankImage from './img/blank.png';
+//import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/vlp.pmtiles';
 //import geojson_water from './features/catawba-river.geo.json';
@@ -36,9 +36,9 @@ function styleForGeoPath(feature) {
 	let prop = feature.properties;
 	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||6,fill:false,opacity:0.6};
 	if (prop.style == 'hint') {
-		lstyle.dashArray = '1 3';
+		lstyle.dashArray = '2 3';
 		lstyle.opacity = 1;
-		lstyle.weight = 0.5;
+		lstyle.weight = 1.0;
 	}
 	return lstyle;
 }
@@ -67,6 +67,7 @@ function vlpAppMap(targetDiv,router) {
 		maxZoom: vlpConfig.osmZoomRange[1],
 		maxBounds: valdese_area
 	});
+	let scaleControl = L.control.scale({maxWidth:150,position:'bottomleft'}).addTo(map);
 	let layerControl = L.control.layers({}, {},{sortLayers:true}).addTo(map);
 	let geo_Layers = {};
 	let extra_Layers = [];
@@ -83,6 +84,23 @@ function vlpAppMap(targetDiv,router) {
 	function routeToFVR(e) {
 		e.stopPropagation();
 		router.navigate('fvr');
+	}
+	function calcLatLngsLength(l) {
+		let d = 0.0;
+		for (let i=0;i<l.length-1;i++) {
+			d += map.distance(l[i],l[i+1]);
+		}
+		return d/1609.344;
+	}
+
+	function geojsonAfterAdd(feature, layer) {
+		console.log('geojsonAfterAdd',feature,layer);
+		if (feature.geometry && (feature.geometry.type == 'LineString')) {
+			let nm = feature.properties.name;
+			let d = calcLatLngsLength(layer.getLatLngs());
+			let tt = `${nm}<br><span class="mileage">(${d.toFixed(2)} Miles)</span>`;
+			layer.bindTooltip(tt,{'sticky': true});
+		}
 	}
 
 	map.attributionControl.setPrefix('');
@@ -160,6 +178,7 @@ function vlpAppMap(targetDiv,router) {
 					existingLayer = geo_Layers[layerid] = L.geoJSON(json,{
 						pointToLayer: createGeojsonMarker,
 						style: styleForGeoPath,
+						onEachFeature: geojsonAfterAdd
 					});
 				}
 				map.addLayer(existingLayer);
