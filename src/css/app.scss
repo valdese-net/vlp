@@ -250,3 +250,10 @@ div.social-bar {
 		}
 	}
 }
+
+:root {
+	--mapiconsize: 32px;
+	--mapiconoffset: calc( var(--mapiconsize) / -2 );
+}
+
+.icon-mdi {width:var(--mapiconsize); height:var(--mapiconsize); margin:var(--mapiconoffset) 0 0 var(--mapiconoffset);}

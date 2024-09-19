@@ -35,11 +35,30 @@ L.Marker.prototype.options.icon = createSVGIcon('marker');
 function styleForGeoPath(feature) {
 	let prop = feature.properties;
 	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||6,fill:false,opacity:0.6};
-	if (prop.style == 'hint') {
+	if (!prop.class) {
+		if (prop.style == 'hint') {
+			lstyle.dashArray = '2 3';
+			lstyle.opacity = 1;
+			lstyle.weight = 1.0;
+		}
+	} else if (['parking'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,opacity:0.7};
+	} else if (['pavilion'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'forestgreen',color:'black',fill:true,opacity:0.7};
+	} else if (['stairs','ramp'].includes(prop.class)) {
+		lstyle.color = 'grey';
 		lstyle.dashArray = '2 3';
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
+	} else if (['pier','stage'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'burlywood',color:'saddlebrown',fill:true,opacity:1};
+	} else if (['dogpark'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'green',color:'darkgreen',fill:true,opacity:0.7};
+	} else if (['bathroom'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'darkblue',color:'grey',fill:true,opacity:0.9};
 	}
+
+	console.log(lstyle);
 	return lstyle;
 }
 
@@ -53,7 +72,6 @@ function createGeojsonMarker(geoJsonPt, latlng) {
 
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
-	let zoomRemoved = false;
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
 	let gpsCenter = parkplan_bounds.getCenter();
@@ -62,8 +80,8 @@ function vlpAppMap(targetDiv,router) {
 		center: gpsCenter,
 		minZoom: vlpConfig.osmZoomRange[0],
 		zoom: vlpConfig.osmZoomRange[0],
-		zoomDelta: .8,
-		zoomSnap: 0.616, //Starting at 8
+		zoomDelta: 0.5,
+		zoomSnap: 0.5,
 		maxZoom: vlpConfig.osmZoomRange[1],
 		maxBounds: valdese_area
 	});
@@ -109,14 +127,30 @@ function vlpAppMap(targetDiv,router) {
 	map.attributionControl.addAttribution(`V${vlpApp.appd.appver}`);
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
 	
+	//.bindPopup(geoJsonPt.properties.tip);
+	let infomark = L.marker([35.774083,-81.545630],{icon:createSVGIcon('info')});
+	infomark.addTo(map);
+	infomark.on('click', e => {
+		//console.log('infomark clicked');
+		router.navigate('about');
+	});
+
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map,layerControl,map_pmtiles);
 	layerControl.addBaseLayer(osmTiles,'Open Street Map - Online Tiles');
 	layerControl.addOverlay(contourLayer,'Contour Lines');
 
+	map.on("zoomend", (ev) => {
+		let z = map.getZoom();
+		let c = map.getZoomScale(z, 19);
+		let iconsz = Math.min(Math.max(Math.round(40*c),12),200);
+		document.documentElement.style.setProperty('--mapiconsize', iconsz+'px');
+
+		if (g.vlpDebugMode) console.log('zoom',z)
+	});
+
 	if (g.vlpDebugMode) {
-		map.on("zoomend", (ev) => { console.log('zoom',map.getZoom()) })
 		map.on('click',e => {
 			vlpDebug(e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6));
 		});
