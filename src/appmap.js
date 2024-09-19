@@ -42,23 +42,22 @@ function styleForGeoPath(feature) {
 			lstyle.weight = 1.0;
 		}
 	} else if (['parking'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,opacity:0.7};
+		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,weight:1,opacity:0.7};
 	} else if (['pavilion'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'forestgreen',color:'black',fill:true,opacity:0.7};
+		lstyle = {stroke:true,fillColor:'forestgreen',color:'black',fill:true,weight:1,opacity:0.7};
 	} else if (['stairs','ramp'].includes(prop.class)) {
-		lstyle.color = 'grey';
+		lstyle.color = 'brown';
 		lstyle.dashArray = '2 3';
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
 	} else if (['pier','stage'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'burlywood',color:'saddlebrown',fill:true,opacity:1};
+		lstyle = {stroke:true,fillColor:'burlywood',color:'saddlebrown',fill:true,weight:1,opacity:1};
 	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'green',color:'darkgreen',fill:true,opacity:0.7};
+		lstyle = {stroke:true,fillColor:'green',color:'darkgreen',fill:true,weight:2,opacity:1};
 	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'darkblue',color:'grey',fill:true,opacity:0.9};
+		lstyle = {stroke:true,fillColor:'darkblue',color:'grey',fill:true,weight:1,opacity:1};
 	}
 
-	console.log(lstyle);
 	return lstyle;
 }
 
@@ -112,7 +111,7 @@ function vlpAppMap(targetDiv,router) {
 	}
 
 	function geojsonAfterAdd(feature, layer) {
-		console.log('geojsonAfterAdd',feature,layer);
+		//console.log('geojsonAfterAdd',feature,layer);
 		if (feature.geometry && (feature.geometry.type == 'LineString')) {
 			let nm = feature.properties.name;
 			let d = calcLatLngsLength(layer.getLatLngs());
