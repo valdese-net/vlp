@@ -1,0 +1,4 @@
+title: Current Maintenance Project
+layers: [geo_vlpFeatures,geo_vlpTrails,geo_brtTrails,geo_vlpLogging]
+opts:
+	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=maint-progress

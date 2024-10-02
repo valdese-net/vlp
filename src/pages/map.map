@@ -1,3 +1,5 @@
 nav: A200
 title: Map of Lakeside Park
 layers: [geo_vlpFeatures,geo_vlpTrails,geo_brtTrails]
+opts:
+	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=maint-progress

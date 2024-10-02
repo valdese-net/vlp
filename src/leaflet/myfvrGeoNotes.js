@@ -1,6 +1,7 @@
 import 'leaflet';
 import {createSVGIcon} from './vlp-mdi-icons';
 import {AntPath, antPath} from 'leaflet-ant-path';
+//import geo_vlpTrails from '../features/vlpTrails.geo.json';
 
 export function p2pDist(p1,p2) { return L.CRS.EPSG3857.distance(L.latLng(p1),L.latLng(p2)); }
 
@@ -46,13 +47,18 @@ export function processGeonote(lgrp,j) {
 		if (focustrail) focustrail = focustrail.trail;
 	}
 
+	//if (coords.length) {
+		//className:'geonoteshare',
+	//	L.marker([35.774320,-81.550033],{icon: L.divIcon({iconSize:null,html:`<span style="white-space:nowrap;font-size:15pt;">${j.share}</span>`})}).addTo(lgrp);
+	//}
+
 	for (let i=0; i<coords.length;i++) {
 		let pn = coords[i];
 		let isPtrNode = pn.text.startsWith('-') || !focustrail;
 		if (!p1) {
 			if (isPtrNode) {
 				let icon_nm = pn.text.split(' ',1)[0];
-				let poptxt = pn.text.substr(icon_nm.length+1);
+				let poptxt = `<h5>${j.share}</h5>`+pn.text.substr(icon_nm.length+1);
 				let marker = L.marker(pn.latlng,{icon:createSVGIcon(icon_nm.substring(1))});
 				lgrp.addLayer(marker.bindPopup(poptxt));
 				if (!focusinfomark) {
@@ -85,5 +91,5 @@ export function processGeonote(lgrp,j) {
 		infoText = `<b>Current Trail: ${totalDist.toFixed(2)} miles</b><br>${infoText}`;
 		lgrp.bindPopup(infoText);
 		if (focusinfomark) { focusinfomark.bindPopup(`${focusinfotext}${infoText}`); }
-	}
+	} 
 }
