@@ -2,8 +2,9 @@ title: Lakeside Park
 fulltitle: Valdese Lakeside Park
 manifest_themecolor: '#F15537'
 manifest_bgcolor: '#142734'
-appver: 4.102
+appver: 4.103
 history:
+- [1727980552, Add Trailfest map and live maintenance notes]
 - [1724629617, Add Open Street Map live tiles overlay (data connectivity is required)]
 - [1717591229, New Hollipop bike trail has been added to the park]
 - [1712259626, App now works entirely offline using vector map tiles]

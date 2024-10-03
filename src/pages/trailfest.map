@@ -1,0 +1,4 @@
+title: Trailfest Map
+layers: [geo_vlpFeatures,geo_vlpTrailfest10k]
+opts:
+	geonoteURL: https://my.friendsofthevaldeserec.org/api/?r=maint-progress

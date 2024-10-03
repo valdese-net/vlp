@@ -26,9 +26,10 @@ import geo_vlpFeatures from './features/vlpFeatures.geo.json';
 import geo_vlpLogging from './features/vlpLogging.geo.json';
 import geo_vlpMaintenance from './features/vlpMaintenance.geo.json';
 import geo_vlpTrails from './features/vlpTrails.geo.json';
+import geo_vlpTrailfest10k from './features/vlpTrailfest10k.geo.json';
 
 const vlpDebug = g.vlpDebug;
-const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails};
+const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails,geo_vlpTrailfest10k};
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
