@@ -52,12 +52,14 @@ function styleForGeoPath(feature) {
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
 	} else if (['pier','stage'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'burlywood',color:'saddlebrown',fill:true,weight:1,opacity:1};
+		lstyle = {stroke:true,fillColor:'burlywood',fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1};
 	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'green',color:'darkgreen',fill:true,weight:2,opacity:1};
+		lstyle = {stroke:true,fillColor:'green',fillColor:'darkgreen',color:'#c0c0c0',fill:true,weight:3,opacity:1};
 	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'darkblue',color:'grey',fill:true,weight:1,opacity:1};
+		lstyle = {stroke:true,fillColor:'darkblue',fillColor:'grey',color:'black',fill:true,weight:1,opacity:1};
 	}
+
+	if (lstyle.fill) { lstyle.fillOpacity = lstyle.opacity; }
 
 	return lstyle;
 }
@@ -71,7 +73,7 @@ function createGeojsonMarker(geoJsonPt, latlng) {
 }
 
 function vlpAppMap(targetDiv,router) {
-	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
+	const burkeGISMap = 'https://gis.burkenc.org/default.htm?PIN=2744445905';
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
 	let gpsCenter = parkplan_bounds.getCenter();
@@ -152,7 +154,7 @@ function vlpAppMap(targetDiv,router) {
 
 	if (g.vlpDebugMode) {
 		map.on('click',e => {
-			vlpDebug(e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6));
+			vlpDebug('@('+e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6)+'): ');
 		});
 	}
 	
