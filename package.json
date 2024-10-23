@@ -7,7 +7,8 @@
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"build": "webpack --mode production",
 		"serve": "http-server -p 1336 build -c-1 --gzip",
-		"convert-shapefile": "http-server -p 8080 shapefiles -c-1"
+		"convert-shapefile": "http-server -p 8080 shapefiles -c-1",
+		"make-maplibre": "node bin/make-maplibre.mjs --build"
 	},
 	"author": "Valdese Network",
 	"license": "Apache-2.0",
@@ -24,6 +25,7 @@
 		"leaflet.featuregroup.subgroup": "^1.0.2",
 		"leaflet.markercluster": "^1.5.3",
 		"leaflet.motion": "^0.3.2",
+		"maplibre-gl": "^4.7.1",
 		"navigo": "7.1.2",
 		"pmtiles": "^3.0.6",
 		"protomaps-leaflet": "^3.1.2",
@@ -32,6 +34,8 @@
 	"devDependencies": {
 		"compression-webpack-plugin": "^10.0.0",
 		"css-loader": "^6.11.0",
+		"esbuild": "^0.24.0",
+		"gzipme": "^1.0.0",
 		"html-loader": "^4.2.0",
 		"html-webpack-plugin": "^5.6.0",
 		"http-server": "^14.1.1",
