@@ -32,6 +32,7 @@
 		"yaml": "^2.4.5"
 	},
 	"devDependencies": {
+		"@luncheon/esbuild-plugin-gzip": "^0.1.0",
 		"compression-webpack-plugin": "^10.0.0",
 		"css-loader": "^6.11.0",
 		"esbuild": "^0.24.0",

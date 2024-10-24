@@ -48,6 +48,9 @@ importers:
         specifier: ^2.4.5
         version: 2.4.5
     devDependencies:
+      '@luncheon/esbuild-plugin-gzip':
+        specifier: ^0.1.0
+        version: 0.1.0(esbuild@0.24.0)
       compression-webpack-plugin:
         specifier: ^10.0.0
         version: 10.0.0(webpack@5.93.0)
@@ -862,6 +865,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@luncheon/esbuild-plugin-gzip@0.1.0':
+    resolution: {integrity: sha512-xd67Zj2ERUjcyycwOu2xn+PIMWoi/ApHf3ooiYz7+uZsD+0i8psaQ+b5T4B2PBU0FYfgSxYsnwfwqeg70ZKRdw==}
+    peerDependencies:
+      esbuild: '>=0.11.15'
 
   '@mapbox/geojson-rewind@0.5.2':
     resolution: {integrity: sha512-tJaT+RbYGJYStt7wI3cq4Nl4SXxG8W7JDG5DMJu97V25RnbNg3QtQtf+KD+VLjNpWKYsRvXDNmNrBgEETr1ifA==}
@@ -4149,6 +4157,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@luncheon/esbuild-plugin-gzip@0.1.0(esbuild@0.24.0)':
+    dependencies:
+      esbuild: 0.24.0
 
   '@mapbox/geojson-rewind@0.5.2':
     dependencies:
