@@ -1,14 +1,9 @@
 // This is the main file for the CSS styles in the vlp app.
 // The webpack config automatically detects and bundles all
 // images that are referenced from this.
-
-@import "~leaflet/dist/leaflet.css";
-@import "~leaflet.markercluster/dist/MarkerCluster";
-@import "~leaflet.markercluster/dist/MarkerCluster.Default";
-
-@import "./css/app";
-@import "./font/fvricons";
-@import "./leaflet/fvrIconButtons";
-@import "./leaflet/GroupedLayersControl";
-@import "./css/modal";
-@import "./css/whatsnew";
+@use "./css/app";
+@use "./font/fvricons";
+@use "./leaflet/fvrIconButtons";
+@use "./leaflet/GroupedLayersControl";
+@use "./css/modal";
+@use "./css/whatsnew";

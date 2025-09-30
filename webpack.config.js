@@ -48,12 +48,18 @@ module.exports = env => {
 					{loader: path.resolve('./src/loader/twig-loader.js'), options: {loadpages:true}}
 				]
 			},{
+				test: /\.css$/,
+				use: [
+					{loader: MiniCssExtractPlugin.loader},
+					{loader: 'css-loader'}
+				]
+			},{
 				test: /\.scss$/,
 				use: [
 					{loader: MiniCssExtractPlugin.loader},
 					{loader: 'css-loader'},
 					{loader: 'resolve-url-loader'},
-					{loader: 'sass-loader', options: { implementation: require('sass'), sourceMap: true }}
+					{loader: 'sass-loader', options: { api: "modern",implementation: require('sass'), sourceMap: true }}
 				]
 			},{
 				test: /\.(trail|mapmarks)$/,
