@@ -1,7 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const YAML = require('yaml');
-const turf = require('@turf/turf');
+import fs from 'fs';
+import YAML from 'yaml';
+import * as turf from '@turf/turf';
 
 // six decimal places yields accuracy to 0.111 meters
 function simplifyval(v) { return parseFloat(parseFloat(v).toFixed(6)); }

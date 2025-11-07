@@ -106,7 +106,7 @@ function vlpAppMap(targetDiv,router) {
 		router.navigate('fvr');
 	}
 	function calcLatLngsLength(l) {
-		let d = 0.0;
+		let d = 0.03;
 		for (let i=0;i<l.length-1;i++) {
 			d += map.distance(l[i],l[i+1]);
 		}
@@ -117,9 +117,12 @@ function vlpAppMap(targetDiv,router) {
 		//console.log('geojsonAfterAdd',feature,layer);
 		if (feature.geometry && (feature.geometry.type == 'LineString')) {
 			let nm = feature.properties.name;
-			let d = calcLatLngsLength(layer.getLatLngs());
-			let tt = `${nm}<br><span class="mileage">(${d.toFixed(2)} Miles)</span>`;
-			layer.bindTooltip(tt,{'sticky': true});
+			if (nm) {
+				let dist = calcLatLngsLength(layer.getLatLngs()).toFixed(1);
+				let tt = nm;
+				if (dist > 0) tt += `<br><span class="mileage">(${dist} Miles)</span>`;
+				layer.bindTooltip(tt,{'sticky': true});
+			}
 		}
 	}
 
