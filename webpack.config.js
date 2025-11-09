@@ -84,7 +84,7 @@ module.exports = env => {
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
 				cleanupOutdatedCaches: true,
-				exclude: [/\.(css|js|html)\.gz/],
+				exclude: [/\.(css|js|html|pmtiles|woff)\.gz/],
 				runtimeCaching: [{
 					urlPattern: /https:\/\/my\.friendsofthevaldeserec\.org\/api\//,
 					handler: 'NetworkFirst',

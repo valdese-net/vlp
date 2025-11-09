@@ -13,6 +13,7 @@ import {addProtomapLayer} from  './leaflet/osmlayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
+import './leaflet/PathLabel.js';
 //import {AntPath, antPath} from 'leaflet-ant-path';
 
 import './vlp-manifest-icons.js';
@@ -35,7 +36,7 @@ L.Marker.prototype.options.icon = createSVGIcon('marker');
 
 function styleForGeoPath(feature) {
 	let prop = feature.properties;
-	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||6,fill:false,opacity:0.6};
+	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||3,fill:false,opacity:0.6};
 	if (!prop.class) {
 		if (prop.style == 'hint') {
 			lstyle.dashArray = '2 3';
@@ -119,9 +120,10 @@ function vlpAppMap(targetDiv,router) {
 			let nm = feature.properties.name;
 			if (nm) {
 				let dist = calcLatLngsLength(layer.getLatLngs()).toFixed(1);
-				let tt = nm;
-				if (dist > 0) tt += `<br><span class="mileage">(${dist} Miles)</span>`;
-				layer.bindTooltip(tt,{'sticky': true});
+				//let tt = nm;
+				//if (dist > 0) tt += `<br><span class="mileage">(${dist} Miles)</span>`;
+				//layer.bindTooltip(tt,{'sticky': true});
+				layer.setPathLabel(`${nm} (${dist})`,{placement:5});
 			}
 		}
 	}
