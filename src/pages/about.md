@@ -13,9 +13,9 @@ This park would not exist without funding from grants and community donations, p
 - **Nov 2021** - Phase 1 Complete celebration was held for 4000 linear ft of greenway, restrooms, wildlife viewing platform, parking and entry road.
 - **May 2022** – Dog Park opened
 - **July 2022** – A 160-foot bridge over McGalliard Creek to complete the 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park opened.
-- **April 2023** – The 2-mile greenway from Valdese Lakeside Park to McGalliard Falls Park was completed with crushed cinder paving.
+- **April 2023** – The greenway from Valdese Lakeside Park to McGalliard Falls Park was completed with crushed cinder paving.
 - **July 2023** – The kayak launch and fishing pier opened.
-- **May 2024** – Debut of a new 4.2 mile Hollipop bike trail.
+- **May 2024** – Debut of a new Hollipop bike trail.
 
 **Planning to go out on the water?**
 Duke Energy manages the water level and [publishes information about this][link-lakelevels].
@@ -32,7 +32,6 @@ The park is home to a number of trails. Tap the trail name to see more informati
 <summary>Greenway</summary>
 
 - Easy Trail
-- 2.0 Miles
 
 The most prominent trail in the park, running adjacent to the lake and its tributary
 throughout. Featured sights include:
@@ -50,7 +49,6 @@ throughout. Featured sights include:
 <summary>Hollipop</summary>
 
 - Moderate Bike Trail
-- 4.2 Miles (3.8 Mile Loop)
 
 This is a looping trail for mountain bikes. Additional instructions
 for pedestrians and bikes can be found on the trail signs.
@@ -61,7 +59,6 @@ for pedestrians and bikes can be found on the trail signs.
 <summary>Rostan Creek Trail</summary>
 
 - Easy Trail
-- 0.35 Miles
 
 The creek runs to the left side for the majority of the trail.
 A third of the way in, a good photo opportunity can be found
@@ -73,9 +70,8 @@ overhang.
 <summary>Outer Loop</summary>
 
 - Intermediate
-- 2.0 Miles
 
-The beginning and end of the trail can be a little steep.
+The end of the trail can be a little steep.
 There are various elevation changes throughout the
 trail.
 
@@ -85,7 +81,6 @@ trail.
 <summary>Lakeside Loop</summary>
 
 - Easy-Moderate
-- 0.6 Miles
 
 The trail takes you on a loop around the lake higher than the Meditation Point trail.
 </details>
@@ -94,10 +89,9 @@ The trail takes you on a loop around the lake higher than the Meditation Point t
 <summary>Meditation Point Trail</summary>
 
 - Very Easy
-- 0.1 Miles
 - No bikes
 
-4 feet wide, freshly built, and level.
+4 feet wide and level.
 Has great water views and a rock halfway along the trail that you can go down
 and sit on and fish or take photos.
 
@@ -108,7 +102,6 @@ No bikes allowed because this is a heavily trafficked trail and collisions could
 <summary>Hoyle Creek Trail</summary>
 
 - Easy-Intermediate Trail
-- 1.3 Miles
 
 This trail spurs off the Outer Loop Trail and runs all the way to Lovelady Road.
 
@@ -125,10 +118,9 @@ bridge to get back to Lake Rhodhiss Drive.
 <summary>Shade Seeker</summary>
 
 - Intermediate Trail
-- 0.2 Miles
 - Connects from Hoyle Creek back to Outer Loop.
 
-Throughout the trail, you gain/lose 150 feet in elevation making the
+You gain/lose 150 feet in elevation making the
 climb the most difficult part of the trail.
 </details>
 
@@ -136,7 +128,6 @@ climb the most difficult part of the trail.
 <summary>Tributary Trail</summary>
 
 - Moderate/Strenuous Trail
-- 1.1 Miles
 
 A difficult trail starting along Hoyle Creek and going up to Outer Loop.
 The width and terrain of the trail varies. There are many shortcuts along the trail as it maximizes distance in its area.

@@ -46,7 +46,6 @@ let PolylinePathLabel = {
 
 		let zooml = this._map.getZoom();
 
-		// placement is bit set 1 -start, 2 - center, 4 - end
 		let defaults = { placement: 1 };
         options = L.Util.extend(defaults, options);
 
@@ -58,45 +57,52 @@ let PolylinePathLabel = {
             return this;
         }
 
-        let id = 'pathdef-' + L.Util.stamp(this);
         let svg = this._renderer._container;
-        this._path.setAttribute('id', id);
+        let id = this._path.getAttribute('id');
+		if (!id) {
+			id = 'pathdef-' + L.Util.stamp(this);
+	        this._path.setAttribute('id', id);
+		}
 
-		let plamentStyles = [['10%','start'], ['50%','middle'], ['90%','end']];
+		let placementStyles = [['50%','middle'],['10%','start'],['90%','end']];
+		let placement = Math.min(options.placement,placementStyles.length);
+		let pathl = this._path.getTotalLength();
+		let textl = 0;
+
 		let textNode = L.SVG.create('text');
 		textNode.classList.add('path-label');
 		let fntsz = (zooml>13) ? (4 + (zooml-12)*2) : 4;
 		textNode.setAttribute('font-size', fntsz + 'px');
-
-		for (let i=0; i< 3; i++) {
-			if (options.placement & (1 << i)) {
-				let textPath = L.SVG.create('textPath');
-				textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#'+id);
-				textPath.setAttribute('startOffset', plamentStyles[i][0]);
-				textPath.setAttribute('text-anchor', plamentStyles[i][1]);
-				textPath.appendChild(document.createTextNode(text));
-				textNode.appendChild(textPath);
-			}
-		}
-
+		
+		let color = this.options.color;
+		if (color) textNode.setAttribute('stroke',color);
+		
 		this._textNode = textNode;
 		svg.appendChild(textNode);
+
+		for (let i=0; i<placement; i++) {
+			let textPath = L.SVG.create('textPath');
+			let style = (placement==2) ? placementStyles[i+1] : placementStyles[i];
+			textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#'+id);
+			textPath.setAttribute('startOffset', style[0]);
+			textPath.setAttribute('text-anchor', style[1]);
+			textPath.appendChild(document.createTextNode(text));
+			textNode.appendChild(textPath);
+			if (!textl) {
+				textl = textPath.getComputedTextLength();
+
+				// only show one label for shorter paths, and force it to fit
+				if ((2*placement*textl) > pathl) {
+					let truncfit = Math.round(0.8*pathl);
+					if (textl > truncfit) textPath.setAttribute('textLength',truncfit);
+					break;
+				}
+			}
+		}
 
         return this;
     }
 };
 
 L.Polyline.include(PolylinePathLabel);
-
-L.LayerGroup.include({
-    setPathLabel: function(text, options) {
-        for (let layer in this._layers) {
-            if (typeof this._layers[layer].setPathLabel === 'function') {
-                this._layers[layer].setPathLabel(text, options);
-            }
-        }
-        return this;
-    }
-});
-
 })();

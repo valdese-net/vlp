@@ -36,7 +36,7 @@ L.Marker.prototype.options.icon = createSVGIcon('marker');
 
 function styleForGeoPath(feature) {
 	let prop = feature.properties;
-	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||3,fill:false,opacity:0.6};
+	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||4,fill:false,opacity:0.6};
 	if (!prop.class) {
 		if (prop.style == 'hint') {
 			lstyle.dashArray = '2 3';
@@ -52,7 +52,7 @@ function styleForGeoPath(feature) {
 		lstyle.dashArray = '2 3';
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
-	} else if (['pier','stage'].includes(prop.class)) {
+	} else if (['pier','stage','bridge'].includes(prop.class)) {
 		lstyle = {stroke:true,fillColor:'burlywood',fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1};
 	} else if (['dogpark'].includes(prop.class)) {
 		lstyle = {stroke:true,fillColor:'green',fillColor:'darkgreen',color:'#c0c0c0',fill:true,weight:3,opacity:1};
@@ -118,12 +118,13 @@ function vlpAppMap(targetDiv,router) {
 		//console.log('geojsonAfterAdd',feature,layer);
 		if (feature.geometry && (feature.geometry.type == 'LineString')) {
 			let nm = feature.properties.name;
-			if (nm) {
+			let lbl = feature.properties.label;
+			if (nm && lbl) {
 				let dist = calcLatLngsLength(layer.getLatLngs()).toFixed(1);
-				//let tt = nm;
-				//if (dist > 0) tt += `<br><span class="mileage">(${dist} Miles)</span>`;
-				//layer.bindTooltip(tt,{'sticky': true});
-				layer.setPathLabel(`${nm} (${dist})`,{placement:5});
+				if (dist > 0) {
+					layer.bindTooltip(`${nm}<br><span class="mileage">(${dist} Miles)</span>`,{'sticky': true});
+					layer.setPathLabel(nm,{placement:lbl});
+				}
 			}
 		}
 	}
