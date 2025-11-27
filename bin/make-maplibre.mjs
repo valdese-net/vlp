@@ -11,7 +11,7 @@ const pkg_json = require('maplibre-gl/package.json');
 
 let devmode = process.argv[2] === 'dev';
 
-const outFolder = devmode ? 'out' : 'buid';
+const outFolder = devmode ? 'out' : 'build';
 
 // clean the folder
 readdirSync(outFolder).forEach(f => rmSync(`${outFolder}/${f}`));

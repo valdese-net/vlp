@@ -5,24 +5,24 @@ import htmlPlugin from '@chialab/esbuild-plugin-html';
 import {sassPlugin} from 'esbuild-sass-plugin';
 import { generateSW } from 'workbox-build';
 import { createRequire } from "module";
-import {TwingEnvironment,TwingLoaderArray,TwingLoaderFilesystem,TwingLoaderChain,TwingFilter} from 'twing';
+import {createEnvironment,createArrayLoader,createFilesystemLoader,createChainLoader } from 'twing';
 import { marked } from 'marked';
 import YAML from 'yaml'
-import { mdiContentSavePlusOutline } from '@mdi/js';
 
 const require = createRequire(import.meta.url);
 const pkg_json = require('maplibre-gl/package.json');
 const gzipPlugin = require('./esbuild-plugin-gzip.js');
 
 let devmode = process.argv[2] === 'dev';
-const outFolder = devmode ? 'out' : 'buid';
+const outFolder = devmode ? 'out' : 'build';
 fs.readdirSync(outFolder).forEach(f => fs.rmSync(`${outFolder}/${f}`));
 
 async function twigIt(data, context) {
-	let loader1 = new TwingLoaderArray({'twig.main': data});
-	let loader2 = new TwingLoaderFilesystem('./src');
-	let loader = new TwingLoaderChain([loader1, loader2]);	
-	let twing = new TwingEnvironment(loader, {autoescape:false});
+	const loader1 = createArrayLoader({'twig.main': data});
+	const loader2 = createFilesystemLoader(fs);
+	loader2.addPath('./src');
+	const loader = createChainLoader([loader1, loader2]);   
+	let twing = createEnvironment(loader, {autoescape:false});
 
 	let response = await twing.render('twig.main', context);
 	return response;
