@@ -1,30 +1,69 @@
-import {unlink} from 'fs';
+import { copyFileSync, readdirSync, rmSync } from 'fs';
 import esbuild from 'esbuild';
+import htmlPlugin from '@chialab/esbuild-plugin-html';
+import { sassPlugin } from 'esbuild-sass-plugin';
+import { generateSW } from 'workbox-build';
 import { createRequire } from "module";
+
 const require = createRequire(import.meta.url);
-const pkg_json = require('maplibre-gl/package.json')
-const gzipPlugin = require('@luncheon/esbuild-plugin-gzip')
+const gzipPlugin = require('./esbuild-plugin-gzip.js');
+const pkg_json = require('maplibre-gl/package.json');
 
+let devmode = process.argv[2] === 'dev';
 
-// kill any past gz version
-//unlink('out/maplibre.js.gz',(err) => {});
-//console.log(pkg_json);
+const outFolder = devmode ? 'out' : 'buid';
 
+// clean the folder
+readdirSync(outFolder).forEach(f => rmSync(`${outFolder}/${f}`));
+
+const assetNamePattern = devmode ? '[name]' : '[name]-[hash]';
 const bldo = {
-	entryPoints: ['src/maplibre.js'],
-	entryNames: `[name]-${pkg_json.version}`,
+	entryPoints: ['src/index.html'],
+	outdir: outFolder,
+	assetNames: assetNamePattern,
+	chunkNames: assetNamePattern,
 	bundle: true,
 	treeShaking: true,
-	minify: true,
-	sourcemap: true,
-	write: false,
-	target: 'es2019', // maplibre uses same in tsconfig
-	outdir: 'out',
-	loader: {
-		'.ttf': 'dataurl'
-	},
-	plugins: [gzipPlugin({uncompressed:true,gzip:true,brotli:false})],
+	minify: !devmode,
+	sourcemap: devmode,
+	write: devmode,
+	target: 'esnext',
+	loader: { '.ttf': 'dataurl'	},
+	dropLabels: devmode ? ['PRODUCTIONMODE'] : ['DEVELOPMENTMODE', 'TEST'],
+	plugins: [
+		htmlPlugin({modulesTarget:'chrome99',scriptsTarget:'chrome99'}),
+		sassPlugin()
+	],
+};
+
+if (devmode) {
+	console.log('dev mode');
+
+	let ctx = await esbuild.context(bldo);
+	await ctx.serve({servedir: 'out', port: 1337});
+} else {
+	console.log('build mode');
+
+	bldo.plugins.push(gzipPlugin({uncompressed: true, gzip: ['.html', '.js', '.css', '.json', '.svg']}));
+	await esbuild.build(bldo);
+
+	await generateSW({
+		swDest: `${outFolder}/sw.js`,
+		globDirectory: `${outFolder}/`,
+		globPatterns: ['**/*.{js,css,html,pmtiles,svg,png,ico,woff,webmanifest,json}'],
+		sourcemap: false,
+		maximumFileSizeToCacheInBytes: 3000000,
+		cleanupOutdatedCaches: true,
+		//navigationPreload: true,
+		runtimeCaching: [{
+			urlPattern: /https:\/\/my\.friendsofthevaldeserec\.org\/api\//,
+			handler: 'NetworkFirst',
+			options: {
+				cacheName: 'my-fvr',
+				expiration: { maxEntries: 16 },
+			},
+		}]				
+	});
 }
 
-console.log('build mode');
-await esbuild.build(bldo);
+console.log('done');

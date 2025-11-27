@@ -16,9 +16,6 @@ import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
 import './leaflet/PathLabel.js';
 //import {AntPath, antPath} from 'leaflet-ant-path';
 
-import './vlp-manifest-icons.js';
-//import blankImage from './img/blank.png';
-//import blankTile from './img/blankTile.png';
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/vlp.pmtiles';
 //import geojson_water from './features/catawba-river.geo.json';
@@ -53,11 +50,11 @@ function styleForGeoPath(feature) {
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
 	} else if (['pier','stage','bridge'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'burlywood',fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1};
+		lstyle = {stroke:true,fillColor:'burlywood',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'saddlebrown',
 	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'green',fillColor:'darkgreen',color:'#c0c0c0',fill:true,weight:3,opacity:1};
+		lstyle = {stroke:true,fillColor:'darkgreen',color:'#c0c0c0',fill:true,weight:3,opacity:1}; // fillColor:'green',
 	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'darkblue',fillColor:'grey',color:'black',fill:true,weight:1,opacity:1};
+		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'darkblue',
 	}
 
 	if (lstyle.fill) { lstyle.fillOpacity = lstyle.opacity; }

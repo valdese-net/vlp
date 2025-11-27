@@ -1,15 +1,16 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "4.2.2",
+	"version": "5.0.0",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
-		"bundle-esbuild": "pnpm exec esbuild ./src/sw.js --bundle --minify --outfile=./dist/sw.js",
-		"build": "webpack --mode production",
+		"build": "node bin/make-leaflet.mjs",
+		"develop": "node bin/make-leaflet.mjs dev",
 		"serve": "http-server -p 1336 build -c-1 --gzip",
 		"convert-shapefile": "http-server -p 8080 shapefiles -c-1",
-		"make-maplibre": "node bin/make-maplibre.mjs --build"
+		"develop-maplibre": "node bin/make-maplibre.mjs dev",
+		"make-maplibre": "node bin/make-maplibre.mjs"
 	},
 	"author": "Valdese Network",
 	"license": "Apache-2.0",
@@ -26,32 +27,27 @@
 		"leaflet.featuregroup.subgroup": "^1.0.2",
 		"leaflet.markercluster": "^1.5.3",
 		"leaflet.motion": "^0.3.2",
-		"maplibre-gl": "^4.7.1",
+		"maplibre-gl": "^5.13.0",
 		"navigo": "7.1.2",
-		"pmtiles": "^3.2.1",
+		"pmtiles": "^4.3.0",
 		"protomaps-leaflet": "^3.1.2",
-		"yaml": "^2.8.1"
+		"workbox-window": "^7.4.0"
 	},
 	"devDependencies": {
-		"@luncheon/esbuild-plugin-gzip": "^0.1.0",
-		"compression-webpack-plugin": "^10.0.0",
-		"css-loader": "^6.11.0",
-		"esbuild": "^0.24.2",
+		"@chialab/esbuild-plugin-html": "^0.19.0",
+		"esbuild": "^0.27.0",
+		"esbuild-sass-plugin": "^3.3.1",
 		"gzipme": "^1.0.0",
-		"html-loader": "^4.2.0",
-		"html-webpack-plugin": "^5.6.4",
 		"http-server": "^14.1.1",
 		"marked": "^4.3.0",
-		"mini-css-extract-plugin": "^2.9.4",
 		"p-iteration": "^1.1.8",
-		"resolve-url-loader": "^5.0.0",
 		"sass": "^1.93.2",
 		"sass-loader": "^13.3.3",
 		"shpjs": "^5.0.2",
 		"twing": "^5.2.2",
-		"webpack": "^5.101.3",
-		"webpack-cli": "^5.1.4",
+		"unplugin-starter": "^0.1.0",
 		"workbox": "^0.0.0",
-		"workbox-webpack-plugin": "^7.3.0"
+		"workbox-build": "^7.3.0",
+		"yaml": "^2.8.1"
 	}
 }

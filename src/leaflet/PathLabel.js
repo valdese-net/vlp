@@ -70,7 +70,8 @@ let PolylinePathLabel = {
 		let textl = 0;
 
 		let textNode = L.SVG.create('text');
-		textNode.classList.add('path-label');
+		textNode.classList.add('leaflet-interactive','path-label');
+	
 		let fntsz = (zooml>13) ? (4 + (zooml-12)*2) : 4;
 		textNode.setAttribute('font-size', fntsz + 'px');
 		
@@ -84,10 +85,13 @@ let PolylinePathLabel = {
 			let textPath = L.SVG.create('textPath');
 			let style = (placement==2) ? placementStyles[i+1] : placementStyles[i];
 			textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#'+id);
+			//textPath.setAttribute('class', 'leaflet-interactive');
 			textPath.setAttribute('startOffset', style[0]);
 			textPath.setAttribute('text-anchor', style[1]);
 			textPath.appendChild(document.createTextNode(text));
 			textNode.appendChild(textPath);
+			//textNode.addEventParent(this)
+
 			if (!textl) {
 				textl = textPath.getComputedTextLength();
 

@@ -1,11 +1,10 @@
+import { installPWAServiceWorker } from './app-workbox.js';
 import * as g from './globals.js';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-
 import './app.scss';
-import './app.manifest';
 
 import { closeModal } from './modal.js';
 import { buildWhatsNew } from './whatsnew.js';
@@ -32,14 +31,14 @@ function buildNotifyList() {
 function initLakesideParkApp() {
 	const INFOSCREENID = 'id_AppInfoScreen';
 	var currentInfoPageID = false;
-	var map_elem = document.getElementById('id_Map');
-	var infoscreen_elem = document.getElementById(INFOSCREENID);
-	var router = new Navigo(getSiteRootURL(), true);
-	var map = new vlpAppMap(map_elem, router);
-	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
-	var ctrl_PageTitleText = ctrl_PageTitle.querySelector('span:last-of-type');
-	var ctrl_CloseBtn = document.getElementById('id_CloseAppInfoBtn');
-	var menuscreen_elem = document.getElementById('win-mainmenu');
+	const map_elem = document.getElementById('id_Map');
+	const infoscreen_elem = document.getElementById(INFOSCREENID);
+	const router = new Navigo(getSiteRootURL(), true);
+	const map = new vlpAppMap(map_elem, router);
+	const ctrl_PageTitle = document.getElementById('id_AppPageTitle');
+	const ctrl_PageTitleText = ctrl_PageTitle.querySelector('span:last-of-type');
+	const ctrl_CloseBtn = document.getElementById('id_CloseAppInfoBtn');
+	const menuscreen_elem = document.getElementById('win-mainmenu');
 	var firstTime = true;
 
 	function isBlock(e) { return e.style.display == 'block'; }
@@ -142,5 +141,7 @@ function initLakesideParkApp() {
 		setCurrentPage(vlpApp.pageids[0]);
 	}).resolve();
 }
+
+PRODUCTIONMODE: installPWAServiceWorker();
 
 initLakesideParkApp();

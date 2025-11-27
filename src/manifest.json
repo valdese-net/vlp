@@ -1,9 +1,9 @@
 {
-	"name": "{{ appd.fulltitle }}",
-	"short_name": "{{ appd.title }}",
+	"name": "Valdese Lakeside Park",
+	"short_name": "Lakeside Park",
 	"description": "Helps you navigate the trails in the Valdese Lakeside Park",
-	"theme_color": "{{ appd.manifest_themecolor }}",
-	"background_color": "{{ appd.manifest_bgcolor }}",
+	"theme_color": "#F15537",
+	"background_color": "#142734",
 	"display": "standalone",
 	"start_url": ".",
 	"icons": [
@@ -12,3 +12,4 @@
 	],
 	"splash_pages": null
   }
+  

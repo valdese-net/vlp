@@ -3,6 +3,8 @@
 @use "sass:math";
 @use "./lib" as *;
 
+html, body {overflow: hidden;}
+
 html,
 body,
 #id_AppMapPage,
@@ -259,3 +261,4 @@ div.social-bar {
 .icon-mdi {width:var(--mapiconsize); height:var(--mapiconsize); margin:var(--mapiconoffset) 0 0 var(--mapiconoffset);}
 
 .path-label {fill:black; stroke-width: 0.6px;}
+.path-label textPath {pointer-events: auto;}

@@ -6,7 +6,7 @@ title: About FVR
 # About FVR
 
 <div class="social-bar">
-<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="../img/fvrlogopng.png"></a>
+<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="img/fvrlogopng.png"></a>
 </div>
 
 Founded in April 2015, the [Friends of the Valdese Rec][link-fvr] is an all-volunteer, 501(c)(3)
