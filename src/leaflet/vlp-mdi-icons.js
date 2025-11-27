@@ -3,7 +3,8 @@ import {mdiAlert, mdiCheckCircle, mdiPineTree, mdiTableFurniture, mdiFlagTriangl
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
 	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp, mdiDumpTruck, mdiMower,
-	mdiBarley, mdiFireHydrant, mdiPaw, mdiAlertOctagon} from '@mdi/js';
+	mdiBarley, mdiFireHydrant, mdiPaw, mdiAlertOctagon,
+	mdiHumanMale, mdiHumanMaleFemale, mdiHumanFemale, mdiKayaking} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -26,7 +27,11 @@ const mdiSVGPaths = {
 	gas:		mdiGasStation,
 	hydrant:	mdiFireHydrant,
 	info:		mdiInformation,
+	kayaking:	mdiKayaking,
 	ladder:		mdiLadder,
+	man:		mdiHumanMale,
+	manx:		mdiHumanMaleFemale,
+	woman:		mdiHumanFemale,
 	marker:		mdiMapMarker,
 	mower:		mdiMower,
 	nature:		mdiNature,
@@ -79,8 +84,12 @@ const mdiSVGIcons = {
 	greenw:	{path: mdiSVGPaths.wildlife, fill: '#228A13'},
 	hydrant:	{path: mdiSVGPaths.hydrant, fill: '#DD2E2E'},
 	info:	{path: mdiSVGPaths.info,fill:'#0000AA', strokeWidth:1.0},
+	kayaking: {path: mdiSVGPaths.kayaking,fill:'orange'},
 	ladder:	{path: mdiSVGPaths.ladder,fill:'#3F2812', stroke: '#FFFFFF'},
 	limew:	{path: mdiSVGPaths.wildlife, fill: '#3FE114'},
+	man:	{path: mdiSVGPaths.man,stroke:'#0000AA',fill:'#FFFFFF'},
+	manx:	{path: mdiSVGPaths.manx,stroke:'#0000AA',fill:'#FFFFFF'},
+	woman:	{path: mdiSVGPaths.woman,stroke:'#0000AA',fill:'#FFFFFF'},
 	marker:	{path: mdiSVGPaths.marker,stroke:'#0000AA',fill:'#FFFFFF'},
 	mower:	{path: mdiSVGPaths.mower, fill: '#45050F', stroke: '#FFFFFF'},
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},

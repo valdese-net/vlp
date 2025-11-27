@@ -1,5 +1,11 @@
 {"type":"FeatureCollection","properties":{"name":"Lakeside Park Features"},"features":[
 {"type":"Feature","properties":{"icon":"info","tip":"Meditation Point, offering a great view across the lake, including Table Rock."},"geometry":{"type":"Point","coordinates":[-81.547272,35.775369]}},
+{"type":"Feature","properties":{"icon":"manx","tip":"Bathrooms and drinking fountain"},"geometry":{"type":"Point","coordinates":[-81.545646,35.773946]}},
+{"type":"Feature","properties":{"icon":"parking","tip":"Main parking lot"},"geometry":{"type":"Point","coordinates":[-81.545157,35.774102]}},
+{"type":"Feature","properties":{"icon":"parking","tip":"Parking at the Lovelady Road entrance"},"geometry":{"type":"Point","coordinates":[-81.548282,35.761817]}},
+{"type":"Feature","properties":{"icon":"parking","tip":"Parking at McGalliard Falls Park entrance"},"geometry":{"type":"Point","coordinates":[-81.569935,35.764474]}},
+{"type":"Feature","properties":{"icon":"fish","tip":"Fishing on the Pier"},"geometry":{"type":"Point","coordinates":[-81.546557,35.774406]}},
+{"type":"Feature","properties":{"icon":"kayaking","tip":"Kayak launch"},"geometry":{"type":"Point","coordinates":[-81.546755,35.774203]}},
 {"type":"Feature","properties":{"class":"parking"},"geometry":{"type":"Polygon","coordinates":[[[-81.544848,35.774209],[-81.544898,35.774261],[-81.545426,35.774251],[-81.545425,35.774219],[-81.545479,35.77418],[-81.545513,35.77415],[-81.545527,35.774127],[-81.545531,35.77409],[-81.54552,35.77406],[-81.545495,35.774029],[-81.545461,35.774002],[-81.545432,35.77399],[-81.545431,35.773956],[-81.544844,35.773955],[-81.544848,35.774209]]]}},
 {"type":"Feature","properties":{"class":"parking"},"geometry":{"type":"Polygon","coordinates":[[[-81.5484,35.762021],[-81.548364,35.761622],[-81.548019,35.761583],[-81.548102,35.762011],[-81.5484,35.762021]]]}},
 {"type":"Feature","properties":{"class":"parking"},"geometry":{"type":"Polygon","coordinates":[[[-81.570139,35.764645],[-81.570031,35.764111],[-81.569787,35.76417],[-81.569803,35.764898],[-81.570139,35.764645]]]}},

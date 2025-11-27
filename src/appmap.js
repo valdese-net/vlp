@@ -50,11 +50,11 @@ function styleForGeoPath(feature) {
 		lstyle.opacity = 1;
 		lstyle.weight = 1.0;
 	} else if (['pier','stage','bridge'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'burlywood',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'saddlebrown',
+		lstyle = {stroke:true,fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'burlywood',
 	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'darkgreen',color:'#c0c0c0',fill:true,weight:3,opacity:1}; // fillColor:'green',
+		lstyle = {stroke:true,fillColor:'green',color:'#c0c0c0',fill:true,weight:3,opacity:1}; // fillColor:'darkgreen',
 	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'darkblue',
+		lstyle = {stroke:true,fillColor:'#ccc',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'darkblue',
 	}
 
 	if (lstyle.fill) { lstyle.fillOpacity = lstyle.opacity; }

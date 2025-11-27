@@ -1,5 +1,5 @@
 
-export var vlpConfig = {
+export const vlpConfig = {
 	gpsBoundsLayerRotate: -1.3,
 	//gpsBoundsValdese: [[35.721650, -81.597445], [35.784838, -81.514709]],
 	gpsBoundsValdese: [[35.71655, -81.65983], [35.79721,-81.50225]],
