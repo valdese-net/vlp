@@ -18,16 +18,15 @@ import './leaflet/PathLabel.js';
 
 import img_parkcontours from './img/park-contour.png';
 import map_pmtiles from './img/vlp.pmtiles';
-//import geojson_water from './features/catawba-river.geo.json';
-import geo_brtTrails from './features/brtTrails.geo.json';
-import geo_vlpFeatures from './features/vlpFeatures.geo.json';
-import geo_vlpLogging from './features/vlpLogging.geo.json';
-import geo_vlpMaintenance from './features/vlpMaintenance.geo.json';
-import geo_vlpTrails from './features/vlpTrails.geo.json';
-import geo_vlpTrailfest10k from './features/vlpTrailfest10k.geo.json';
+import geo_brtTrails from './geo/brt.geo.json';
+import geo_vlpFeatures from './geo/features.geo.json';
+import geo_vlpPOI from './geo/poi.geo.json';
+import geo_vlpLogging from './geo/logging-trails.geo.json';
+import geo_vlpMaintenance from './geo/maintenance.geo.json';
+import geo_vlpTrails from './geo/trails.geo.json';
 
 const vlpDebug = g.vlpDebug;
-const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails,geo_vlpTrailfest10k};
+const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpPOI,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails};
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
@@ -35,7 +34,7 @@ function styleForGeoPath(feature) {
 	let prop = feature.properties;
 	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||4,fill:false,opacity:0.6};
 	if (!prop.class) {
-		if (prop.style == 'hint') {
+		if (prop.style == 'dot') {
 			lstyle.dashArray = '2 3';
 			lstyle.opacity = 1;
 			lstyle.weight = 1.0;

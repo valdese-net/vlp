@@ -28,7 +28,13 @@ const bldo = {
 	sourcemap: devmode,
 	write: devmode,
 	target: 'esnext',
-	loader: { '.ttf': 'dataurl'	},
+	loader: {
+		'.pmtiles': 'file',
+		'.png': 'file',
+		'.svg': 'file',
+		'.ttf': 'dataurl',
+		'.woff': 'dataurl'
+	},
 	dropLabels: devmode ? ['PRODUCTIONMODE'] : ['DEVELOPMENTMODE', 'TEST'],
 	plugins: [
 		htmlPlugin({modulesTarget:'chrome99',scriptsTarget:'chrome99'}),

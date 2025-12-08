@@ -1,4 +1,7 @@
-{"type":"FeatureCollection","properties":{"name":"Maintenance Areas"},"features":[
+{"type":"FeatureCollection",
+"name":"Maintenance Areas",
+"xy_coordinate_resolution": 1e-08,
+"features":[
 {"type":"Feature","properties":{"icon":"mower","tip":"Red Meadow. Massive meadow to cut with a lawnmower."},"geometry":{"type":"Point","coordinates":[-81.558536,35.768396]}},
 {"type":"Feature","properties":{"icon":"mower","tip":"Top of Power Lines. Cut enough for access to the Shade Seeker and Tributary Trails."},"geometry":{"type":"Point","coordinates":[-81.552211,35.766973]}},
 {"type":"Feature","properties":{"icon":"mower","tip":"Clear grassy field by Lovelady for entrance to Hoyle Creek trail."},"geometry":{"type":"Point","coordinates":[-81.549212,35.761793]}},
