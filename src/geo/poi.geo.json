@@ -11,6 +11,7 @@
 { "type": "Feature", "properties": { "icon": "fish", "tip": "Fishing on the Pier", "fill": "#f90", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.546557, 35.774406 ] } },
 { "type": "Feature", "properties": { "icon": "kayak", "tip": "Kayak launch", "rotate": 0 }, "geometry": { "type": "Point", "coordinates": [ -81.54684935, 35.77421212 ] } },
 { "type": "Feature", "properties": { "icon": "wheel", "tip": "Old Mill Water Wheel", "rotate": 90, "fill": "#531", "stroke": "#000", "size": 40 }, "geometry": { "type": "Point", "coordinates": [ -81.56875142, 35.76553425 ] } },
-{ "type": "Feature", "properties": { "icon": "dog", "tip": "Dog Park", "rotate": null, "fill": "#860", "stroke": "#000", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.54520352, 35.77447378 ] } }
+{ "type": "Feature", "properties": { "icon": "bridge", "tip": "Valdese Greenway Bridge", "rotate": 22, "fill": "#531", "stroke": "#000", "size": 40 }, "geometry": { "type": "Point", "coordinates": [ -81.564584, 35.770163 ] } },
+{ "type": "Feature", "properties": { "icon": "dog", "tip": "Dog Park", "fill": "#860", "stroke": "#000", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.54520352, 35.77447378 ] } }
 ]
 }

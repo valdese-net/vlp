@@ -4,6 +4,8 @@
 	"version": "5.0.1",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
+		"refresh-baseline-browser-mapping": "pnpm i --save-dev baseline-browser-mapping@latest",
+		"build-pmtiles": "node bin/build-pmtiles.mjs",
 		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"dev": "node bin/make-leaflet.mjs dev",
 		"build": "node bin/make-leaflet.mjs",
@@ -35,6 +37,7 @@
 	},
 	"devDependencies": {
 		"@chialab/esbuild-plugin-html": "^0.19.0",
+		"baseline-browser-mapping": "^2.9.5",
 		"esbuild": "^0.27.0",
 		"esbuild-sass-plugin": "^3.3.1",
 		"gzipme": "^1.0.0",

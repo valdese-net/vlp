@@ -13,7 +13,7 @@ let devmode = process.argv[2] === 'dev';
 
 const outFolder = devmode ? 'out' : 'build';
 
-// clean the folder
+// clean the out folder
 readdirSync(outFolder).forEach(f => rmSync(`${outFolder}/${f}`));
 
 const assetNamePattern = devmode ? '[name]' : '[name]-[hash]';
@@ -29,9 +29,10 @@ const bldo = {
 	write: devmode,
 	target: 'esnext',
 	loader: {
+		'.pbf': 'file',
 		'.pmtiles': 'file',
 		'.png': 'file',
-		'.svg': 'file',
+		'.svg': 'dataurl',
 		'.ttf': 'dataurl',
 		'.woff': 'dataurl'
 	},
