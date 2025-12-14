@@ -255,10 +255,24 @@ div.social-bar {
 
 :root {
 	--mapiconsize: 32px;
-	--mapiconoffset: calc( var(--mapiconsize) / -2 );
 }
 
-.icon-mdi {width:var(--mapiconsize); height:var(--mapiconsize); margin:var(--mapiconoffset) 0 0 var(--mapiconoffset);}
+.icon-mdi {
+	line-height: 4px; // necessary to avoid extra height around the svg
 
-.path-label {fill:black; stroke-width: 0.6px;}
-.path-label textPath {pointer-events: auto;}
+	svg {
+		--iconsize: calc( var(--iconxer,1) * var(--mapiconsize) );
+		--iconoffset: calc( var(--iconsize) / -2 );
+
+		width:var(--iconsize);
+		height:var(--iconsize);
+		margin:var(--iconoffset) 0 0 var(--iconoffset);
+		transform: rotate(var(--iconrotate,0));
+	}
+}
+
+.path-label {
+	fill:black; stroke-width: 0.6px;
+	textPath {pointer-events: auto;}
+}
+

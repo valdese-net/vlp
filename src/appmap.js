@@ -6,6 +6,7 @@ import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 
 import {createSVGIcon} from './leaflet/vlp-mdi-icons.js';
+import {styleForGeoPath, setStyeAfterZoom, styleForGeoPoints} from './leaflet/geo.js';
 
 import {calcTrailDistance,processGeonote} from './leaflet/myfvrGeoNotes.js';
 //import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
@@ -29,41 +30,6 @@ const vlpDebug = g.vlpDebug;
 const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpPOI,geo_vlpLogging,geo_vlpMaintenance,geo_vlpTrails};
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
-
-function styleForGeoPath(feature) {
-	let prop = feature.properties;
-	let lstyle = {stroke:true,color:prop.color||'brown',weight:prop.weight||4,fill:false,opacity:0.6};
-	if (!prop.class) {
-		if (prop.style == 'dot') {
-			lstyle.dashArray = '2 3';
-			lstyle.opacity = 1;
-			lstyle.weight = 1.0;
-		}
-	} else if (['parking'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'grey',color:'black',fill:true,weight:1,opacity:0.7};
-	} else if (['pavilion'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'forestgreen',color:'black',fill:true,weight:1,opacity:0.7};
-	} else if (['stairs','ramp'].includes(prop.class)) {
-		lstyle.color = 'brown';
-		lstyle.dashArray = '2 3';
-		lstyle.opacity = 1;
-		lstyle.weight = 1.0;
-	} else if (['pier','stage','bridge'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'burlywood',
-	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'green',color:'#c0c0c0',fill:true,weight:3,opacity:1}; // fillColor:'darkgreen',
-	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'#ccc',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'darkblue',
-	}
-
-	if (lstyle.fill) { lstyle.fillOpacity = lstyle.opacity; }
-
-	return lstyle;
-}
-
-function styleForGeoPoints(feature) {
-	return {stroke:true,color:feature.properties.color||'#00aa66',weight:8,fill:false,opacity:0.6};
-}
 
 function createGeojsonMarker(geoJsonPt, latlng) {
 	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon)}).bindPopup(geoJsonPt.properties.tip);
@@ -147,57 +113,22 @@ function vlpAppMap(targetDiv,router) {
 
 	map.on("zoomend", (ev) => {
 		let z = map.getZoom();
-		let c = map.getZoomScale(z, 19);
-		let iconsz = Math.min(Math.max(Math.round(40*c),12),200);
+		let iconsz = 1.75 * (2 ** Math.max(0,z-14));
 		document.documentElement.style.setProperty('--mapiconsize', iconsz+'px');
 
-		if (g.vlpDebugMode) console.log('zoom',z)
+		for (lgrp in geo_Layers) geo_Layers[lgrp].eachLayer((l) => {
+			if (map.hasLayer(l)) setStyeAfterZoom(l,z);
+		});
+
+		if (g.vlpDebugMode) {
+			console.log(`zoom ${z}`);
+		}
 	});
 
 	if (g.vlpDebugMode) {
-		map.on('click',e => {
-			vlpDebug('@('+e.latlng.lat.toFixed(6)+','+e.latlng.lng.toFixed(6)+'): ');
-		});
+		map.on('click',(e) => vlpDebug(`@(${e.latlng.lat.toFixed(6)},${e.latlng.lng.toFixed(6)}): zoom ${map.getZoom()}`));
 	}
 	
-	/*
-	function maketrail(grp,visible,opacity,weight,v) {
-		let nlo = {color:v.color,opacity:opacity,weight:weight};
-
-		if (v.dash) {
-			nlo['dashArray'] = "1 3";
-			nlo['weight'] = Math.min(1,weight);
-		}
-
-		let layerFG = [];
-		let trailcounter = 0;
-		while (++trailcounter < 10) {
-			let polyname = 'trail';
-			if (trailcounter > 1) polyname = polyname.concat(trailcounter);
-			if (!v[polyname]) break;
-			let vtrail = v[polyname];
-			let polylineObj;
-			if (v.antpath) {
-				nlo.delay = 1600;
-				nlo.dashArray = [10,20];
-				polylineObj = new AntPath(vtrail, nlo);
-			} else {
-				polylineObj = L.polyline(vtrail, nlo);
-			}
-			layerFG.push(polylineObj);
-		}
-
-		if (!layerFG) return false;
-
-		let newFG = L.featureGroup(layerFG);
-		let tt = `<span style="color:${v.color}">${v.name} </span>`;
-		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
-		newFG.bindTooltip(tt,{ 'sticky': true });
-
-		return {group: grp, name: tt, layer: newFG, visible: !v.optional||visible};
-	}
-	*/
-
 	this.showConfig = function(pagedata,oldmap) {
 		let pageopts = pagedata.opts || {};
 		let addlayers = pagedata.layers || [];

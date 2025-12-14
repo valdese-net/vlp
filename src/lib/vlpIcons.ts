@@ -60,6 +60,7 @@ export const mdiSVGIcons = {
 		strokeWidth: 0.5,
 		fill: '#000000',
 		anchor: [0.5,0.5],
+		rotate: 0,
 		magnify: 1
 	},
 	alert:	{path: mdiSVGPaths.alert,fill:'#FF0000', stroke:'#FFFF00', strokeWidth: 1},
@@ -69,7 +70,7 @@ export const mdiSVGIcons = {
 	blackw:	{path: mdiSVGPaths.wildlife, fill: '#000000'},
 	bluew:	{path: mdiSVGPaths.wildlife, fill: '#20A2C6'},
 	boat:	{path: mdiSVGPaths.boat,fill:'#A52A2A'},
-	bridge:	{path: mdiSVGPaths.bridge,fill:'#8b4513',stroke:'#000000',strokeWidth:0.5,magnify:5},
+	bridge:	{path: mdiSVGPaths.bridge,fill:'#8b4513',stroke:'#000000',strokeWidth:0.5,magnify:5, rotate:25},
 	brownw:	{path: mdiSVGPaths.wildlife, fill: '#775541'},
 	camera:	{path: mdiSVGPaths.camera,fill:'#040421'},
 	cars:	{path: mdiSVGPaths.cars,fill:'#A88C8C',stroke:'#000000'},

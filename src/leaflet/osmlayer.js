@@ -6,15 +6,12 @@ function osmPaintRules() { return [
 {
 	dataLayer: "nc",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill:'#ccf5cc',doStroke:true,opacity:1,width:1}),
-	filter: (zoom, feature) => { return true; }
 },{
 	dataLayer: "burke",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill:'#f5ffe9',doStroke:true,opacity:1,width:2}),
-	filter: (zoom, feature) => { return true; }
 },{
 	dataLayer: "parcels",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill:'#90EE90',stroke:'#80AA80',doStroke:true,width:0.5,opacity:0.3}),
-	filter: (zoom, feature) => { return true; }
 },{
 	dataLayer: "water",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill: 'steelblue'}),
@@ -32,38 +29,30 @@ function osmPaintRules() { return [
 },{
 	dataLayer: "building",
 	symbolizer: new protomapsL.PolygonSymbolizer({stroke: 'black', fill: '#666'}),
-	filter: (zoom, feature) => {
-		return true;
-	}
 },{
 	dataLayer: "road",
-	symbolizer: new protomapsL.LineSymbolizer({color: '#888',width:1}),
-	filter: (zoom, feature) => {
-		return true;
-	}
+	symbolizer: new protomapsL.LineSymbolizer({color: '#888',width:(z,f) => {return .15*2**Math.max(0,z-11);}}),
+},{
+	dataLayer: "road",
+	symbolizer: new protomapsL.LineSymbolizer({color: '#fff',width:0.5, dash:[2,3]}),
 },{
 	dataLayer: "path",
 	symbolizer: new protomapsL.LineSymbolizer({color: 'brown',width:1,dash:[3,3]}),
-	filter: (zoom, feature) => {
-		return true;
-	}
 }]}
 
 function osmLabelRules() { return [{
-	dataLayer: "label",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]})
-},{
 	dataLayer: "road",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]}),
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({
+		font: function(z,f) {	return `300 ${6*(2**Math.max(0,z-16))}px sans-serif`; },
+		fill:"black", stroke:"white", position:2, labelProps:["name","ref"]
+	}),
 	filter: (zoom, feature) => {
 		return feature.props["name"] || feature.props["ref"];
 	}
 },{
 	dataLayer: "waterway",
- 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:"center",labelProps:["name","ref"]}),
-	filter: (zoom, feature) => {
-		return (zoom > 18) && feature.props["name"];
-	}
+ 	symbolizer: new protomapsL.LineLabelSymbolizer({fill:"black",stroke:"white",position:2,labelProps:["name","ref"]}),
+	filter: (zoom, feature) => { return (zoom > 18) && feature.props["name"];}
 }]}
 
 export function addProtomapLayer(map,layerControl,pmtiles_url) {

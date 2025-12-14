@@ -32,7 +32,7 @@
 		"maplibre-gl": "^5.13.0",
 		"navigo": "7.1.2",
 		"pmtiles": "^4.3.0",
-		"protomaps-leaflet": "^3.1.2",
+		"protomaps-leaflet": "^5.1.0",
 		"workbox-window": "^7.4.0"
 	},
 	"devDependencies": {
