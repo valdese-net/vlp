@@ -44,7 +44,8 @@ let PolylinePathLabel = {
 
         if (!this._map) return this;
 
-		let zooml = this._map.getZoom();
+		let z = this._map.getZoom();
+		let fntsz = 5*(2**Math.max(0,z-16));
 
 		let defaults = { placement: 1 };
         options = L.Util.extend(defaults, options);
@@ -66,17 +67,21 @@ let PolylinePathLabel = {
 
 		let placementStyles = [['50%','middle'],['10%','start'],['90%','end']];
 		let placement = Math.min(options.placement,placementStyles.length);
+		let weight = this.options.weight || 1;
+		let add_halo = (weight > 1);
+		let color = this.options.color;
 		let pathl = this._path.getTotalLength();
 		let textl = 0;
 
 		let textNode = L.SVG.create('text');
 		textNode.classList.add('leaflet-interactive','path-label');
 	
-		let fntsz = (zooml>13) ? (4 + (zooml-12)*2) : 4;
 		textNode.setAttribute('font-size', fntsz + 'px');
 		
-		let color = this.options.color;
-		if (color) textNode.setAttribute('stroke',color);
+		if (color && add_halo) {
+			textNode.classList.add('path-label-halo');
+			textNode.style.setProperty('--halo-color', color);
+		}
 		
 		this._textNode = textNode;
 		svg.appendChild(textNode);

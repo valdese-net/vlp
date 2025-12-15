@@ -272,7 +272,17 @@ div.social-bar {
 }
 
 .path-label {
-	fill:black; stroke-width: 0.6px;
+	stroke: none;
+	fill:var(--text-color,black);
 	textPath {pointer-events: auto;}
 }
 
+.path-label-halo {
+	fill:var(--text-color,white);
+	letter-spacing:0.35em;
+	text-shadow:
+		0 0 0.4em var(--halo-color),
+		0 0 0.3em var(--halo-color),
+		0 0 0.2em var(--halo-color),
+		0 0 0.1em var(--halo-color);
+}

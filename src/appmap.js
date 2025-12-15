@@ -10,7 +10,7 @@ import {styleForGeoPath, setStyeAfterZoom, styleForGeoPoints} from './leaflet/ge
 
 import {calcTrailDistance,processGeonote} from './leaflet/myfvrGeoNotes.js';
 //import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
-import {addProtomapLayer} from  './leaflet/osmlayer.js';
+import {addProtomapLayer} from  './leaflet/protomap.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
 import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
@@ -108,7 +108,7 @@ function vlpAppMap(targetDiv,router) {
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map,layerControl,map_pmtiles);
-	layerControl.addBaseLayer(osmTiles,'Open Street Map - Online Tiles');
+	layerControl.addBaseLayer(osmTiles,'Open Street Map');
 	layerControl.addOverlay(contourLayer,'Contour Lines');
 
 	map.on("zoomend", (ev) => {
