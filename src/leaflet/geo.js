@@ -1,6 +1,6 @@
 export function styleForGeoPath(feature) {
 	let prop = feature.properties;
-	let lstyle = {stroke:true,color:prop.color||'#444',weight:prop.weight||4,fill:false,opacity:1};
+	let lstyle = {stroke:true,color:prop.color||'#444',weight:prop.weight||4,fill:false, interactive: false};
 	if (!prop.class) {
 		if (prop.style == 'dot') {
 			lstyle.dashArray = '2 2';

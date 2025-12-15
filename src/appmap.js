@@ -32,7 +32,7 @@ const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpPOI,geo_vlpLogging,geo_v
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
 function createGeojsonMarker(geoJsonPt, latlng) {
-	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon)}).bindPopup(geoJsonPt.properties.tip);
+	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon)});
 }
 
 function vlpAppMap(targetDiv,router) {
@@ -57,11 +57,6 @@ function vlpAppMap(targetDiv,router) {
 	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
-	let osmTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		maxNativeZoom: 18,
-		maxZoom: 22
-	});
 	
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	function routeToFVR(e) {
@@ -69,7 +64,7 @@ function vlpAppMap(targetDiv,router) {
 		router.navigate('fvr');
 	}
 	function calcLatLngsLength(l) {
-		let d = 0.03;
+		let d = 0.04;
 		for (let i=0;i<l.length-1;i++) {
 			d += map.distance(l[i],l[i+1]);
 		}
@@ -81,13 +76,9 @@ function vlpAppMap(targetDiv,router) {
 		if (feature.geometry && (feature.geometry.type == 'LineString')) {
 			let nm = feature.properties.name;
 			let lbl = feature.properties.label;
-			if (nm && lbl) {
-				let dist = calcLatLngsLength(layer.getLatLngs()).toFixed(1);
-				if (dist > 0) {
-					layer.bindTooltip(`${nm}<br><span class="mileage">(${dist} Miles)</span>`,{'sticky': true});
-					layer.setPathLabel(nm,{placement:lbl});
-				}
-			}
+			let dist = calcLatLngsLength(layer.getLatLngs()).toFixed(1);
+
+			if (nm && lbl) { layer.setPathLabel(nm,{placement:lbl, calcDistance:`${dist} Miles`}); }
 		}
 	}
 
@@ -108,7 +99,6 @@ function vlpAppMap(targetDiv,router) {
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map,layerControl,map_pmtiles);
-	layerControl.addBaseLayer(osmTiles,'Open Street Map');
 	layerControl.addOverlay(contourLayer,'Contour Lines');
 
 	map.on("zoomend", (ev) => {

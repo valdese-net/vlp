@@ -274,6 +274,7 @@ div.social-bar {
 .path-label {
 	stroke: none;
 	fill:var(--text-color,black);
+	letter-spacing:0.2em;
 	textPath {pointer-events: auto;}
 }
 

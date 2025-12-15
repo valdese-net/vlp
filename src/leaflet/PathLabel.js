@@ -6,8 +6,11 @@ let __onAdd = L.Polyline.prototype.onAdd,
     __bringToFront = L.Polyline.prototype.bringToFront;
 
 
-let PolylinePathLabel = {
+function toggleMileage(e) {
+	e.target.textContent = e.target.getAttribute('data-dist');
+}
 
+let PolylinePathLabel = {
     onAdd: function (map) {
         __onAdd.call(this, map);
         this._textRedraw();
@@ -44,9 +47,6 @@ let PolylinePathLabel = {
 
         if (!this._map) return this;
 
-		let z = this._map.getZoom();
-		let fntsz = 5*(2**Math.max(0,z-16));
-
 		let defaults = { placement: 1 };
         options = L.Util.extend(defaults, options);
 
@@ -65,18 +65,21 @@ let PolylinePathLabel = {
 	        this._path.setAttribute('id', id);
 		}
 
+		let z = this._map.getZoom();
 		let placementStyles = [['50%','middle'],['10%','start'],['90%','end']];
 		let placement = Math.min(options.placement,placementStyles.length);
 		let weight = this.options.weight || 1;
 		let add_halo = (weight > 1);
 		let color = this.options.color;
+		let dist = options.calcDistance;
 		let pathl = this._path.getTotalLength();
 		let textl = 0;
+		let fntsz = 5 * (2**Math.max(0,z-(add_halo ? 16 : 17))); // base size 5px, double every zoom level after 16/17
 
 		let textNode = L.SVG.create('text');
 		textNode.classList.add('leaflet-interactive','path-label');
 	
-		textNode.setAttribute('font-size', fntsz + 'px');
+		textNode.setAttribute('font-size', `${fntsz}px`);
 		
 		if (color && add_halo) {
 			textNode.classList.add('path-label-halo');
@@ -95,6 +98,8 @@ let PolylinePathLabel = {
 			textPath.setAttribute('text-anchor', style[1]);
 			textPath.appendChild(document.createTextNode(text));
 			textNode.appendChild(textPath);
+			textPath.setAttribute('data-dist',dist);
+			textPath.onclick = toggleMileage;
 			//textNode.addEventParent(this)
 
 			if (!textl) {
