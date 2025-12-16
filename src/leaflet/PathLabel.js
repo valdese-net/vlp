@@ -84,6 +84,7 @@ let PolylinePathLabel = {
 		if (color && add_halo) {
 			textNode.classList.add('path-label-halo');
 			textNode.style.setProperty('--halo-color', color);
+			if ((color[1] > 'D') && (color[3] > '7')) textNode.style.setProperty('--text-color', '#000000');
 		}
 		
 		this._textNode = textNode;

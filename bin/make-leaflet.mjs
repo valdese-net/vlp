@@ -153,7 +153,8 @@ const bldo = {
 	loader: {
 		'.pmtiles': 'file',
 		'.png': 'file',
-		'.svg': 'file',
+		'.jpg': 'file',
+		'.svg': 'dataurl',
 		'.ttf': 'dataurl',
 		'.woff': 'dataurl'
 	},

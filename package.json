@@ -1,7 +1,7 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "5.0.2",
+	"version": "5.0.3",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"refresh-baseline-browser-mapping": "pnpm i --save-dev baseline-browser-mapping@latest",

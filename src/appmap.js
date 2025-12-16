@@ -18,6 +18,7 @@ import './leaflet/PathLabel.js';
 //import {AntPath, antPath} from 'leaflet-ant-path';
 
 import img_parkcontours from './img/park-contour.png';
+import img_trailkey from './img/vlpTrails.png';
 import map_pmtiles from './img/vlp.pmtiles';
 import geo_brtTrails from './geo/brt.geo.json';
 import geo_vlpFeatures from './geo/features.geo.json';
@@ -51,11 +52,12 @@ function vlpAppMap(targetDiv,router) {
 		maxBounds: valdese_area
 	});
 	let scaleControl = L.control.scale({maxWidth:150,position:'bottomleft'}).addTo(map);
-	let layerControl = L.control.layers({}, {},{sortLayers:true}).addTo(map);
+	let layerControl = L.control.layers({}, {},{autoZIndex:false,sortLayers:true}).addTo(map);
 	let geo_Layers = {};
 	let extra_Layers = [];
 	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
+	let trailKey = 	new L.ImageOverlay(img_trailkey,[[35.773616,-81.554428],[35.775194,-81.548579]],{zIndex:999,opacity:1,interactive:true});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
 	
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
@@ -84,6 +86,7 @@ function vlpAppMap(targetDiv,router) {
 
 	map.attributionControl.setPrefix('');
 	yahBtn.bindTo(map);
+	trailKey.addTo(map);
 	fvrMark.addTo(map);
 	map.attributionControl.addAttribution(`V${vlpApp.appd.appver}`);
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
@@ -99,7 +102,12 @@ function vlpAppMap(targetDiv,router) {
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	addProtomapLayer(map,layerControl,map_pmtiles);
+	layerControl.addOverlay(trailKey,'Trail Summary');
 	layerControl.addOverlay(contourLayer,'Contour Lines');
+	
+	trailKey.on('click', (e) => {
+		map.removeLayer(trailKey);
+	});
 
 	map.on("zoomend", (ev) => {
 		let z = map.getZoom();

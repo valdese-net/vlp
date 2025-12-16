@@ -281,6 +281,7 @@ div.social-bar {
 .path-label-halo {
 	fill:var(--text-color,white);
 	letter-spacing:0.35em;
+	dominant-baseline: middle;
 	text-shadow:
 		0 0 0.4em var(--halo-color),
 		0 0 0.3em var(--halo-color),

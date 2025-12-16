@@ -12,9 +12,9 @@ export function styleForGeoPath(feature) {
 	} else if (['pavilion'].includes(prop.class)) {
 		lstyle = {stroke:true,fillColor:'forestgreen',color:'black',fill:true,weight:1,opacity:0.7};
 	} else if (['stairs','ramp'].includes(prop.class)) {
-		lstyle.color = 'brown';
-		lstyle.dashArray = '2 3';
-		lstyle.opacity = 1;
+		lstyle.color = 'black';
+		lstyle.fill = true;
+		lstyle.fillColor = (prop.class == 'stairs') ? 'sandybrown' : '#a0a0a0';
 		lstyle.weight = 1.0;
 	} else if (['pier','stage'].includes(prop.class)) {
 		lstyle = {stroke:true,fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'burlywood',
