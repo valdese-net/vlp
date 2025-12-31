@@ -1,5 +1,5 @@
 import 'leaflet';
-import {createSVGIcon} from './vlp-mdi-icons';
+import {createSVGIcon} from './vlpLeafletIcons';
 import {AntPath, antPath} from 'leaflet-ant-path';
 //import geo_vlpTrails from '../features/vlpTrails.geo.json';
 

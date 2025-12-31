@@ -8,7 +8,7 @@ function protomapPaintRules() { return [
 	symbolizer: new protomapsL.LineSymbolizer({color:'#606060',width:1}),
 },{
 	dataLayer: "parcels",
-	symbolizer: new protomapsL.PolygonSymbolizer({fill:'#b8ebb8ff',stroke:'#606060',doStroke:true,width:0.5,opacity:1}),
+	symbolizer: new protomapsL.PolygonSymbolizer({fill:'#b8ebb8',stroke:'#606060',doStroke:true,width:0.5,opacity:1}),
 },{
 	dataLayer: "water",
 	symbolizer: new protomapsL.PolygonSymbolizer({fill: 'steelblue'})

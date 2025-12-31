@@ -154,7 +154,7 @@ const bldo = {
 		'.pmtiles': 'file',
 		'.png': 'file',
 		'.jpg': 'file',
-		'.svg': 'dataurl',
+		'.svg': 'text',
 		'.ttf': 'dataurl',
 		'.woff': 'dataurl'
 	},

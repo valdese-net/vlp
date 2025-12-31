@@ -1,8 +1,8 @@
-import { installPWAServiceWorker } from './app-workbox.ts';
+import { installPWAServiceWorker } from './app-workbox';
 import { Map, LngLatBounds, NavigationControl, GeolocateControl, addProtocol } from 'maplibre-gl';
 import { Protocol } from "pmtiles";
-import { getSVGIcon } from './lib/vlpIcons.ts';
-import { vlpLayers } from './vlpLayers.ts';
+import { vlpSVGIcons } from './lib/vlpIcons';
+import { vlpLayers } from './vlpLayers';
 
 PRODUCTIONMODE: installPWAServiceWorker();
 
@@ -27,26 +27,30 @@ map.addLayer({
 	layout: {visibility: "visible"},
 });
 
+async function addIcon(id:string)
+{
+	const svg = vlpSVGIcons[id];
+	const img = new Image();
+	const maxh = 100;
+	//img.setAttribute('style',`max-height:${maxh}px;`);
+	img.addEventListener("load", () => {
+		// we need to standardize the size of the icons such that the symbol icon-size can be used to scale them appropriately
+		let w = img.width;
+		let h = img.height;
+		img.height = maxh;
+		img.width = w*(maxh/h);
+		map.addImage(id, img);
+	});
+	img.src = svg;
+}
+//
+for (const id of Object.keys(vlpSVGIcons)) addIcon(id);
+
 vlpLayers(map);
 
 map.addControl(new GeolocateControl({trackUserLocation:true})); // {positionOptions: {enableHighAccuracy: true},trackUserLocation: false}
 map.addControl(new NavigationControl({showCompass:true,showZoom:true,visualizePitch:true,visualizeRoll:true}), 'top-right');
 //map.fitBounds(bbox);
-
-const existingImages = {};
-// The styleimagemissing event is fired when a style requests an image that hasn't been added to the style's image sprite.
-// Unfortunately, maplibre-gl generates a console error message in conjunction with firing this event.
-map.on('styleimagemissing', async (e) => {
-	let id = e.id;
-	if (existingImages[id]) {return;}
-	existingImages[id] = true;
-	const svgText = getSVGIcon(id);
-	const svgDataURL = 'data:image/svg+xml;base64,' + btoa(svgText);
-
-	const img = new Image();
-	img.addEventListener("load", () => { map.addImage(id, img);	});
-	img.src = svgDataURL;
-});
 
 map.on('zoom', () => {
 	console.log('Current zoom level:', map.getZoom());

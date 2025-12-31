@@ -56,12 +56,12 @@ const vlpLayerList = [
 ["poi","symbol",{
 	layout: {
 		"symbol-placement": "point",
-		"icon-size": ["interpolate",["exponential", 2],["zoom"],10,0.00390625,22,16], // zoom 18 should have size of 1
+		"icon-size": ["interpolate",["exponential", 2],["zoom"],10,["*",["get","size"],1.2*0.00390625/16],22,["*",["get","size"],1.2*0.5]],
 		"icon-image": ["get","icon"],
 		"icon-rotate": ["case",["has","rotate"],["get","rotate"],0],
 		"icon-rotation-alignment":"map", // data expressions not supported! ["case",["has","rotate"],"map","auto"],
-		"icon-keep-upright": true,
-		"icon-pitch-alignment": "viewport",
+		"icon-keep-upright": false,
+		"icon-pitch-alignment": "map",
 		"icon-allow-overlap": true
 	}
 }],

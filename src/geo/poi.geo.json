@@ -3,15 +3,17 @@
 "name": "POI",
 "xy_coordinate_resolution": 1e-08,
 "features": [
-{ "type": "Feature", "properties": { "icon": "info", "tip": "Meditation Point, offering a great view across the lake, including Table Rock." }, "geometry": { "type": "Point", "coordinates": [ -81.547272, 35.775369 ] } },
-{ "type": "Feature", "properties": { "icon": "manx", "tip": "Bathrooms and drinking fountain" }, "geometry": { "type": "Point", "coordinates": [ -81.545646, 35.773946 ] } },
+{ "type": "Feature", "properties": { "icon": "meditation_point", "tip": "Meditation Point, offering a great view across the lake, including Table Rock.", "rotate": 320, "size": 45 }, "geometry": { "type": "Point", "coordinates": [ -81.54716623, 35.77539879 ] } },
+{ "type": "Feature", "properties": { "icon": "bathroom_accessible", "tip": "Bathrooms and drinking fountain", "rotate": 270, "fill": "#ffffff", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.545646, 35.773946 ] } },
 { "type": "Feature", "properties": { "icon": "parking", "tip": "Parking for Valdese Lakeside Park", "size": 15 }, "geometry": { "type": "Point", "coordinates": [ -81.545157, 35.774102 ] } },
 { "type": "Feature", "properties": { "icon": "parking", "tip": "Parking at the Lovelady Road entrance", "size": 15 }, "geometry": { "type": "Point", "coordinates": [ -81.54824299, 35.76179828 ] } },
 { "type": "Feature", "properties": { "icon": "parking", "tip": "Parking at McGalliard Falls Park entrance", "size": 15 }, "geometry": { "type": "Point", "coordinates": [ -81.569935, 35.764474 ] } },
-{ "type": "Feature", "properties": { "icon": "fish", "tip": "Fishing on the Pier", "fill": "#f90", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.546557, 35.774406 ] } },
-{ "type": "Feature", "properties": { "icon": "kayak", "tip": "Kayak launch", "rotate": 0 }, "geometry": { "type": "Point", "coordinates": [ -81.54684935, 35.77421212 ] } },
-{ "type": "Feature", "properties": { "icon": "wheel", "tip": "Old Mill Water Wheel", "rotate": 90, "fill": "#531", "stroke": "#000", "size": 40 }, "geometry": { "type": "Point", "coordinates": [ -81.56875142, 35.76553425 ] } },
-{ "type": "Feature", "properties": { "icon": "bridge", "tip": "Valdese Greenway Bridge", "rotate": 22, "fill": "#531", "stroke": "#000", "size": 40 }, "geometry": { "type": "Point", "coordinates": [ -81.564584, 35.770163 ] } },
-{ "type": "Feature", "properties": { "icon": "dog", "tip": "Dog Park", "fill": "#860", "stroke": "#000", "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.54520352, 35.77447378 ] } }
+{ "type": "Feature", "properties": { "icon": "fish", "tip": "Fishing on the Pier", "fill": null, "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.5465359, 35.77455175 ] } },
+{ "type": "Feature", "properties": { "icon": "kayak", "tip": "Kayak launch", "rotate": 0, "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.54701468, 35.77406814 ] } },
+{ "type": "Feature", "properties": { "icon": "mgfallsbridge", "tip": "Valdese Greenway Bridge", "rotate": 16, "fill": null, "stroke": null, "size": 70 }, "geometry": { "type": "Point", "coordinates": [ -81.5645926, 35.7702694 ] } },
+{ "type": "Feature", "properties": { "icon": "dog", "tip": "Dog Park", "fill": null, "stroke": "#000", "size": 15 }, "geometry": { "type": "Point", "coordinates": [ -81.54520352, 35.77447378 ] } },
+{ "type": "Feature", "properties": { "icon": "waterfall", "tip": "Waterfall", "rotate": 0, "fill": null, "stroke": null, "size": 100 }, "geometry": { "type": "Point", "coordinates": [ -81.56872415, 35.76536709 ] } },
+{ "type": "Feature", "properties": { "icon": "bathroom", "tip": "Bethrooms at McGalliard Falls", "rotate": null, "fill": "#ffffff", "stroke": null, "size": 8 }, "geometry": { "type": "Point", "coordinates": [ -81.56938674, 35.76467115 ] } },
+{ "type": "Feature", "properties": { "icon": "pier", "tip": "Fishing and Kayak Launch", "rotate": 290, "fill": null, "stroke": null, "size": 45 }, "geometry": { "type": "Point", "coordinates": [ -81.54668407, 35.77429788 ] } }
 ]
 }

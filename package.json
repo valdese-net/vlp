@@ -1,7 +1,7 @@
 {
 	"name": "vlp",
 	"displayName": "Valdese Lakeside Park",
-	"version": "5.0.3",
+	"version": "5.1.0",
 	"description": "Navigating the Valdese Lakeside Park",
 	"scripts": {
 		"refresh-baseline-browser-mapping": "pnpm i --save-dev baseline-browser-mapping@latest",
@@ -12,7 +12,8 @@
 		"serve": "http-server -p 1336 build -c-1 --gzip",
 		"convert-shapefile": "http-server -p 8080 shapefiles -c-1",
 		"dev-maplibre": "node bin/make-maplibre.mjs dev",
-		"make-maplibre": "node bin/make-maplibre.mjs"
+		"make-maplibre": "node bin/make-maplibre.mjs",
+		"optimize-svg": "pnpm svgo -f src/svg"
 	},
 	"author": "Valdese Network",
 	"license": "Apache-2.0",
@@ -47,7 +48,7 @@
 		"sass": "^1.93.2",
 		"sass-loader": "^13.3.3",
 		"shpjs": "^5.0.2",
-		"twing": "^7.2.2",
+		"svgo": "^4.0.0",
 		"unplugin-starter": "^0.1.0",
 		"workbox": "^0.0.0",
 		"workbox-build": "^7.3.0",

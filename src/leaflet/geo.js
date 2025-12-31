@@ -16,12 +16,12 @@ export function styleForGeoPath(feature) {
 		lstyle.fill = true;
 		lstyle.fillColor = (prop.class == 'stairs') ? 'sandybrown' : '#a0a0a0';
 		lstyle.weight = 1.0;
-	} else if (['pier','stage'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'burlywood',
+	} else if (['pier','stage','shelter'].includes(prop.class)) {
+		lstyle = {stroke:true,fillColor:'saddlebrown',color:'black',fill:true,weight:1,opacity:1};
 	} else if (['dogpark'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'green',color:'#c0c0c0',fill:true,weight:3,opacity:1}; // fillColor:'darkgreen',
+		lstyle = {stroke:true,fillColor:'green',color:'#000000',fill:true,weight:3,opacity:1};
 	} else if (['bathroom'].includes(prop.class)) {
-		lstyle = {stroke:true,fillColor:'#ccc',color:'black',fill:true,weight:1,opacity:1}; // fillColor:'darkblue',
+		lstyle = {stroke:true,fillColor:'#555555',color:'saddlebrown',fill:true,weight:1,opacity:1}; 
 	}
 
 	if (lstyle.fill) { lstyle.fillOpacity = lstyle.opacity; }

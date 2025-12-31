@@ -5,7 +5,7 @@ import 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 
-import {createSVGIcon} from './leaflet/vlp-mdi-icons.js';
+import {createSVGIcon} from './leaflet/vlpLeafletIcons.js';
 import {styleForGeoPath, setStyeAfterZoom, styleForGeoPoints} from './leaflet/geo.js';
 
 import {calcTrailDistance,processGeonote} from './leaflet/myfvrGeoNotes.js';
@@ -33,7 +33,9 @@ const geo_JSONS = {geo_brtTrails,geo_vlpFeatures,geo_vlpPOI,geo_vlpLogging,geo_v
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
 function createGeojsonMarker(geoJsonPt, latlng) {
-	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon)});
+	const props = geoJsonPt.properties??{};
+	const opts = {rotate:props.rotate??0,magnify:(1.2*(props.size??12))/12};
+	return L.marker(latlng,{icon:createSVGIcon(geoJsonPt.properties.icon, opts)});
 }
 
 function vlpAppMap(targetDiv,router) {

@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "./out",
+		"moduleResolution": "node",
+		"allowJs": true,
+		"module": "es2020",
+        "target": "es2020"
+    },
+    "include": ["src/*"]
+}
