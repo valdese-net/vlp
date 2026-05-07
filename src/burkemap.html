@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="./mapburke.scss" />
+<style>
+html,body {height:100%;width:100%;margin:0;padding:0;font-family:Georgia,serif;color:#aaa;background:#2a2f3a;}
+#map {width:100%;height:100%;margin:0;padding:0px;}
+div.maplibregl-popup-content {max-height:400px; overflow-y:auto;}
+</style>
+<title>Burke NC Map</title>
+</head>
+<body>
+<div class="storymap">
+	<div id="the_map"></div>
+	<div id="the_story" data-storymap="@zoom(10)@rotate(-90)
+@(35.727391,-81.782879):
+@zoom(18)@pitch(60)
+📍Glen Alpine
+🪧Trailhead: Glen Alpine Downtown Park - picnic table, restrooms, track
+🥾BRT: 0.5 mile sidewalk Linville St-Catawba
+
+@(35.740255,-81.717886):
+@zoom(16)
+📍Morganton
+🪧Trailhead: Greenlee Ford - restrooms, dog park, playground
+🥾BRT: 3.8 mile 12-foot wide paved Morganton Greenway
+
+@(35.747357,-81.704860):
+@zoom(17)
+📍Morganton
+🪧Trailhead: River Village - restrooms
+🥾BRT: 3.8 mile 12-foot wide paved Morganton Greenway
+
+@(35.760560,-81.705660):
+📍Morganton
+🪧Trailhead: Catawba Meadows Park - restrooms, playground
+🥾BRT: 3.8 mile 12-foot wide paved Morganton Greenway
+
+@(35.771306,-81.691283):
+📍Morganton
+🪧Trailhead: Rocky Ford Access - kayak access
+🥾BRT: 3.8 mile 12-foot wide paved Morganton Greenway
+
+@(35.757065,-81.604998):
+📍Drexel
+🪧Trailhead: Drexel Downtown Park - picnic
+🥾BRT: 0.7 mile sidewalk Main St
+
+@(35.751070,-81.605259):
+📍Drexel
+🪧Trailhead: RO Huffman Center - swings, restroom, basketball, baseball
+🥾BRT: 0.7 mile sidewalk Main St
+
+
+@(35.764236,-81.569922):
+📍Valdese
+🪧Trailhead: McGalliard Falls Park -restrooms, picnic, sand volleyball
+🥾BRT: 2 mile 10-foot wide crushed cinder Valdese Greenway
+
+@(35.774369,-81.544717):
+📍Valdese
+🪧Trailhead: Valdese Lakeside Park - restrooms, 14 miles of trail, pier, dog park
+🥾BRT: West 2 mile 10-foot wide crushed cinder	Valdese Greenway
+🥾BRT: East 0.55 mile 4-foot wide natural surface Wildcat Way
+
+@(35.752641,-81.525159):
+📍Rutherford College
+🪧Trailhead: Greenway Park - restrooms, picnic, playground
+🥾BRT: 0.6 mile sidewalk Malcolm Blvd
+
+@(35.740119,-81.502653):
+📍Connelly Springs
+🪧Trailhead: Connelly Springs Town Hall - picnic
+
+@(35.771354,-81.434269):
+📍Rhodhiss
+🪧Trailhead: Horseshoe Park - playground, walking area, picnic
+🥾BRT: 0.15 natural surface 
+
+@(35.736010,-81.391831):
+📍Long View
+🪧Trailhead: Rec Center - walking track, playground
+🥾BRT: 0.3 mile track along road
+
+@(35.712756,-81.423749):
+📍Hildebran
+🪧Trailhead: Royal Park - play items. restrooms, track
+🥾BRT: 0.7 mile sidewalk Center St to Hwy 70">
+	</div>
+</div>
+<script src="./app-mapburke.ts"></script>
+<script>
+	window.nwsw.MAP.nwMakeBurkeMap({container:'the_map',hash:false,cooperativeGestures:true,center:[-81.72,35.75]},{preFetch:true,addGlobe:true,addControlsTo:'top-right'}).then((map) => {
+		const storydiv = document.getElementById('the_story');
+		window.nwsw.MAP.startStoryMap(map, storydiv);
+		console.log('Map is ready');
+	});
+</script>
+</body>
+</html>

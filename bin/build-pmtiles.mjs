@@ -22,4 +22,5 @@ if (target == 'maplibre') Object.assign(layers, {
 });
 
 const tl = Object.entries(layers).map(([k,v])=>`--named-layer='${k}:./src/geo/${v}.geo.json'`).join(' ');
-execSync(`tippecanoe -Z10 -z16 --coalesce-densest-as-needed --simplify-only-low-zooms -f -o ${pmtilefile} ${tl}`);
+// --coalesce-densest-as-needed --simplify-only-low-zooms 
+execSync(`tippecanoe -r1 -Z10 -z16 -f -o ${pmtilefile} ${tl}`);

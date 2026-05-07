@@ -2,10 +2,10 @@ import path from 'node:path';
 import * as fs from 'node:fs';
 import esbuild from 'esbuild';
 import htmlPlugin from '@chialab/esbuild-plugin-html';
+import {createEnvironment,createArrayLoader,createFilesystemLoader,createChainLoader } from 'twing';
 import {sassPlugin} from 'esbuild-sass-plugin';
 import { generateSW } from 'workbox-build';
 import { createRequire } from "module";
-import {createEnvironment,createArrayLoader,createFilesystemLoader,createChainLoader } from 'twing';
 import { marked } from 'marked';
 import YAML from 'yaml'
 
