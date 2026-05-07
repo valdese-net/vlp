@@ -15,7 +15,7 @@ const outFolder = devmode ? 'out' : 'build';
 // clean the out folder
 readdirSync(outFolder).forEach(f => rmSync(`${outFolder}/${f}`));
 
-const assetNamePattern = devmode ? '[name]' : '[name]-[hash]';
+const assetNamePattern = devmode ? '[name]' : '[name]-v2605b';
 const bldo = {
 	entryPoints: ['src/burkemap.html'],
 	outdir: outFolder,

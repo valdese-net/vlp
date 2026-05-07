@@ -48,7 +48,7 @@ export const burkeLayerList: mapLayerListSpec = [
 }],
 ["road","symbol",{
 	filter: ["all",["has", "name"]],
-	layout:	{symbolPlacement:"line-center",textField:"{name}",textRotationAlignment:"map",textSize:{"base": 1.4, "stops": [[10, 8], [20, 32]]}},
+	layout:	{symbolPlacement:"line",textField:"{name}",textRotationAlignment:"map",textSize:{"base": 1.4, "stops": [[10, 8], [20, 32]]}},
 	paint:	{textColor:"#000",textHaloColor:"#fff",textHaloWidth:3,textHaloBlur:3}
 }],
 ["manmade","fill",{paint:{fillColor: "brown",fillOpacity:0.8}}],

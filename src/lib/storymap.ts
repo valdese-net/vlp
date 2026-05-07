@@ -66,9 +66,16 @@ export function startStoryMap(the_map:Map, the_story: HTMLElement) {
 
 	const startbounds = getStoryBounds(mapcoords);
 	const startcenter = startbounds.getCenter();
+	the_map.getContainer().scrollIntoView({behavior:'smooth',block:'start'});
 	the_map.fitBounds(startbounds, {padding:6,duration:5000});
 	the_map.once('moveend', () => {
-		if (initmap.rotate)	the_map.flyTo({center:startcenter, bearing:initmap.rotate,duration:3000});
+		// if rotating in landscape, zoom out a bit to better show the area boundaries
+		let zoom = the_map.getZoom();
+		const w = window.innerWidth;
+		const h = window.innerHeight;
+		if (w > h) zoom = Math.max(zoom-1,1);
+		else if (h > 2*w) zoom += 1 
+		the_map.flyTo({center:startcenter, bearing:initmap.rotate,zoom,duration:3000});
 	});
 
 	function uiActivateNote(n:number,add:boolean=true) {
