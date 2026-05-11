@@ -10,10 +10,11 @@
 		"dev": "node bin/make-leaflet.mjs dev",
 		"build": "node bin/make-leaflet.mjs",
 		"serve": "http-server -p 1336 build -c-1 --gzip",
-		"convert-shapefile": "http-server -p 8080 shapefiles -c-1",
+		"serve-pmtiles": "http-server -p 8080 ../pmtiles -c-1 --cors",
 		"dev-maplibre": "node bin/make-maplibre.mjs dev",
 		"make-maplibre": "node bin/make-maplibre.mjs",
 		"make-mapburke-dev": "node bin/make-mapburke.mjs dev",
+		"make-mapburke-remote": "node bin/make-mapburke.mjs remote",
 		"make-mapburke": "node bin/make-mapburke.mjs",
 		"optimize-svg": "pnpm svgo -f src/svg"
 	},

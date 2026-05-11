@@ -8,9 +8,13 @@ const require = createRequire(import.meta.url);
 const gzipPlugin = require('./esbuild-plugin-gzip.js');
 const pkg_json = require('maplibre-gl/package.json');
 
-let devmode = process.argv[2] === 'dev';
-
+const devmode = ['dev','remote'].indexOf(process.argv[2])+1;
+const buildLabels = ['DEVELOPMENTMODE', 'DEVELOPMENTMODE', 'REMOTEDEV']; 
+const dropLabels = buildLabels;
+dropLabels.splice(devmode, 1); // drop the label for the current mode
 const outFolder = devmode ? 'out' : 'build';
+
+if (!devmode) dropLabels.push('TEST');
 
 // clean the out folder
 readdirSync(outFolder).forEach(f => rmSync(`${outFolder}/${f}`));
@@ -34,7 +38,7 @@ const bldo = {
 		'.ttf': 'dataurl',
 		'.woff': 'dataurl'
 	},
-	dropLabels: devmode ? ['PRODUCTIONMODE'] : ['DEVELOPMENTMODE', 'TEST'],
+	dropLabels: dropLabels,
 	plugins: [
 		htmlPlugin({modulesTarget:'chrome99',scriptsTarget:'chrome99'}),
 		sassPlugin()

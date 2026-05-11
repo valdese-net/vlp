@@ -66,17 +66,20 @@ export function startStoryMap(the_map:Map, the_story: HTMLElement) {
 
 	const startbounds = getStoryBounds(mapcoords);
 	const startcenter = startbounds.getCenter();
-	the_map.getContainer().scrollIntoView({behavior:'smooth',block:'start'});
-	the_map.fitBounds(startbounds, {padding:6,duration:5000});
-	the_map.once('moveend', () => {
-		// if rotating in landscape, zoom out a bit to better show the area boundaries
-		let zoom = the_map.getZoom();
-		const w = window.innerWidth;
-		const h = window.innerHeight;
-		if (w > h) zoom = Math.max(zoom-1,1);
-		else if (h > 2*w) zoom += 1 
-		the_map.flyTo({center:startcenter, bearing:initmap.rotate,zoom,duration:3000});
-	});
+	function startAnimation() {
+		the_map.getContainer().scrollIntoView({behavior:'smooth',block:'start'});
+		the_map.fitBounds(startbounds, {padding:6,duration:5000});
+		the_map.once('moveend', () => {
+			// if rotating in landscape, zoom out a bit to better show the area boundaries
+			let zoom = the_map.getZoom();
+			const w = window.innerWidth;
+			const h = window.innerHeight;
+			if (w > h) zoom = Math.max(zoom-1,1);
+			else if (h > 2*w) zoom += 1 
+			the_map.flyTo({center:startcenter, bearing:initmap.rotate,zoom,duration:3000});
+		});
+	}
+	window.setTimeout(startAnimation,2000);
 
 	function uiActivateNote(n:number,add:boolean=true) {
 		let idString = (n+1).toString();
@@ -125,7 +128,7 @@ export function startStoryMap(the_map:Map, the_story: HTMLElement) {
 		let lastInView = -1;
 		the_story.querySelectorAll('article').forEach((el, n_i) => {
 			let r = el.getBoundingClientRect();
-			if (((r.top > 0) && (activateline > r.top)) || ((r.bottom > 0) && (r.bottom < vh)))  {
+			if (((r.top > 0) && (activateline > r.top)) || ((r.bottom > 0) && (r.bottom <= vh)))  {
 				let a_id = Number(el.getAttribute('data-geoid'));
 				if (a_id > lastInView) lastInView = a_id;
 			}
